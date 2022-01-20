@@ -15,7 +15,8 @@ public class CameraTopDown : MonoBehaviour
     void Update()
     {
 	    if(player){
-		    transform.position = Vector3.Lerp(player.position+offset,transform.position,0.5f * Time.deltaTime);
+		    transform.position = Vector3.Lerp(transform.position,player.position + offset,10f);
+		    transform.rotation = Quaternion.Euler(90,0,0);
 	    }
     }
 }
