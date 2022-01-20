@@ -11,15 +11,24 @@ public class Projectile : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        OnEnable();
     }
 
+    private void OnEnable()
+    {
+        StopAllCoroutines();
+        StartCoroutine(_DisablingCountdown());
+    }
+
+    Vector3 newPosition;
+    Vector3 move;
     protected bool isMoving = false;
     private void FixedUpdate()
     {
         if (!isMoving) return;
 
-        Vector3 newPosition = this.rb.position + this.transform.forward * speed * Time.deltaTime;
-        Vector3 move = newPosition - this.rb.position;
+        newPosition = this.rb.position + this.transform.forward * speed * Time.deltaTime;
+        move = newPosition - this.rb.position;
 
         RaycastHit hit;
         if (Physics.Raycast(this.rb.position, move, out hit, move.magnitude))
@@ -44,5 +53,17 @@ public class Projectile : MonoBehaviour
         isMoving = true;
     }
 
-    public void StopMoving() { isMoving = false; }
+    public void StopMoving()
+    {
+        isMoving = false;
+    }
+
+    IEnumerator _DisablingCountdown()
+    {
+        while (gameObject.activeInHierarchy)
+        {
+            yield return new WaitForSeconds(5f);
+            gameObject.SetActive(false);
+        }
+    }
 }
