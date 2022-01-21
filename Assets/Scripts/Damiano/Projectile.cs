@@ -17,7 +17,6 @@ public class Projectile : MonoBehaviour
     private void OnEnable()
     {
         StopAllCoroutines();
-        StartCoroutine(_DisablingCountdown());
     }
 
     Vector3 newPosition;
@@ -51,6 +50,9 @@ public class Projectile : MonoBehaviour
     {
         transform.parent = null;
         isMoving = true;
+
+        StopAllCoroutines();
+        StartCoroutine(_DisablingCountdown());
     }
 
     public void StopMoving()
@@ -60,7 +62,7 @@ public class Projectile : MonoBehaviour
 
     IEnumerator _DisablingCountdown()
     {
-        while (gameObject.activeInHierarchy)
+        while (gameObject.activeInHierarchy && isMoving)
         {
             yield return new WaitForSeconds(5f);
             gameObject.SetActive(false);

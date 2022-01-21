@@ -8,13 +8,13 @@ public class SwordOrigin : MonoBehaviour
 
     private void Start()
     {
-        FloatingSwords.Instance.OnReload += GenerateSword;
-        GenerateSword();
+        FloatingSwords.Instance.OnReload += GenerateSwordAfter;
+        TryGenerateSword();
     }
 
     private void OnDestroy()
     {
-        FloatingSwords.Instance.OnReload -= GenerateSword;
+        FloatingSwords.Instance.OnReload -= GenerateSwordAfter;
     }
 
     public void ShootAt(Vector3 targetPosition)
@@ -26,7 +26,19 @@ public class SwordOrigin : MonoBehaviour
         currentSword = null;
     }
 
-    void GenerateSword(float delay = 0f)
+    public void GenerateSwordAfter(float delay = 0f)
+    {
+        StopAllCoroutines();
+        StartCoroutine(_GenerateSwordAfter(delay));
+    }
+
+    IEnumerator _GenerateSwordAfter(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        TryGenerateSword();
+    }
+
+    void TryGenerateSword(float delay = 0f)
     {
         if (currentSword == null)
             currentSword = ObjectPooler.Spawn("SwordProjectile", transform.position, Quaternion.identity, this.transform);

@@ -58,6 +58,7 @@ MonoBehaviour:
   - {fileID: 226704478250315521}
   shootHeight: 1
   recoilTime: 0.4
+  reloadTime: 1.6
   minAimDistance: 2
 --- !u!1 &1435285452340779386
 GameObject:

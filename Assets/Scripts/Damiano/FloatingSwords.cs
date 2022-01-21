@@ -32,10 +32,9 @@ public class FloatingSwords : Singleton<FloatingSwords>
         {
             targetPosition = ClampMinRadius(hit.point + Vector3.up * shootHeight);
 
-            if (Input.GetMouseButton(0) && recoilTimer <= 0f && reloadTimer <= 0f)
+            if (Input.GetMouseButton(1) && recoilTimer <= 0f && reloadTimer <= 0f)
             {
                 ShootAt(targetPosition);
-                recoilTimer = recoilTime;
             }
         }
         ApplyLookDirection();
@@ -52,14 +51,30 @@ public class FloatingSwords : Singleton<FloatingSwords>
         return position;
     }
 
+    [SerializeField] bool doesRotateX = false;
     void ApplyLookDirection()
     {
         if (targetPosition == null) return;
 
         Vector3 samePlaneTarget = Vector3.right * targetPosition.x + Vector3.up * transform.position.y + Vector3.forward * targetPosition.z;
-        transform.LookAt(samePlaneTarget);
-    }
 
+        transform.LookAt(doesRotateX ? targetPosition : samePlaneTarget);
+    }
+    /*
+    void ShootAt(Vector3 targetPosition)
+    {
+        currentOrigin++;
+
+        if (currentOrigin >= swordOrigins.Count)
+            currentOrigin -= swordOrigins.Count;
+
+        //currentOrigin = Random.Range(0, swordOrigins.Count);
+        swordOrigins[currentOrigin].ShootAt(targetPosition);
+        swordOrigins[currentOrigin].GenerateSwordAfter(recoilTime);
+
+        recoilTimer = recoilTime;
+    }
+    */
     void ShootAt(Vector3 targetPosition)
     {
         swordOrigins[currentOrigin].ShootAt(targetPosition);
@@ -72,8 +87,10 @@ public class FloatingSwords : Singleton<FloatingSwords>
             if (OnReload != null)
                 OnReload(reloadTime - recoilTime);
         }
+        else
+            recoilTimer = recoilTime;
     }
-
+    
     bool isShooting = false;
     IEnumerator _ShootingPattern()
     {
@@ -96,17 +113,4 @@ public class FloatingSwords : Singleton<FloatingSwords>
 
         isShooting = false;
     }
-
-    /*
-    void ShootAt(Vector3 targetPosition)
-    {
-        currentOrigin += 2;
-
-        if (currentOrigin >= swordOrigins.Count)
-            currentOrigin -= swordOrigins.Count;
-
-        //currentOrigin = Random.Range(0, swordOrigins.Count);
-        swordOrigins[currentOrigin].ShootAt(targetPosition);
-    }
-    */
 }
