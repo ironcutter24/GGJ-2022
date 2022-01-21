@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class SwordOrigin : MonoBehaviour
 {
+    [SerializeField] MeshRenderer meshRend;
+
     Projectile currentSword;
 
-    private void Start()
+    private void Awake()
     {
-        FloatingSwords.Instance.OnReload += GenerateSwordAfter;
-        TryGenerateSword();
+        FloatingSwords.OnReload += GenerateSwordAfter;
+        meshRend.enabled = false;
     }
 
     private void OnDestroy()
     {
-        FloatingSwords.Instance.OnReload -= GenerateSwordAfter;
+        FloatingSwords.OnReload -= GenerateSwordAfter;
     }
 
     public void ShootAt(Vector3 targetPosition)
@@ -26,7 +28,7 @@ public class SwordOrigin : MonoBehaviour
         currentSword = null;
     }
 
-    public void GenerateSwordAfter(float delay = 0f)
+    public void GenerateSwordAfter(float delay)
     {
         StopAllCoroutines();
         StartCoroutine(_GenerateSwordAfter(delay));

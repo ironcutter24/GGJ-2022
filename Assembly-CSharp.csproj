@@ -55,13 +55,14 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Damiano\ObjectPooler.cs" />
     <Compile Include="Assets\Scripts\Damiano\FloatingSwords.cs" />
+    <Compile Include="Assets\Scripts\Damiano\MeleeSword.cs" />
     <Compile Include="Assets\Scripts\Damiano\SampleEnemy.cs" />
     <Compile Include="Assets\Scripts\Damiano\Projectile.cs" />
     <Compile Include="Assets\Scripts\UtilityDam.cs" />
     <Compile Include="Assets\Scripts\Damiano\SwordOrigin.cs" />
     <Compile Include="Assets\Scripts\Damiano\Interfaces.cs" />
     <Compile Include="Assets\Scripts\Damiano\SwordProjectile.cs" />
-    <Compile Include="Assets\MeleeSword.cs" />
+    <Compile Include="Assets\Scripts\Damiano\MaterialMimic.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

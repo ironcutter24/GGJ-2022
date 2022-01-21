@@ -64,6 +64,8 @@ MonoBehaviour:
   rb: {fileID: 1965927921148605071}
   speed: 25
   damage: 1
+  fadeDuration: 0.4
+  meshRend: {fileID: 1965927921242076585}
 --- !u!1 &1965927921242076564
 GameObject:
   m_ObjectHideFlags: 0
@@ -75,9 +77,10 @@ GameObject:
   - component: {fileID: 1965927921242076587}
   - component: {fileID: 1965927921242076584}
   - component: {fileID: 1965927921242076585}
+  - component: {fileID: 8659457927557079547}
   - component: {fileID: 1965927921242076586}
   m_Layer: 0
-  m_Name: Cylinder
+  m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -124,7 +127,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 995c83608ddddaf4fa9c26fb567ff8f6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -146,6 +149,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8659457927557079547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1965927921242076564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 607942b292ba17342ae322841adecef5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &1965927921242076586
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -94,3 +94,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 613c87624dd116b4483669c23b1bc637, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  meshRend: {fileID: 4253228025765064980}

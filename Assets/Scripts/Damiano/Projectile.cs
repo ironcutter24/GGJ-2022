@@ -14,9 +14,9 @@ public class Projectile : MonoBehaviour
         OnEnable();
     }
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
-        StopAllCoroutines();
+        StopCoroutine(_DisablingCountdown());
     }
 
     Vector3 newPosition;
@@ -37,8 +37,7 @@ public class Projectile : MonoBehaviour
             if(target != null)
                 target.ApplyDamage(damage);
 
-            StopMoving();
-            this.gameObject.SetActive(false);
+            DeactivateForPooling();
         }
         else
         {
@@ -65,7 +64,13 @@ public class Projectile : MonoBehaviour
         while (gameObject.activeInHierarchy && isMoving)
         {
             yield return new WaitForSeconds(5f);
-            gameObject.SetActive(false);
+            DeactivateForPooling();
         }
+    }
+
+    protected virtual void DeactivateForPooling()
+    {
+        StopMoving();
+        this.gameObject.SetActive(false);
     }
 }

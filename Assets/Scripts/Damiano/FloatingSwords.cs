@@ -12,13 +12,20 @@ public class FloatingSwords : Singleton<FloatingSwords>
     int currentOrigin = 0;
 
     [SerializeField] float shootHeight = 1f;
-    [SerializeField] float recoilTime = .1f;
-    [SerializeField] float reloadTime = 1.2f;
+    [SerializeField] float recoilDuration = .1f;
+    public static float RecoilDuration { get { return _instance.recoilDuration; } }
+    [SerializeField] float reloadDuration = 1.2f;
 
     private Vector3 targetPosition;
     public static Vector3 TargetPosition { get { return _instance.targetPosition; } }
 
-    public System.Action<float> OnReload;
+    public static System.Action<float> OnReload;
+
+    private void Start()
+    {
+        recoilTimer = recoilDuration;
+        OnReload(0f);
+    }
 
     [SerializeField] float minAimDistance = 1f;
     float recoilTimer;
@@ -83,12 +90,12 @@ public class FloatingSwords : Singleton<FloatingSwords>
         if (currentOrigin >= swordOrigins.Count)
         {
             currentOrigin = 0;
-            reloadTimer = reloadTime;
+            reloadTimer = reloadDuration;
             if (OnReload != null)
-                OnReload(reloadTime - recoilTime);
+                OnReload(reloadDuration - recoilDuration);
         }
         else
-            recoilTimer = recoilTime;
+            recoilTimer = recoilDuration;
     }
     
     bool isShooting = false;
@@ -102,14 +109,14 @@ public class FloatingSwords : Singleton<FloatingSwords>
             swordOrigins[currentOrigin].ShootAt(targetPosition);
             currentOrigin++;
 
-            yield return new WaitForSeconds(recoilTime);
+            yield return new WaitForSeconds(recoilDuration);
         }
-        yield return new WaitForSeconds(reloadTime - recoilTime);
+        yield return new WaitForSeconds(reloadDuration - recoilDuration);
 
         if (OnReload != null)
             OnReload(0f);
 
-        yield return new WaitForSeconds(recoilTime);
+        yield return new WaitForSeconds(recoilDuration);
 
         isShooting = false;
     }
