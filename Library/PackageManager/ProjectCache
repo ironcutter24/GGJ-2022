@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637782370601182454
-    m_Hash: 3951480149
+      ticks: 637783870579999466
+    m_Hash: 816014452
   m_LockFileStatus:
     m_FilePath: C:/Users/Damiano/Documents/Unity/GGJ 2022/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637782370601350244
-    m_Hash: 813218487
+      ticks: 637783870580009478
+    m_Hash: 1687053083
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_PackageAssets:

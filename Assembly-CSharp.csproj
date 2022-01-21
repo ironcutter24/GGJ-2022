@@ -58,12 +58,16 @@
     <Compile Include="Assets\Scripts\Damiano\MeleeSword.cs" />
     <Compile Include="Assets\Scripts\Damiano\SampleEnemy.cs" />
     <Compile Include="Assets\Scripts\Damiano\Projectile.cs" />
+    <Compile Include="Assets\TrailManager.cs" />
     <Compile Include="Assets\Scripts\UtilityDam.cs" />
     <Compile Include="Assets\Scripts\Damiano\SwordOrigin.cs" />
     <Compile Include="Assets\Scripts\Damiano\Interfaces.cs" />
     <Compile Include="Assets\Scripts\Damiano\MaterialMimic.cs" />
     <Compile Include="Assets\Scripts\Damiano\SwordProjectile.cs" />
-    <Compile Include="Assets\TrailManager.cs" />
+    <Compile Include="Assets\Scripts\Damiano\FSM\FSMController.cs" />
+    <Compile Include="Assets\Scripts\Damiano\FSM\Enemy.cs" />
+    <Compile Include="Assets\Scripts\Damiano\FSM\Spike.cs" />
+    <Compile Include="Assets\Scripts\Damiano\FSM\Jumper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
