@@ -53,7 +53,21 @@
     <UnityVersion>2020.3.26f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Damiano\ObjectPooler.cs" />
+    <Compile Include="Assets\Scripts\Damiano\FloatingSwords.cs" />
+    <Compile Include="Assets\Scripts\Damiano\MeleeSword.cs" />
+    <Compile Include="Assets\Scripts\Damiano\SampleEnemy.cs" />
+    <Compile Include="Assets\Scripts\Damiano\Projectile.cs" />
+    <Compile Include="Assets\TrailManager.cs" />
     <Compile Include="Assets\Scripts\UtilityDam.cs" />
+    <Compile Include="Assets\Scripts\Damiano\SwordOrigin.cs" />
+    <Compile Include="Assets\Scripts\Damiano\Interfaces.cs" />
+    <Compile Include="Assets\Scripts\Damiano\MaterialMimic.cs" />
+    <Compile Include="Assets\Scripts\Damiano\SwordProjectile.cs" />
+    <Compile Include="Assets\Scripts\Damiano\FSM\FSMController.cs" />
+    <Compile Include="Assets\Scripts\Damiano\FSM\Enemy.cs" />
+    <Compile Include="Assets\Scripts\Damiano\FSM\Spike.cs" />
+    <Compile Include="Assets\Scripts\Damiano\FSM\Jumper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -697,6 +711,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{60F0CC9A-47A2-5594-31D7-C64C4448C959}</Project>
+      <Name>Assembly-CSharp-firstpass</Name>
+    </ProjectReference>
     <ProjectReference Include="ScriptInspector.csproj">
       <Project>{09C13C3C-18BE-C79B-00D4-D29807F42AB6}</Project>
       <Name>ScriptInspector</Name>

@@ -52,10 +52,13 @@ namespace UtilityDam
 
 		public static Vector3 GetDirectionXZ(Vector3 fromPosition, Vector3 targetPosition)
 		{
-			Vector3 app = targetPosition - fromPosition;
-			app.y = 0f;
-			return app.normalized;
+			return GetXZ(targetPosition - fromPosition).normalized;
 		}
+
+		public static Vector3 GetXZ(Vector3 source)
+        {
+			return Vector3.right * source.x + Vector3.forward * source.z;
+        }
 	}
 
 	class OneTimeEvent
