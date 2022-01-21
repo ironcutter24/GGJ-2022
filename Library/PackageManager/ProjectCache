@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637783077101972283
-    m_Hash: 2180995314
+      ticks: 637783855414842074
+    m_Hash: 1732067723
   m_LockFileStatus:
     m_FilePath: D:/File Utente/Desktop/GGJ-2022/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637783077102651171
-    m_Hash: 639417807
+      ticks: 637783855414842074
+    m_Hash: 65776329
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_PackageAssets:
