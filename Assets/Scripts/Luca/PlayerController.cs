@@ -1,30 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utility.Patterns;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Singleton<PlayerController>
 {
+    [SerializeField] Rigidbody rb;
     [SerializeField] Animator anim;
 
-    Transform player;
-    public float speedB, speedRotB;
-    public float speedG, speedRotG;
-    bool typePlayer;
+    [SerializeField] float moveSpeed;
 
-    void Start()
-    {
-        player = GetComponent<Transform>();
-        typePlayer = false;
-    }
+    public Vector3 Pos { get { return rb.position; } }
 
-    Vector3 move;
+    Vector3 move = Vector3.zero;
+    public Vector3 Move { get { return _instance.move; } }
+
+    Vector3 lookDirection;
+    public Vector3 LookDir { get { return lookDirection; } }
+
     private void Update()
     {
-        move = Vector3.zero;
-
-        move.x = Input.GetAxis("Horizontal");
-        move.z = Input.GetAxis("Vertical");
-        move.Normalize();
+        move = GetDirectionalInput();
 
         anim.SetFloat("Horizontal", move.x);
         anim.SetFloat("Vertical", move.z);
@@ -33,20 +29,24 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        var x = Input.GetAxis("Horizontal") * Time.deltaTime * speedRotG;
-        var z = Input.GetAxis("Vertical") * Time.deltaTime * speedG;
-        //player.Rotate(0, x, 0);
-        //player.Translate(0, 0, z);
+        rb.MovePosition(rb.position + move * moveSpeed * Time.deltaTime);
 
-        player.Translate(move * speedG * Time.deltaTime);
+        lookDirection = Utility.UMath.GetXZ(MouseRaycaster.Hit.point - rb.position).normalized;
+        rb.MoveRotation(Quaternion.LookRotation(lookDirection, Vector3.up));
+    }
 
-        if (Input.GetKey(KeyCode.Space))
-        {
-            typePlayer = true;
-            var xb = Input.GetAxis("Horizontal") * Time.deltaTime * speedRotB;
-            var zb = Input.GetAxis("Vertical") * Time.deltaTime * speedB;
-            player.Rotate(0, xb, 0);
-            player.Translate(0, 0, zb);
-        }
+    Vector3 GetDirectionalInput()
+    {
+        Vector3 input = Vector3.zero;
+        input.x = Input.GetAxis("Horizontal");
+        input.z = Input.GetAxis("Vertical");
+
+        if (!IsCircaZero(input.x) || !IsCircaZero(input.z))
+            return input.normalized;
+        else
+            return Vector3.zero;
+
+
+        bool IsCircaZero(float value) { return Mathf.Approximately(value, 0f); }
     }
 }

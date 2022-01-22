@@ -54,7 +54,7 @@ namespace FSM
 
 		bool StateHasChanged { get { return currentState != oldState; } }
 
-		public void ChangeState(State newState)
+		public void SetState(State newState)
 		{
 			oldState = currentState;
 			currentState = newState;
@@ -65,6 +65,7 @@ namespace FSM
 	{
 		protected FSMController controller;
 		protected Enemy TargetUnit { get { return controller.targetUnit; } }
+		protected FSMController.StateCollection States { get { return controller.States; } }
 
 		protected State(FSMController controller)
 		{

@@ -57,7 +57,7 @@ public class FloatingSwords : Singleton<FloatingSwords>
     {
         if (targetPosition == null) return;
 
-        Vector3 samePlaneTarget = Vector3.right * targetPosition.x + Vector3.up * transform.position.y + Vector3.forward * targetPosition.z;
+        Vector3 samePlaneTarget = UMath.NewVector(targetPosition.x, transform.position.y, targetPosition.z);
 
         transform.LookAt(doesRotateX ? targetPosition : samePlaneTarget);
     }
