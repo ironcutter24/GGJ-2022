@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pools:
-  - tag: SwordProjectile
+  - tag: PlayerSword
     prefab: {fileID: 1965927921148605066, guid: 5d40a3873bb097746a8f8a9edebf4559, type: 3}
     size: 0
     toBeInitialized: 0
