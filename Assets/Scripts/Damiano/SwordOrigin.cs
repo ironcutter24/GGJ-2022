@@ -24,7 +24,6 @@ public class SwordOrigin : MonoBehaviour
         Quaternion rotation = Quaternion.FromToRotation(Vector3.forward, targetPosition - transform.position);
         currentSword.transform.rotation = rotation;
         currentSword.StartMoving();
-
         currentSword = null;
     }
 
@@ -43,6 +42,6 @@ public class SwordOrigin : MonoBehaviour
     void TryGenerateSword(float delay = 0f)
     {
         if (currentSword == null)
-            currentSword = ObjectPooler.Spawn("SwordProjectile", transform.position, Quaternion.identity, this.transform);
+            currentSword = ProjectilePooler.Spawn("PlayerSword", transform.position, Quaternion.identity, this.transform);
     }
 }
