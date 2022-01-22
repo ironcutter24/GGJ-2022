@@ -6,8 +6,6 @@ using Utility.Patterns;
 
 public class FloatingSwords : Singleton<FloatingSwords>
 {
-    [SerializeField] LayerMask layerMask;
-
     [SerializeField] List<SwordOrigin> swordOrigins = new List<SwordOrigin>();
     int currentOrigin = 0;
 
@@ -32,16 +30,14 @@ public class FloatingSwords : Singleton<FloatingSwords>
     float reloadTimer;
     private void Update()
     {
-        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
+        if (!MouseRaycaster.Error)
         {
-            targetPosition = ClampMinRadius(hit.point + Vector3.up * shootHeight);
+            targetPosition = ClampMinRadius(MouseRaycaster.Hit.point + Vector3.up * shootHeight);
 
             if (Input.GetMouseButton(1) && recoilTimer <= 0f && reloadTimer <= 0f)
                 ShootAt(targetPosition);
         }
+
         ApplyLookDirection();
         recoilTimer -= Time.deltaTime;
         reloadTimer -= Time.deltaTime;
