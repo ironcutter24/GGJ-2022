@@ -448,7 +448,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 397aa3bdaa884f54c89384da31f3b9de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
   speedB: 10
   speedRotB: 100
   speedG: 10
@@ -499,7 +498,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 397aa3bdaa884f54c89384da31f3b9de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 773337244}
   speedB: 10
   speedRotB: 100
   speedG: 10
@@ -535,11 +533,6 @@ Transform:
   m_Father: {fileID: 623004363}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &773337244 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 2053e5bab5abef74db64bda796d94384, type: 3}
-  m_PrefabInstance: {fileID: 1904600082}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &791653129
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -841,6 +834,10 @@ PrefabInstance:
     - target: {fileID: 793025132883311279, guid: 51352cdd054e18a4c92f912d50a733d0, type: 3}
       propertyPath: m_Name
       value: Melee Sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 793025132883311279, guid: 51352cdd054e18a4c92f912d50a733d0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51352cdd054e18a4c92f912d50a733d0, type: 3}
