@@ -15,7 +15,7 @@ public class FloatingSwords : Singleton<FloatingSwords>
     [SerializeField] float reloadDuration = 1.2f;
 
     private Vector3 targetPosition;
-    public static Vector3 TargetPosition { get { return _instance.targetPosition; } }
+    public static Vector3 TargetPosition { get { return _instance.targetPosition != null ? _instance.targetPosition : Vector3.zero; } }
 
     public static System.Action<float> OnReload;
 

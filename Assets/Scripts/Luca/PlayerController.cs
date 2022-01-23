@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utility;
 using Utility.Patterns;
 
 public class PlayerController : Singleton<PlayerController>
@@ -21,18 +22,14 @@ public class PlayerController : Singleton<PlayerController>
     private void Update()
     {
         move = GetDirectionalInput();
-
-        anim.SetFloat("Horizontal", move.x);
-        anim.SetFloat("Vertical", move.z);
-        anim.SetFloat("MoveSpeed", move.magnitude);
+        lookDirection = Utility.UMath.GetXZ(MouseRaycaster.Hit.point - rb.position).normalized;
     }
 
     void FixedUpdate()
     {
         rb.MovePosition(rb.position + move * moveSpeed * Time.deltaTime);
-
-        lookDirection = Utility.UMath.GetXZ(MouseRaycaster.Hit.point - rb.position).normalized;
         rb.MoveRotation(Quaternion.LookRotation(lookDirection, Vector3.up));
+        SetAnimation();
     }
 
     Vector3 GetDirectionalInput()
@@ -48,5 +45,14 @@ public class PlayerController : Singleton<PlayerController>
 
 
         bool IsCircaZero(float value) { return Mathf.Approximately(value, 0f); }
+    }
+
+    void SetAnimation()
+    {
+        Vector3 relativeMove = transform.InverseTransformDirection(move);
+
+        anim.SetFloat("Horizontal", relativeMove.x);
+        anim.SetFloat("Vertical", relativeMove.z);
+        anim.SetFloat("MoveSpeed", move.magnitude);
     }
 }
