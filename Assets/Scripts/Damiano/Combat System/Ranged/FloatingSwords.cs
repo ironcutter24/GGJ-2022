@@ -19,28 +19,26 @@ public class FloatingSwords : Singleton<FloatingSwords>
 
     public static System.Action<float> OnReload;
 
+    Timer recoilTimer = new Timer();
+    Timer reloadTimer = new Timer();
+
     private void Start()
     {
-        recoilTimer = recoilDuration;
+        recoilTimer.Set(recoilDuration);
         OnReload(0f);
     }
 
     [SerializeField] float minAimDistance = 1f;
-    float recoilTimer;
-    float reloadTimer;
     private void Update()
     {
         if (!MouseRaycaster.Error)
         {
             targetPosition = ClampMinRadius(MouseRaycaster.Hit.point + Vector3.up * shootHeight);
 
-            if (Input.GetMouseButton(1) && recoilTimer <= 0f && reloadTimer <= 0f)
+            if (Input.GetMouseButton(1) && recoilTimer.IsExpired && reloadTimer.IsExpired)
                 ShootAt(targetPosition);
         }
-
         ApplyLookDirection();
-        recoilTimer -= Time.deltaTime;
-        reloadTimer -= Time.deltaTime;
     }
 
     Vector3 ClampMinRadius(Vector3 position)
@@ -84,12 +82,12 @@ public class FloatingSwords : Singleton<FloatingSwords>
         if (currentOrigin >= swordOrigins.Count)
         {
             currentOrigin = 0;
-            reloadTimer = reloadDuration;
+            reloadTimer.Set(reloadDuration);
             if (OnReload != null)
                 OnReload(reloadDuration - recoilDuration);
         }
         else
-            recoilTimer = recoilDuration;
+            recoilTimer.Set(recoilDuration);
     }
     
     bool isShooting = false;
