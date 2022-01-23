@@ -139,7 +139,8 @@ MonoBehaviour:
   speed: 2
   maxDistanceX: 1
   maxDistanceZ: 0.6
-  heightFromPlayer: 10
+  heightPrey: 7
+  heightHunter: 10
   verticalOffset: -4.5
 --- !u!1 &3900715388768602172
 GameObject:
