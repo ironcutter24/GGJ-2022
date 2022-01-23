@@ -67,6 +67,7 @@ public class EnemyAICopy : MonoBehaviour
  
 	private void Chasing()
 	{
+		Debug.Log(viewAngle);
 		//  The enemy is chasing the player
 		m_PlayerNear = false;                       //  Set false that hte player is near beacause the enemy already sees the player
 		playerLastPosition = Vector3.zero;          //  Reset the player near position
@@ -141,6 +142,12 @@ public class EnemyAICopy : MonoBehaviour
 	private void OnAnimatorMove()
 	{
  
+	}
+	// Implement OnDrawGizmos if you want to draw gizmos that are also pickable and always drawn.
+	protected void OnDrawGizmos()
+	{
+		Gizmos.color = Color.yellow;
+		Gizmos.DrawSphere(transform.position, viewRadius);
 	}
  
 	public void NextPoint()
