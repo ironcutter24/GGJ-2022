@@ -2,48 +2,80 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FSMController : MonoBehaviour
+namespace FSM
 {
-	[SerializeField] Enemy targetUnit;
+	public class FSMController : MonoBehaviour
+	{
+		[SerializeField] public Enemy targetUnit;
 
-    State currentState;
-	State oldState = null;
+		State currentState;
+		State oldState = null;
 
-    void Update()
-    {
-		if (StateHasChanged)
-		{
-			currentState.Enter();
-			oldState = currentState;
+
+        #region States definition and initialization
+
+		public struct StateCollection
+        {
+			public State Idle;
+			public State Patrol;
+			public State Chase;
+			public State RunAway;
+			public State Attack;
 		}
 
-		currentState.Process();
+		StateCollection validStates;
+		public StateCollection States { get { return validStates; } }
 
-		if(StateHasChanged)
-			oldState.Exit();
-    }
+		private void Awake()
+		{
+			validStates.Idle = new IdleState(this);
+			validStates.Patrol = new PatrolState(this);
+			validStates.Chase = new ChaseState(this);
+			validStates.RunAway = new RunAwayState(this);
+			validStates.Attack = new AttackState(this);
+		}
 
-	bool StateHasChanged { get { return currentState != oldState; } }
+		#endregion
 
-	public void ChangeState(State newState)
-    {
-		oldState = currentState;
-		currentState = newState;
-    }
-}
 
-public abstract class State
-{
-	protected Enemy controller;
+		private void Update()
+		{
+			if (StateHasChanged)
+			{
+				currentState.Enter();
+				oldState = currentState;
+			}
 
-	protected State(Enemy controller)
-	{
-		this.controller = controller;
+			currentState.Process();
+
+			if (StateHasChanged)
+				oldState.Exit();
+		}
+
+		bool StateHasChanged { get { return currentState != oldState; } }
+
+		public void SetState(State newState)
+		{
+			oldState = currentState;
+			currentState = newState;
+		}
 	}
 
-	public virtual void Enter() { }
+	public abstract class State
+	{
+		protected FSMController controller;
+		protected Enemy TargetUnit { get { return controller.targetUnit; } }
+		protected FSMController.StateCollection States { get { return controller.States; } }
 
-	public abstract void Process();
+		protected State(FSMController controller)
+		{
+			this.controller = controller;
+		}
 
-	public virtual void Exit() { }
+		public virtual void Enter() { }
+
+		public abstract void Process();
+
+		public virtual void Exit() { }
+	}
 }

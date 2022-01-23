@@ -1,23 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[ExecuteInEditMode]
-public class CameraTopDown : MonoBehaviour
+using Utility;
+using Utility.Patterns;
+
+//[ExecuteInEditMode]
+public class CameraTopDown : Singleton<CameraTopDown>
 {
-    public Transform player;
-    public Vector3 offset;
+    [SerializeField] PlayerController player;
+    [SerializeField] float maxDistanceX;
+    [SerializeField] float maxDistanceZ;
+    [SerializeField] float verticalOffset;
+    [SerializeField] float speed = 10f;
 
-    void Start()
+    Vector3 TargetPosition { get { return player.Pos + GetOffsetVector() + Vector3.forward * verticalOffset; } }
+
+    void LateUpdate()
     {
-
+        transform.position = Vector3.Lerp(transform.position, KeepTransformY(TargetPosition), speed * Time.deltaTime);
     }
 
-    void Update()
+    Vector3 KeepTransformY(Vector3 source)
     {
-        if (player)
-        {
-            transform.position = Vector3.Lerp(transform.position, player.position + offset, 10f);
-            transform.rotation = Quaternion.Euler(90, 0, 0);
-        }
+        return UMath.NewVector(source.x, transform.position.y, source.z);
+    }
+
+    Vector3 GetOffsetVector()
+    {
+        return UMath.AxisProduct(UMath.GetXZ(MouseRaycaster.Hit.point - player.Pos).normalized, UMath.NewVector(maxDistanceX, 0f, maxDistanceZ));
     }
 }

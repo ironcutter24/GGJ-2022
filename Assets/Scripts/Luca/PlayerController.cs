@@ -1,34 +1,58 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utility;
+using Utility.Patterns;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Singleton<PlayerController>
 {
-    Transform player;
-    public float speedB, speedRotB;
-    public float speedG, speedRotG;
-    bool typePlayer;
+    [SerializeField] Rigidbody rb;
+    [SerializeField] Animator anim;
 
-    void Start()
+    [SerializeField] float moveSpeed;
+
+    public Vector3 Pos { get { return rb.position; } }
+
+    Vector3 move = Vector3.zero;
+    public Vector3 Move { get { return _instance.move; } }
+
+    Vector3 lookDirection;
+    public Vector3 LookDir { get { return lookDirection; } }
+
+    private void Update()
     {
-        player = GetComponent<Transform>();
-        typePlayer = false;
+        move = GetDirectionalInput();
+        lookDirection = Utility.UMath.GetXZ(MouseRaycaster.Hit.point - rb.position).normalized;
     }
-    
+
     void FixedUpdate()
     {
-        var x = Input.GetAxis("Horizontal") * Time.deltaTime * speedRotG;
-        var z = Input.GetAxis("Vertical") * Time.deltaTime * speedG;
-        player.Rotate(0, x, 0);
-        player.Translate(0, 0, z);
+        rb.MovePosition(rb.position + move * moveSpeed * Time.deltaTime);
+        rb.MoveRotation(Quaternion.LookRotation(lookDirection, Vector3.up));
+        SetAnimation();
+    }
 
-        if (Input.GetKey(KeyCode.Space))
-        {
-            typePlayer = true;
-            var xb = Input.GetAxis("Horizontal") * Time.deltaTime * speedRotB;
-            var zb = Input.GetAxis("Vertical") * Time.deltaTime * speedB;
-            player.Rotate(0, xb, 0);
-            player.Translate(0, 0, zb);
-        }
+    Vector3 GetDirectionalInput()
+    {
+        Vector3 input = Vector3.zero;
+        input.x = Input.GetAxis("Horizontal");
+        input.z = Input.GetAxis("Vertical");
+
+        if (!IsCircaZero(input.x) || !IsCircaZero(input.z))
+            return input.normalized;
+        else
+            return Vector3.zero;
+
+
+        bool IsCircaZero(float value) { return Mathf.Approximately(value, 0f); }
+    }
+
+    void SetAnimation()
+    {
+        Vector3 relativeMove = transform.InverseTransformDirection(move);
+
+        anim.SetFloat("Horizontal", relativeMove.x);
+        anim.SetFloat("Vertical", relativeMove.z);
+        anim.SetFloat("MoveSpeed", move.magnitude);
     }
 }

@@ -59,6 +59,16 @@ namespace Utility
         {
 			return Vector3.right * source.x + Vector3.forward * source.z;
         }
+
+		public static Vector3 AxisProduct(Vector3 a, Vector3 b)
+		{
+			return NewVector(a.x * b.x, a.y * b.y, a.z * b.z);
+		}
+
+		public static Vector3 NewVector(float x, float y, float z)
+		{
+			return Vector3.right * x + Vector3.up * y + Vector3.forward * z;
+		}
 	}
 
 	class OneTimeEvent
