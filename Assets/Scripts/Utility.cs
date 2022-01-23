@@ -71,6 +71,23 @@ namespace Utility
 		}
 	}
 
+	class Timer
+    {
+		private float timeFromStart = Mathf.NegativeInfinity;
+		private float duration;
+
+		public bool IsExpired
+        {
+            get { return Time.time - timeFromStart > duration; }
+        }
+
+		public void Set(float duration)
+        {
+			timeFromStart = Time.time;
+			this.duration = duration;
+        }
+    }
+
 	class OneTimeEvent
 	{
 		bool performed = false;

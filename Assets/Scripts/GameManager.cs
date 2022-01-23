@@ -8,7 +8,27 @@ public class GameManager : Singleton<GameManager>
     protected override void Awake()
     {
         base.Awake();
-
         DontDestroyOnLoad(this.gameObject);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+            StartCoroutine(_ExitApplication());
+    }
+
+    IEnumerator _ExitApplication()
+    {
+        float timer = 2f;
+
+        while (timer > 0f)
+        {
+            if (!Input.GetKey(KeyCode.Escape))
+                yield break;
+
+            timer -= Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        Application.Quit();
     }
 }

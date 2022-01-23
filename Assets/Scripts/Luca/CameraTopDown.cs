@@ -4,20 +4,31 @@ using UnityEngine;
 using Utility;
 using Utility.Patterns;
 
-//[ExecuteInEditMode]
 public class CameraTopDown : Singleton<CameraTopDown>
 {
-    [SerializeField] PlayerController player;
+    [SerializeField] float speed = 10f;
+
+    [Header("Bounds")]
     [SerializeField] float maxDistanceX;
     [SerializeField] float maxDistanceZ;
+
+    [Header("Positioning")]
+    [SerializeField] float heightFromPlayer;
     [SerializeField] float verticalOffset;
-    [SerializeField] float speed = 10f;
+
+    PlayerController player;
 
     Vector3 TargetPosition { get { return player.Pos + GetOffsetVector() + Vector3.forward * verticalOffset; } }
 
+    private void Start()
+    {
+        player = PlayerController.Instance;
+        transform.position = KeepTransformY(player.Pos);
+    }
+
     void LateUpdate()
     {
-        transform.position = Vector3.Lerp(transform.position, KeepTransformY(TargetPosition), speed * Time.deltaTime);
+        transform.position = Vector3.Lerp(transform.position, TargetPosition, speed * Time.deltaTime);
     }
 
     Vector3 KeepTransformY(Vector3 source)
@@ -27,6 +38,8 @@ public class CameraTopDown : Singleton<CameraTopDown>
 
     Vector3 GetOffsetVector()
     {
-        return UMath.AxisProduct(UMath.GetXZ(MouseRaycaster.Hit.point - player.Pos).normalized, UMath.NewVector(maxDistanceX, 0f, maxDistanceZ));
+        var app = UMath.AxisProduct(UMath.GetXZ(MouseRaycaster.Hit.point - player.Pos).normalized, UMath.NewVector(maxDistanceX, 0f, maxDistanceZ));
+        app.y = heightFromPlayer;
+        return app;
     }
 }

@@ -8,10 +8,22 @@ namespace FSM
     {
         public IdleState(FSMController controller) : base(controller) { }
 
+        //public override void Enter() { }
+
         public override void Process()
         {
+            /*
+             * Use example:
+             * 
+             *  TargetUnit.TestMethod();
+             *  SetState(States.Chase);
+             * 
+             */
+
             throw new System.NotImplementedException();
         }
+
+        //public override void Exit() { }
     }
 
     public class PatrolState : State
@@ -53,4 +65,26 @@ namespace FSM
             throw new System.NotImplementedException();
         }
     }
+
+    /*
+     * METHODS EXAMPLE
+     * 
+     * 
+    
+    public class StateClassDocumentation : State
+    {
+        public StateClassDocumentation(FSMController controller) : base(controller) { }
+
+        public override void Enter()
+        {
+            TargetUnit.TestMethod();
+            SetState(States.Chase);
+        }
+
+        public override void Process() { }
+
+        public override void Exit() { }
+    }
+
+    */
 }

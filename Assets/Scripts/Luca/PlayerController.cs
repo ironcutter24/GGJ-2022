@@ -1,36 +1,80 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using Utility;
 using Utility.Patterns;
 
 public class PlayerController : Singleton<PlayerController>
 {
+    [Header("Components")]
     [SerializeField] Rigidbody rb;
     [SerializeField] Animator anim;
-
+    
+    [Header("Movement")]
     [SerializeField] float moveSpeed;
+
+    [Header("Dash")]
+    [SerializeField] float dashSpeed;
+    [SerializeField] float dashDuration;
+
+
+    #region Variables
+
+    private bool _isHunter = false;
+    public static bool IsPrey { get { return !_instance._isHunter; } }
+    public static bool IsHunter { get { return _instance._isHunter; } }
+
+    private enum State { Moving, Dashing }
+    private State state = State.Moving;
 
     public Vector3 Pos { get { return rb.position; } }
 
-    Vector3 move = Vector3.zero;
+    private Vector3 move = Vector3.zero;
     public Vector3 Move { get { return _instance.move; } }
 
-    Vector3 lookDirection;
+    private Vector3 lookDirection;
     public Vector3 LookDir { get { return lookDirection; } }
+
+    #endregion
+
+    public static Action OnSwitchToPrey;
+    public static Action OnSwitchToHunter;
+
+    Timer dashTimer = new Timer();
+
+    private void OnDestroy()
+    {
+        OnSwitchToPrey = null;
+        OnSwitchToHunter = null;
+    }
 
     private void Update()
     {
         move = GetDirectionalInput();
         lookDirection = Utility.UMath.GetXZ(MouseRaycaster.Hit.point - rb.position).normalized;
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && dashTimer.IsExpired)
+        {
+            StartCoroutine(_Dash(dashDuration));
+            dashTimer.Set(dashDuration);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+            ChangeHunterState();
     }
 
     void FixedUpdate()
     {
-        rb.MovePosition(rb.position + move * moveSpeed * Time.deltaTime);
-        rb.MoveRotation(Quaternion.LookRotation(lookDirection, Vector3.up));
-        SetAnimation();
+        if(state == State.Moving)
+        {
+            rb.MovePosition(rb.position + move * moveSpeed * Time.deltaTime);
+            rb.MoveRotation(Quaternion.LookRotation(lookDirection, Vector3.up));
+            SetAnimation();
+        }
     }
+
+    #region Motion-related
 
     Vector3 GetDirectionalInput()
     {
@@ -45,6 +89,40 @@ public class PlayerController : Singleton<PlayerController>
 
 
         bool IsCircaZero(float value) { return Mathf.Approximately(value, 0f); }
+    }
+
+    IEnumerator _Dash(float duration)
+    {
+        //Physics.IgnoreLayerCollision(0, 0, true);  // Disable collision with enemies
+        state = State.Dashing;
+
+        Vector3 dashDirection = move;
+
+        float timer = duration;
+        while (timer > 0f)
+        {
+            rb.MovePosition(rb.position + dashDirection * dashSpeed * Time.deltaTime);
+            timer -= Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+
+        //Physics.IgnoreLayerCollision(0, 0, false);  // Enable collision with enemies
+        state = State.Moving;
+    }
+
+    #endregion
+
+    void ChangeHunterState()
+    {
+        _isHunter = !_isHunter;
+
+        if (_isHunter)
+            TryAction(OnSwitchToHunter);
+        else
+            TryAction(OnSwitchToPrey);
+
+
+        void TryAction(Action action) { if (action != null) action(); }
     }
 
     void SetAnimation()
