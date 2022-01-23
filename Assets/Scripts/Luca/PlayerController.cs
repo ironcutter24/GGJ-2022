@@ -8,8 +8,17 @@ public class PlayerController : Singleton<PlayerController>
 {
     [SerializeField] Rigidbody rb;
     [SerializeField] Animator anim;
-
+    
     [SerializeField] float moveSpeed;
+    [SerializeField] float dashSpeed;
+    [SerializeField] float dashDuration;
+
+    private bool isHunter = false;
+    public static bool IsPrey { get { return !_instance.isHunter; } }
+    public static bool IsHunter { get { return _instance.isHunter; } }
+
+    enum State { Moving, Dashing }
+    State state = State.Moving;
 
     public Vector3 Pos { get { return rb.position; } }
 
@@ -23,13 +32,19 @@ public class PlayerController : Singleton<PlayerController>
     {
         move = GetDirectionalInput();
         lookDirection = Utility.UMath.GetXZ(MouseRaycaster.Hit.point - rb.position).normalized;
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+            StartCoroutine(_Dash(dashDuration));
     }
 
     void FixedUpdate()
     {
-        rb.MovePosition(rb.position + move * moveSpeed * Time.deltaTime);
-        rb.MoveRotation(Quaternion.LookRotation(lookDirection, Vector3.up));
-        SetAnimation();
+        if(state == State.Moving)
+        {
+            rb.MovePosition(rb.position + move * moveSpeed * Time.deltaTime);
+            rb.MoveRotation(Quaternion.LookRotation(lookDirection, Vector3.up));
+            SetAnimation();
+        }
     }
 
     Vector3 GetDirectionalInput()
@@ -54,5 +69,24 @@ public class PlayerController : Singleton<PlayerController>
         anim.SetFloat("Horizontal", relativeMove.x);
         anim.SetFloat("Vertical", relativeMove.z);
         anim.SetFloat("MoveSpeed", move.magnitude);
+    }
+
+    IEnumerator _Dash(float duration)
+    {
+        //Physics.IgnoreLayerCollision(0, 0, true);  // Disable collision with enemies
+        state = State.Dashing;
+
+        Vector3 dashDirection = move;
+
+        float timer = duration;
+        while(timer > 0f)
+        {
+            rb.MovePosition(rb.position + dashDirection * dashSpeed * Time.deltaTime);
+            timer -= Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+
+        //Physics.IgnoreLayerCollision(0, 0, false);  // Enable collision with enemies
+        state = State.Moving;
     }
 }

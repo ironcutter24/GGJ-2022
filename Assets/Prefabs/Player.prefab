@@ -60,7 +60,7 @@ Transform:
   m_GameObject: {fileID: 3783393683860126735}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.2, y: 2.2, z: 2.2}
   m_Children:
   - {fileID: 3783393683827239959}
   - {fileID: 4575715129651599333}
@@ -127,7 +127,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 7420500587072053021}
   anim: {fileID: 7344180406714330950}
-  moveSpeed: 1
+  moveSpeed: 3
+  dashSpeed: 24
+  dashDuration: 0.1
 --- !u!1001 &3783393683693215180
 PrefabInstance:
   m_ObjectHideFlags: 0
