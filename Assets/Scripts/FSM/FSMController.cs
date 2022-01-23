@@ -63,7 +63,7 @@ namespace FSM
 
 	public abstract class State
 	{
-		protected FSMController controller;
+		private FSMController controller;
 		protected Enemy TargetUnit { get { return controller.targetUnit; } }
 		protected FSMController.StateCollection States { get { return controller.States; } }
 
@@ -71,6 +71,11 @@ namespace FSM
 		{
 			this.controller = controller;
 		}
+
+		protected void SetState(FSM.State newState)
+        {
+			controller.SetState(newState);
+        }
 
 		public virtual void Enter() { }
 
