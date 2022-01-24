@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MEC;
 
-public class SwordProjectilePooler : ObjectPooler<SwordProjectile>
+public class SwordProjectile : DissolveProjectile
 {
     
 }

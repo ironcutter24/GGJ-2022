@@ -9,6 +9,8 @@ public class GameManager : Singleton<GameManager>
     {
         base.Awake();
         DontDestroyOnLoad(this.gameObject);
+
+        //Cursor.visible = false;
     }
 
     private void Update()

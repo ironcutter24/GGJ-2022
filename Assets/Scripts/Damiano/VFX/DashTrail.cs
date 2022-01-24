@@ -6,6 +6,7 @@ public class DashTrail : MonoBehaviour
 {
     [SerializeField] GameObject particlePrefab;
     [SerializeField] float step = .4f;
+    [SerializeField] bool isEnabled = true;
 
     Vector3 startPosition, startDirection;
     Quaternion startRotation;
@@ -20,6 +21,12 @@ public class DashTrail : MonoBehaviour
 
     public void Process(float distance)
     {
+        if (!isEnabled)
+        {
+            Debug.LogWarning("DashTrail is disabled");
+            return;
+        }
+
         int particlesNeeded = (int)(distance / step);
         Vector3 spawnPosition;
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using MEC;
 
-public class SwordProjectile : Projectile
+public class DissolveProjectile : Projectile
 {
     float fadeDuration = .4f;
     [SerializeField] MeshRenderer meshRend;
@@ -16,12 +16,12 @@ public class SwordProjectile : Projectile
     protected override void OnEnable()
     {
         base.OnEnable();
-
+        
         Timing.KillCoroutines("Forward" + gameObject.GetInstanceID());
         Timing.RunCoroutine(_Transition(true), "Forward" + gameObject.GetInstanceID());
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (!isMoving)
             transform.LookAt(FloatingSwords.TargetPosition);

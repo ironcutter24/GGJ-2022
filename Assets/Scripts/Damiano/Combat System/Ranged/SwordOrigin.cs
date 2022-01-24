@@ -5,6 +5,7 @@ using UnityEngine;
 public class SwordOrigin : MonoBehaviour
 {
     [SerializeField] MeshRenderer meshRend;
+    [SerializeField] string poolingID;
 
     Projectile currentSword;
 
@@ -44,7 +45,7 @@ public class SwordOrigin : MonoBehaviour
     void TryGenerateSword()
     {
         if (currentSword == null && PlayerController.IsHunter)
-            currentSword = SwordProjectilePooler.Spawn("PlayerSword", transform.position, Quaternion.identity, this.transform);
+            currentSword = ProjectilePooler.Spawn(poolingID, transform.position, Quaternion.identity, this.transform);
     }
 
     void TryDischargeSword()

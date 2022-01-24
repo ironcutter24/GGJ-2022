@@ -268,3 +268,8 @@ MonoBehaviour:
     size: 0
     toBeInitialized: 0
     objectPool: []
+  - tag: PlayerMachete
+    prefab: {fileID: 2806312013139963538, guid: c03002660481b244aa21a9d6cd98a335, type: 3}
+    size: 0
+    toBeInitialized: 0
+    objectPool: []
