@@ -100,9 +100,9 @@ Material:
     - _TransStrength: 1
     - _Translucency: 1
     - _UVSec: 0
-    - _WindDensity: 1
-    - _WindMovement: 1
-    - _WindStrength: 0.5
+    - _WindDensity: 0.7
+    - _WindMovement: 0.5
+    - _WindStrength: 0.7
     - _ZWrite: 0
     - __dirty: 0
     m_Colors:

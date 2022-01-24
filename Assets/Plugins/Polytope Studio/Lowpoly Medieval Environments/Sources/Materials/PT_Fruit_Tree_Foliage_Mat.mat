@@ -10,6 +10,7 @@ Material:
   m_Name: PT_Fruit_Tree_Foliage_Mat
   m_Shader: {fileID: 4800000, guid: 5f1a71d7bb3221f4885984574896fc3f, type: 3}
   m_ShaderKeywords: _ALPHAPREMULTIPLY_ON _CUSTOMCOLORSTINTING_ON _CUSTOMWIND_ON _TRANSLUCENCYONOFF_ON
+    _WINDMASKONOFF_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -100,8 +101,8 @@ Material:
     - _TransStrength: 1
     - _Translucency: 10
     - _UVSec: 0
-    - _WINDMASKONOFF: 0
-    - _WindDensity: 3.3
+    - _WINDMASKONOFF: 1
+    - _WindDensity: 2
     - _WindMovement: 0.5
     - _WindStrength: 0.3
     - _ZWrite: 0
