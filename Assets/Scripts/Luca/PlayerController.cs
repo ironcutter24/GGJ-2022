@@ -68,7 +68,7 @@ public class PlayerController : Singleton<PlayerController>, ITargetable
         move = GetDirectionalInput();
         lookDirection = Utility.UMath.GetXZ(MouseRaycaster.Hit.point - rb.position).normalized;
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && IsHunter && dashTimer.IsExpired && dashesLeft > 0)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && IsHunter && dashTimer.IsExpired && dashesLeft > 0 && move != Vector3.zero)
         {
             StartCoroutine(_Dash(dashDuration));
             dashTimer.Set(dashDuration);
@@ -128,25 +128,29 @@ public class PlayerController : Singleton<PlayerController>, ITargetable
         bool IsCircaZero(float value) { return Mathf.Approximately(value, 0f); }
     }
 
-    [SerializeField] ParticleSystem particleSystem;
+    [SerializeField] DashTrail dashTrail;
     IEnumerator<float> _Dash(float duration)
     {
         //Physics.IgnoreLayerCollision(0, 0, true);  // Disable collision with enemies
         state = State.Dashing;
 
-        particleSystem.Play();
-
         Vector3 dashDirection = move;
+        dashTrail.Init(transform.position, transform.rotation, dashDirection);
 
         float timer = duration;
+        float deltaSpace;
+        float distanceTraveled = 0f;
         while (timer > 0f)
         {
-            rb.MovePosition(rb.position + dashDirection * dashSpeed * Time.deltaTime);
+            deltaSpace = dashSpeed * Time.deltaTime;
+
+            distanceTraveled += deltaSpace;
+            dashTrail.Process(distanceTraveled);
+
+            rb.MovePosition(rb.position + dashDirection * deltaSpace);
             timer -= Time.deltaTime;
             yield return Timing.WaitForOneFrame;
         }
-
-        particleSystem.Stop();
 
         //Physics.IgnoreLayerCollision(0, 0, false);  // Enable collision with enemies
         state = State.Moving;
