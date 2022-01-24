@@ -6,6 +6,7 @@ using Utility.Patterns;
 public class MouseRaycaster : Singleton<MouseRaycaster>
 {
     [SerializeField] LayerMask layerMask;
+    [SerializeField] GameObject cursor3D;
 
     private RaycastHit hit;
     public static RaycastHit Hit { get { return _instance.hit; } }
@@ -18,5 +19,11 @@ public class MouseRaycaster : Singleton<MouseRaycaster>
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         error = !Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask);
+    }
+
+    private void LateUpdate()
+    {
+        if (!error && cursor3D != null)
+            cursor3D.transform.position = hit.point;
     }
 }

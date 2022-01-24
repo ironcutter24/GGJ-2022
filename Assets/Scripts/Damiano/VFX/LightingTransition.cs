@@ -12,41 +12,58 @@ public class LightingTransition : MonoBehaviour
     [Header("Skybox")]
     [SerializeField] Material skybox;
     [SerializeField] Gradient skyboxGradient;
-    [SerializeField] float exposurePrey;
-    [SerializeField] float exposureHunter;
+    //[SerializeField] float exposurePrey;
+    //[SerializeField] float exposureHunter;
+
+    [Header("Parameters")]
+    [SerializeField] float duration = 1f;
+    [SerializeField] bool testMode = false;
 
     private void Start()
     {
-        //ToPrey();
+        SetLighting(0f);
 
-        ToHunter();
+        if(testMode)
+            Timing.RunCoroutine(_Test());
+    }
+
+    IEnumerator<float> _Test()
+    {
+        while (true)
+        {
+            yield return Timing.WaitForSeconds(duration + 2f);
+            ToHunter();
+            yield return Timing.WaitForSeconds(duration + 2f);
+            ToPrey();
+        }
     }
 
     public void ToPrey()
     {
-        StopAllCoroutines();
-        StartCoroutine(_Transition(false));
+        string timingID = "Backward" + gameObject.GetInstanceID();
+        Timing.KillCoroutines(timingID);
+        Timing.RunCoroutine(_Transition(duration, false), timingID);
     }
 
     public void ToHunter()
     {
-        StopAllCoroutines();
-        StartCoroutine(_Transition(true));
+        string timingID = "Forward" + gameObject.GetInstanceID();
+        Timing.KillCoroutines(timingID);
+        Timing.RunCoroutine(_Transition(duration, true), timingID);
     }
 
-    IEnumerator<float> _Transition(bool isForward)
+    IEnumerator<float> _Transition(float duration, bool isForward)
     {
-        float parameter = 0f;
-
-        while (parameter < 1f)
+        float speed = 1 / duration;
+        float interpolation = 0f;
+        while (interpolation < 1f)
         {
-            SetLighting(isForward ? parameter : 1 - parameter);
-
-            parameter += Time.deltaTime;
+            SetLighting(isForward ? interpolation : 1 - interpolation);
+            interpolation += speed * Time.deltaTime;
             yield return Timing.WaitForOneFrame;
         }
-        parameter = 1f;
-        SetLighting(isForward ? parameter : 1 - parameter);
+        interpolation = 1f;
+        SetLighting(isForward ? interpolation : 1 - interpolation);
     }
 
     void SetLighting(float parameter)
@@ -54,6 +71,6 @@ public class LightingTransition : MonoBehaviour
         directional.color = directionalGradient.Evaluate(parameter);
 
         skybox.SetColor("Tint Color", skyboxGradient.Evaluate(parameter));
-        skybox.SetFloat("Exposure", (exposureHunter - exposurePrey) * parameter + exposurePrey);
+        //skybox.SetFloat("Exposure", (exposureHunter - exposurePrey) * parameter + exposurePrey);
     }
 }
