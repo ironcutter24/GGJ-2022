@@ -90,9 +90,9 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
-    - _WindDensity: 0.2
+    - _WindDensity: 0.21
     - _WindMovement: 0.47
-    - _WindStrength: 0.014
+    - _WindStrength: 1
     - _ZWrite: 1
     - __dirty: 0
     m_Colors:
