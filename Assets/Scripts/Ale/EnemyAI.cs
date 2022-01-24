@@ -12,6 +12,7 @@ public class EnemyAI : MonoBehaviour
 	public float speedRun = 9;                      //  Running speed
  
 	public float viewRadius = 15;                   //  Radius of the enemy view
+	public float aggroRadius = 15;					//  Radius after which the enemy loses aggro
 	public float viewAngle = 90;                    //  Angle of the enemy view
 	public LayerMask playerMask;                    //  To detect the player with the raycast
 	public LayerMask obstacleMask;                  //  To detect the obstacules with the raycast
@@ -50,7 +51,7 @@ public class EnemyAI : MonoBehaviour
 		navMeshAgent.speed = speedWalk;             //  Set the navemesh speed with the normal speed of the enemy
 		navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);    //  Set the destination to the first waypoint
 	}
- 
+	
 	private void Update()
 	{
 		EnviromentView();                       //  Check whether or not the player is in the enemy's field of vision
@@ -197,8 +198,9 @@ public class EnemyAI : MonoBehaviour
  
 	void EnviromentView()
 	{
+		
 		Collider[] playerInRange = Physics.OverlapSphere(transform.position, viewRadius, playerMask);   //  Make an overlap sphere around the enemy to detect the playermask in the view radius
- 
+		
 		for (int i = 0; i < playerInRange.Length; i++)
 		{
 			Transform player = playerInRange[i].transform;
@@ -219,13 +221,13 @@ public class EnemyAI : MonoBehaviour
 					m_playerInRange = false;
 				}
 			}
-			if (Vector3.Distance(transform.position, player.position) > viewRadius)
+			if (Vector3.Distance(transform.position, player.position) > aggroRadius)
 			{
 				/*
 				*  If the player is further than the view radius, then the enemy will no longer keep the player's current position.
 				*  Or the enemy is a safe zone, the enemy will no chase
 				* */
-				m_playerInRange = false;                //  Change the sate of chasing
+				m_playerInRange = false;                //  Change the state of chasing
 			}
 			if (m_playerInRange)
 			{

@@ -1,9 +1,30 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace FSM
 {
+	/*
+	* METHODS EXAMPLE
+	* 
+	* 
+    
+	public class StateClassDocumentation : State
+	{
+	public StateClassDocumentation(FSMController controller) : base(controller) { }
+
+	public override void Enter()
+	{
+	TargetUnit.TestMethod();
+	SetState(States.Chase);
+	}
+
+	public override void Process() { }
+
+	public override void Exit() { }
+	}
+
+	*/
     public class IdleState : State
     {
         public IdleState(FSMController controller) : base(controller) { }
@@ -66,25 +87,4 @@ namespace FSM
         }
     }
 
-    /*
-     * METHODS EXAMPLE
-     * 
-     * 
-    
-    public class StateClassDocumentation : State
-    {
-        public StateClassDocumentation(FSMController controller) : base(controller) { }
-
-        public override void Enter()
-        {
-            TargetUnit.TestMethod();
-            SetState(States.Chase);
-        }
-
-        public override void Process() { }
-
-        public override void Exit() { }
-    }
-
-    */
 }
