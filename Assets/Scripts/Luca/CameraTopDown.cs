@@ -13,8 +13,11 @@ public class CameraTopDown : Singleton<CameraTopDown>
     [SerializeField] float maxDistanceZ;
 
     [Header("Positioning")]
-    [SerializeField] float heightFromPlayer;
+    [SerializeField] float heightPrey;
+    [SerializeField] float heightHunter;
     [SerializeField] float verticalOffset;
+
+    private float HeightFromPlayer { get { return PlayerController.IsHunter ? heightHunter : heightPrey; } }
 
     PlayerController player;
 
@@ -39,7 +42,7 @@ public class CameraTopDown : Singleton<CameraTopDown>
     Vector3 GetOffsetVector()
     {
         var app = UMath.AxisProduct(UMath.GetXZ(MouseRaycaster.Hit.point - player.Pos).normalized, UMath.NewVector(maxDistanceX, 0f, maxDistanceZ));
-        app.y = heightFromPlayer;
+        app.y = HeightFromPlayer;
         return app;
     }
 }

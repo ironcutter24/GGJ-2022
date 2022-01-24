@@ -17,15 +17,30 @@ public class FloatingSwords : Singleton<FloatingSwords>
     private Vector3 targetPosition;
     public static Vector3 TargetPosition { get { return _instance.targetPosition != null ? _instance.targetPosition : Vector3.zero; } }
 
-    public static System.Action<float> OnReload;
+    public static System.Action OnReload;
+    public static System.Action OnDischarge;
 
     Timer recoilTimer = new Timer();
     Timer reloadTimer = new Timer();
 
+    protected override void Awake()
+    {
+        base.Awake();
+
+        PlayerController.OnSwitchToPrey += ToPrey;
+        PlayerController.OnSwitchToHunter += ToHunter;
+    }
+
+    private void OnDestroy()
+    {
+        PlayerController.OnSwitchToPrey -= ToPrey;
+        PlayerController.OnSwitchToHunter -= ToHunter;
+    }
+
     private void Start()
     {
         recoilTimer.Set(recoilDuration);
-        OnReload(0f);
+        Util.TryAction(OnReload);
     }
 
     [SerializeField] float minAimDistance = 1f;
@@ -35,10 +50,20 @@ public class FloatingSwords : Singleton<FloatingSwords>
         {
             targetPosition = ClampMinRadius(MouseRaycaster.Hit.point + Vector3.up * shootHeight);
 
-            if (Input.GetMouseButton(1) && recoilTimer.IsExpired && reloadTimer.IsExpired)
+            if (Input.GetMouseButton(1) && PlayerController.IsHunter && recoilTimer.IsExpired && reloadTimer.IsExpired)
                 ShootAt(targetPosition);
         }
         ApplyLookDirection();
+    }
+
+    void ToPrey()
+    {
+        OnDischarge();
+    }
+
+    void ToHunter()
+    {
+        Util.TryAction(OnReload);
     }
 
     Vector3 ClampMinRadius(Vector3 position)
@@ -83,11 +108,18 @@ public class FloatingSwords : Singleton<FloatingSwords>
         {
             currentOrigin = 0;
             reloadTimer.Set(reloadDuration);
-            if (OnReload != null)
-                OnReload(reloadDuration - recoilDuration);
+
+            //TryAction(OnReload, reloadDuration - recoilDuration);
+            StartCoroutine(_ScheduleReload(reloadDuration - recoilDuration));
         }
         else
             recoilTimer.Set(recoilDuration);
+    }
+
+    IEnumerator _ScheduleReload(float timeOffset)
+    {
+        yield return new WaitForSeconds(timeOffset);
+        Util.TryAction(OnReload);
     }
     
     bool isShooting = false;
@@ -105,8 +137,7 @@ public class FloatingSwords : Singleton<FloatingSwords>
         }
         yield return new WaitForSeconds(reloadDuration - recoilDuration);
 
-        if (OnReload != null)
-            OnReload(0f);
+        Util.TryAction(OnReload);
 
         yield return new WaitForSeconds(recoilDuration);
 

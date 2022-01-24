@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3783393683827239959}
   m_Layer: 0
   m_Name: Model
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,9 +44,11 @@ GameObject:
   - component: {fileID: 7420500587072053021}
   - component: {fileID: 3783393683860126728}
   - component: {fileID: 3783393683860126729}
+  - component: {fileID: 4361322243882956617}
+  - component: {fileID: 5264168479862327809}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,9 +129,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 7420500587072053021}
   anim: {fileID: 7344180406714330950}
-  moveSpeed: 3
+  preySpeed: 3
+  hunterSpeed: 3
+  invisibilityDuration: 3
+  dashNumber: 3
   dashSpeed: 24
   dashDuration: 0.1
+  healthRegenAmount: 0
+  maxHealth: 100
+  dashTrail: {fileID: 5264168479862327809}
+--- !u!114 &4361322243882956617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3783393683860126735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e32a009da584fd8418e183c6a4758223, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trapPrefab: {fileID: 0}
+--- !u!114 &5264168479862327809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3783393683860126735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbff82508e69c7447a428fe689d30357, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particlePrefab: {fileID: 3678463772764754381, guid: 15fe1b9cbcef27440850f0f90b57cfd1, type: 3}
+  step: 0.4
 --- !u!1001 &3783393683693215180
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -336,6 +371,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 2053e5bab5abef74db64bda796d94384, type: 3}
       propertyPath: m_Name
       value: Dressfull@T-Pose
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2053e5bab5abef74db64bda796d94384, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 2053e5bab5abef74db64bda796d94384, type: 3}
       propertyPath: m_Controller

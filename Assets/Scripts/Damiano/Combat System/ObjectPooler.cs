@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Utility.Patterns;
 
-public class ProjectilePooler : Singleton<ProjectilePooler>
+public class ObjectPooler<T> : Singleton<ObjectPooler<T>> where T : MonoBehaviour
 {
     [System.Serializable]
     public class Pool
@@ -13,7 +13,7 @@ public class ProjectilePooler : Singleton<ProjectilePooler>
         public int size;
         public bool toBeInitialized = false;
 
-        public List<Projectile> objectPool;
+        public List<T> objectPool;
     }
 
     [SerializeField] List<Pool> pools;
@@ -31,7 +31,7 @@ public class ProjectilePooler : Singleton<ProjectilePooler>
 
         foreach (Pool pool in pools)
         {
-            pool.objectPool = new List<Projectile>(pool.size);
+            pool.objectPool = new List<T>(pool.size);
             poolDictionary.Add(pool.tag, pool);
 
             if (!pool.toBeInitialized) continue;
@@ -40,7 +40,7 @@ public class ProjectilePooler : Singleton<ProjectilePooler>
             {
                 GameObject obj = Instantiate(pool.prefab, transform);
                 obj.SetActive(false);
-                pool.objectPool.Add(obj.GetComponent<Projectile>());
+                pool.objectPool.Add(obj.GetComponent<T>());
             }
         }
     }
@@ -54,12 +54,12 @@ public class ProjectilePooler : Singleton<ProjectilePooler>
         }
     }
 
-    public static Projectile Spawn(string tag, Vector3 position, Quaternion rotation, Transform parent)
+    public static T Spawn(string tag, Vector3 position, Quaternion rotation, Transform parent)
     {
         return _instance.SpawnOrInstantiate(tag, position, rotation, false, parent);
     }
 
-    private Projectile SpawnOrInstantiate(string tag, Vector3 position, Quaternion rotation, bool local, Transform parent = null)
+    private T SpawnOrInstantiate(string tag, Vector3 position, Quaternion rotation, bool local, Transform parent = null)
     {
         if (!poolDictionary.ContainsKey(tag))
         {
@@ -71,7 +71,7 @@ public class ProjectilePooler : Singleton<ProjectilePooler>
 #endif
         }
 
-        Projectile objectToSpawn = GetInactiveFrom(poolDictionary[tag]);
+        T objectToSpawn = GetInactiveFrom(poolDictionary[tag]);
 
         if (objectToSpawn == null)
             objectToSpawn = AddTo(poolDictionary[tag]);
@@ -82,7 +82,7 @@ public class ProjectilePooler : Singleton<ProjectilePooler>
             objectToSpawn.transform.position = position;
 
         objectToSpawn.transform.rotation = rotation;
-        
+
         objectToSpawn.gameObject.SetActive(true);
 
         objectToSpawn.transform.parent = parent ? parent : null;
@@ -90,9 +90,9 @@ public class ProjectilePooler : Singleton<ProjectilePooler>
         return objectToSpawn;
 
 
-        Projectile GetInactiveFrom(Pool pool)
+        T GetInactiveFrom(Pool pool)
         {
-            foreach (Projectile obj in pool.objectPool)
+            foreach (var obj in pool.objectPool)
             {
                 if (!obj.gameObject.activeInHierarchy)
                     return obj;
@@ -100,9 +100,9 @@ public class ProjectilePooler : Singleton<ProjectilePooler>
             return null;
         }
 
-        Projectile AddTo(Pool pool)
+        T AddTo(Pool pool)
         {
-            var obj = Instantiate(pool.prefab, transform).GetComponent<Projectile>();
+            var obj = Instantiate(pool.prefab, transform).GetComponent<T>();
             pool.objectPool.Add(obj);
 
             return obj;

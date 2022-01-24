@@ -68,6 +68,11 @@ public class Projectile : MonoBehaviour
         }
     }
 
+    public virtual void Discharge()
+    {
+        DeactivateForPooling();
+    }
+
     protected virtual void DeactivateForPooling()
     {
         StopMoving();

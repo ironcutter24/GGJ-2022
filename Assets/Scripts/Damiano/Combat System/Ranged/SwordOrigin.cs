@@ -10,13 +10,15 @@ public class SwordOrigin : MonoBehaviour
 
     private void Awake()
     {
-        FloatingSwords.OnReload += GenerateSwordAfter;
+        FloatingSwords.OnReload += TryGenerateSword;
+        FloatingSwords.OnDischarge += TryDischargeSword;
         meshRend.enabled = false;
     }
 
     private void OnDestroy()
     {
-        FloatingSwords.OnReload -= GenerateSwordAfter;
+        FloatingSwords.OnReload -= TryGenerateSword;
+        FloatingSwords.OnDischarge -= TryDischargeSword;
     }
 
     public void ShootAt(Vector3 targetPosition)
@@ -27,21 +29,30 @@ public class SwordOrigin : MonoBehaviour
         currentSword = null;
     }
 
-    public void GenerateSwordAfter(float delay)
+    void GenerateSwordAfter(float delay)
     {
         StopAllCoroutines();
         StartCoroutine(_GenerateSwordAfter(delay));
+
+        IEnumerator _GenerateSwordAfter(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            TryGenerateSword();
+        }
     }
 
-    IEnumerator _GenerateSwordAfter(float delay)
+    void TryGenerateSword()
     {
-        yield return new WaitForSeconds(delay);
-        TryGenerateSword();
+        if (currentSword == null && PlayerController.IsHunter)
+            currentSword = SwordProjectilePooler.Spawn("PlayerSword", transform.position, Quaternion.identity, this.transform);
     }
 
-    void TryGenerateSword(float delay = 0f)
+    void TryDischargeSword()
     {
-        if (currentSword == null)
-            currentSword = ProjectilePooler.Spawn("PlayerSword", transform.position, Quaternion.identity, this.transform);
+        if (currentSword != null)
+        {
+            currentSword.Discharge();
+            currentSword = null;
+        }
     }
 }
