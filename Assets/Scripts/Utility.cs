@@ -14,6 +14,18 @@ namespace Utility
 		{
 			return Random.Range(0f, 1f) <= chanceOfSuccess;
 		}
+
+		public static void TryAction(System.Action action)
+		{
+			if (action != null)
+				action();
+		}
+
+		public static void TryAction(System.Action<float> action, float parameter)
+		{
+			if (action != null)
+				action(parameter);
+		}
 	}
 
 	public class UMath

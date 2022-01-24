@@ -21,10 +21,12 @@ public class DashTrail : MonoBehaviour
     public void Process(float distance)
     {
         int particlesNeeded = (int)(distance / step);
+        Vector3 spawnPosition;
 
         for (int i = particlesSpawned; i < particlesNeeded; i++)
         {
-            Instantiate(particlePrefab, startPosition + startDirection * step * i, startRotation, null);
+            spawnPosition = startPosition + startDirection * step * i;
+            DashParticlePooler.Spawn("PlayerDash", spawnPosition, startRotation, null);
             particlesSpawned++;
         }
     }

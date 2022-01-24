@@ -209,7 +209,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4704878901298479123}
-  - component: {fileID: 4704878901298479122}
+  - component: {fileID: 2792110295803835886}
+  - component: {fileID: 5832599210706813727}
   m_Layer: 0
   m_Name: ObjectPooler
   m_TagString: Untagged
@@ -231,7 +232,25 @@ Transform:
   m_Father: {fileID: 3900715388768602170}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4704878901298479122
+--- !u!114 &2792110295803835886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4704878901298479117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 899db7493ae247f4199c7573c3cfc214, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pools:
+  - tag: PlayerDash
+    prefab: {fileID: 3678463772764754381, guid: 15fe1b9cbcef27440850f0f90b57cfd1, type: 3}
+    size: 0
+    toBeInitialized: 0
+    objectPool: []
+--- !u!114 &5832599210706813727
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

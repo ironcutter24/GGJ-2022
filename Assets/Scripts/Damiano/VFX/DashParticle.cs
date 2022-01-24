@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ using MEC;
 public class DashParticle : MonoBehaviour
 {
     [SerializeField] MeshRenderer meshRend;
-    [SerializeField] float transitionDuration;
+    [SerializeField] public float transitionDuration = 1f;
 
     private void Start()
     {
@@ -32,8 +33,7 @@ public class DashParticle : MonoBehaviour
         interpolation = 1f;
         SetAlpha(1 - interpolation);
 
-        //gameObject.SetActive(false);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     Color color;
