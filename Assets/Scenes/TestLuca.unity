@@ -520,6 +520,38 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 4361322243882956617, guid: 83057645a2873e840b072f37207b4c7e, type: 3}
+      propertyPath: offsetTrap
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4361322243882956617, guid: 83057645a2873e840b072f37207b4c7e, type: 3}
+      propertyPath: trapPrefab
+      value: 
+      objectReference: {fileID: 6340352007875064101, guid: d41463ee719f0f244854b9da174d5f7a, type: 3}
+    - target: {fileID: 4361322243882956617, guid: 83057645a2873e840b072f37207b4c7e, type: 3}
+      propertyPath: offsetTrap.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4361322243882956617, guid: 83057645a2873e840b072f37207b4c7e, type: 3}
+      propertyPath: offsetTrap.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4361322243882956617, guid: 83057645a2873e840b072f37207b4c7e, type: 3}
+      propertyPath: offsetTrap.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4361322243882956617, guid: 83057645a2873e840b072f37207b4c7e, type: 3}
+      propertyPath: trapOffset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4361322243882956617, guid: 83057645a2873e840b072f37207b4c7e, type: 3}
+      propertyPath: trapOffset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4361322243882956617, guid: 83057645a2873e840b072f37207b4c7e, type: 3}
+      propertyPath: trapOffset.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4575715129651599332, guid: 83057645a2873e840b072f37207b4c7e, type: 3}
       propertyPath: m_Layer
       value: 7
