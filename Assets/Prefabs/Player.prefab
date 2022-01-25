@@ -176,7 +176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 7420500587072053021}
   anim: {fileID: 5866666021231624767}
-  preySpeed: 3
+  preySpeed: 3.2
   hunterSpeed: 3
   invisibilityDuration: 3
   dashNumber: 3
@@ -197,7 +197,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e32a009da584fd8418e183c6a4758223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trapPrefab: {fileID: 0}
+  trapPrefab: {fileID: 6340352007875064101, guid: d41463ee719f0f244854b9da174d5f7a, type: 3}
+  trapsMaxNumber: 2
   trapOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &5264168479862327809
 MonoBehaviour:
@@ -765,9 +766,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4035558958550048341, guid: 1e77aa415dc27d141a977325be14399a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4190012854989223790, guid: 1e77aa415dc27d141a977325be14399a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5195010752751150186, guid: 1e77aa415dc27d141a977325be14399a, type: 3}
       propertyPath: m_Name
       value: Cursor3D
+      objectReference: {fileID: 0}
+    - target: {fileID: 7752028157353644100, guid: 1e77aa415dc27d141a977325be14399a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7843650248845551769, guid: 1e77aa415dc27d141a977325be14399a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8169364992826239109, guid: 1e77aa415dc27d141a977325be14399a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8169364993372042102, guid: 1e77aa415dc27d141a977325be14399a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e77aa415dc27d141a977325be14399a, type: 3}

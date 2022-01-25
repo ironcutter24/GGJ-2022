@@ -17,15 +17,15 @@ public class CameraTopDown : Singleton<CameraTopDown>
     [SerializeField] float heightHunter;
     [SerializeField] float verticalOffset;
 
-    private float HeightFromPlayer { get { return PlayerController.IsHunter ? heightHunter : heightPrey; } }
+    private float HeightFromPlayer { get { return Controller3D.IsHunter ? heightHunter : heightPrey; } }
 
-    PlayerController player;
+    Controller3D player;
 
     Vector3 TargetPosition { get { return player.Pos + GetOffsetVector() + Vector3.forward * verticalOffset; } }
 
     private void Start()
     {
-        player = PlayerController.Instance;
+        player = Controller3D.Instance;
         transform.position = KeepTransformY(player.Pos);
     }
 

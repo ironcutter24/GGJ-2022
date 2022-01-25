@@ -1,8 +1,8 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FakePlayerController : MonoBehaviour
+public class DecoyController : MonoBehaviour
 {
     [SerializeField] Animator anim;
 

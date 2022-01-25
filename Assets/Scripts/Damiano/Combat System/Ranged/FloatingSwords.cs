@@ -27,14 +27,14 @@ public class FloatingSwords : Singleton<FloatingSwords>
     {
         base.Awake();
 
-        PlayerController.OnSwitchToPrey += ToPrey;
-        PlayerController.OnSwitchToHunter += ToHunter;
+        Controller3D.OnSwitchToPrey += ToPrey;
+        Controller3D.OnSwitchToHunter += ToHunter;
     }
 
     private void OnDestroy()
     {
-        PlayerController.OnSwitchToPrey -= ToPrey;
-        PlayerController.OnSwitchToHunter -= ToHunter;
+        Controller3D.OnSwitchToPrey -= ToPrey;
+        Controller3D.OnSwitchToHunter -= ToHunter;
     }
 
     private void Start()
@@ -50,7 +50,7 @@ public class FloatingSwords : Singleton<FloatingSwords>
         {
             targetPosition = ClampMinRadius(MouseRaycaster.Hit.point + Vector3.up * shootHeight);
 
-            if (Input.GetMouseButton(1) && PlayerController.IsHunter && recoilTimer.IsExpired && reloadTimer.IsExpired)
+            if (Input.GetMouseButton(1) && Controller3D.IsHunter && recoilTimer.IsExpired && reloadTimer.IsExpired)
                 ShootAt(targetPosition);
         }
         ApplyLookDirection();

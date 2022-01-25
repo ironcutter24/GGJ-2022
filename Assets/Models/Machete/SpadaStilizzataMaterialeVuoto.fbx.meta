@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: CompleteEmptyMaterial
-    second: {fileID: 2100000, guid: fd64a7445dfd431448d5ddfb0fd64bef, type: 2}
+    second: {fileID: 2100000, guid: 1b69eff6df71fc14d956e61667c1c006, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -36,7 +36,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations: []
-    isReadable: 0
+    isReadable: 1
   meshes:
     lODScreenPercentages: []
     globalScale: 1

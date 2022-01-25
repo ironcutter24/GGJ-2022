@@ -6,7 +6,7 @@ using Utility;
 using Utility.Patterns;
 using MEC;
 
-public class PlayerController : Singleton<PlayerController>, ITargetable
+public class Controller3D : Singleton<Controller3D>, ITargetable
 {
     [Header("Components")]
     [SerializeField] Rigidbody rb;
