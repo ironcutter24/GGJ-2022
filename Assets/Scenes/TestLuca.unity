@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 58683714}
   - component: {fileID: 58683713}
   - component: {fileID: 58683712}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Wall (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -749,7 +749,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1181840594}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -786,7 +786,7 @@ GameObject:
   - component: {fileID: 1492903200}
   - component: {fileID: 1492903199}
   - component: {fileID: 1492903198}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -928,6 +928,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7674454017721224138, guid: 8fc9b041ede48cd4a964e54f3428cb67, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8fc9b041ede48cd4a964e54f3428cb67, type: 3}
 --- !u!1 &1628060114
@@ -942,7 +946,7 @@ GameObject:
   - component: {fileID: 1628060118}
   - component: {fileID: 1628060117}
   - component: {fileID: 1628060116}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1037,7 +1041,7 @@ GameObject:
   - component: {fileID: 1761499759}
   - component: {fileID: 1761499758}
   - component: {fileID: 1761499757}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Wall (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
