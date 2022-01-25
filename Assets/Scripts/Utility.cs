@@ -27,23 +27,6 @@ namespace Utility
 			if (action != null)
 				action(parameter);
 		}
-
-		static void Transition()
-        {
-			IEnumerator<float> _AlphaDecay(float duration/*, System.Func<> callback*/)
-			{
-				float speed = 1 / duration;
-				float interpolation = 0f;
-				while (interpolation < 1f)
-				{
-					//SetAlpha(1 - interpolation);
-					interpolation += speed * Time.deltaTime;
-					yield return Timing.WaitForOneFrame;
-				}
-				interpolation = 1f;
-				//SetAlpha(1 - interpolation);
-			}
-		}
 	}
 
 	public class UMath
