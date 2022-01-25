@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{a3d54e8f-f149-4d27-a3e1-b8b061d9094d}">
+		<property name="assetPath">
+			<value>Trans [FX] - Cmbt To Exp WOLF.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>8</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{3464172f-3413-4f6e-bfc4-1c3f6f56c7a9}</destination>
+		</relationship>
+	</object>
+</objects>
