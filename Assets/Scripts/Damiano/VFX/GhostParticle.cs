@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using MEC;
 
-public class DashParticle : MonoBehaviour
+public class GhostParticle : MonoBehaviour
 {
     [SerializeField] MeshRenderer meshRend;
     [SerializeField] public float transitionDuration = 1f;
@@ -20,7 +20,7 @@ public class DashParticle : MonoBehaviour
         StartCoroutine(_AlphaDecay(transitionDuration));
     }
 
-    IEnumerator<float> _AlphaDecay(float duration/*, System.Func<> callback*/)
+    IEnumerator<float> _AlphaDecay(float duration)
     {
         float speed = 1 / duration;
         float interpolation = 0f;

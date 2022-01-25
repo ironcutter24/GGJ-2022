@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DashParticlePooler : ObjectPooler<DashParticle>
+public class DashParticlePooler : ObjectPooler<GhostParticle>
 {
     
 }

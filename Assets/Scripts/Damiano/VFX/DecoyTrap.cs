@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DecoyController : MonoBehaviour
+public class DecoyTrap : MonoBehaviour
 {
     [SerializeField] Animator anim;
 
@@ -16,5 +16,10 @@ public class DecoyController : MonoBehaviour
         anim.SetFloat("Horizontal", 0f);
         anim.SetFloat("Vertical", 0f);
         anim.SetFloat("MoveSpeed", 0f);
+    }
+
+    public void Activate()
+    {
+
     }
 }
