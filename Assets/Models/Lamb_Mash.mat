@@ -95,10 +95,13 @@ Material:
     m_Floats:
     - Boolean_707F4C21: 0
     - Vector1_36B9162F: 100
-    - Vector1_5C4FEA22: 0.5
+    - Vector1_5C4FEA22: 2
     - Vector1_9C074DA1: 2
     - Vector1_C8E292BE: 100
+    - Vector1_b80645a1a8cc40e294157556734aebb5: 1
+    - Vector1_e6578a24f00d46f28025d83786b99c68: 0.01
     - Vector1_edd70b25a9df493fb4950704c664b933: 3.7
+    - Vector1_f9c433087a9e4aada34dd1c94bcf6443: 1
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
