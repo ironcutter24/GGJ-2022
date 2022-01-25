@@ -15,7 +15,7 @@ public class Controller3D : Singleton<Controller3D>, ITargetable
     [Header("Movement")]
     [SerializeField] float preySpeed;
     [SerializeField] float hunterSpeed;
-    public float MoveSpeed { get { return _isHunter ? hunterSpeed : preySpeed; } }
+    public float MoveSpeed { get { return PlayerState.IsHunter ? hunterSpeed : preySpeed; } }
 
     [Header("Prey")]
     [SerializeField] float invisibilityDuration;
@@ -28,10 +28,6 @@ public class Controller3D : Singleton<Controller3D>, ITargetable
     [SerializeField] float healthRegenAmount;
 
     #region Variables
-
-    private bool _isHunter = false;
-    public static bool IsPrey { get { return !_instance._isHunter; } }
-    public static bool IsHunter { get { return _instance._isHunter; } }
 
     private bool _isInvisible;
     public static bool IsInvisible { get { return _instance._isInvisible; } }
@@ -52,15 +48,22 @@ public class Controller3D : Singleton<Controller3D>, ITargetable
 
     #endregion
 
-    public static Action OnSwitchToPrey;
-    public static Action OnSwitchToHunter;
-
     Timer dashTimer = new Timer();
+
+    protected override void Awake()
+    {
+        base.Awake();
+        PlayerState.OnSwitchToHunter += OnSwitchToHunter;
+    }
 
     private void OnDestroy()
     {
-        OnSwitchToPrey = null;
-        OnSwitchToHunter = null;
+        PlayerState.OnSwitchToHunter -= OnSwitchToHunter;
+    }
+
+    void OnSwitchToHunter()
+    {
+        dashesLeft = dashNumber;
     }
 
     private void Update()
@@ -68,15 +71,12 @@ public class Controller3D : Singleton<Controller3D>, ITargetable
         move = GetDirectionalInput();
         lookDirection = Utility.UMath.GetXZ(MouseRaycaster.Hit.point - rb.position).normalized;
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && IsHunter && dashTimer.IsExpired && dashesLeft > 0 && move != Vector3.zero)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && PlayerState.IsHunter && dashTimer.IsExpired && dashesLeft > 0 && move != Vector3.zero)
         {
             StartCoroutine(_Dash(dashDuration));
             dashTimer.Set(dashDuration);
             dashesLeft--;
         }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-            ChangeHunterState();
 
         if (Input.GetKeyDown(KeyCode.F))
             StartCoroutine(_Invisibility());
@@ -158,29 +158,7 @@ public class Controller3D : Singleton<Controller3D>, ITargetable
 
     #endregion
 
-    void ChangeHunterState()
-    {
-        _isHunter = !_isHunter;
-
-        if (_isHunter)
-            ToHunter();
-        else
-            ToPrey();
-
-        void ToPrey()
-        {
-            TryAction(OnSwitchToPrey);
-        }
-
-        void ToHunter()
-        {
-            TryAction(OnSwitchToHunter);
-            dashesLeft = dashNumber;
-        }
-
-        void TryAction(Action action) { if (action != null) action(); }
-    }
-
+    
     void SetAnimation()
     {
         Vector3 relativeMove = transform.InverseTransformDirection(move);

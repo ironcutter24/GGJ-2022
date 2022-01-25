@@ -27,47 +27,6 @@ namespace Utility
 			if (action != null)
 				action(parameter);
 		}
-
-		/*
-		public class Transition
-        {
-			public float duration;
-			public System.Action<float> callback;
-			public bool isForward;
-			public 
-
-			public Transition(float duration, System.Action<float> callback, bool isForward, GameObject gameObject)
-            {
-				this.duration = duration;
-				this.callback = callback;
-				this.isForward = isForward;
-            }
-		}
-
-		public static void ApplyTransition(Transition transition)
-        {
-			Timing.KillCoroutines(transition.isForward ? "Forward" : "Backward" + transition.GetHashCode());
-
-			Timing.RunCoroutine(_Transition(duration, callback, isForward));
-
-
-			IEnumerator<float> _Transition(float duration, System.Action<float> callback, bool isForward)
-			{
-				float speed = 1 / duration;
-				float interpolation = 0f;
-				while (interpolation < 1f)
-				{
-					callback(OrientedInterpolation());
-					interpolation += speed * Time.deltaTime;
-					yield return Timing.WaitForOneFrame;
-				}
-				interpolation = 1f;
-				callback(OrientedInterpolation());
-
-				float OrientedInterpolation() { return isForward ? interpolation : 1 - interpolation; }
-			}
-		}
-		*/
 	}
 
 	public class UMath

@@ -44,7 +44,7 @@ public class SwordOrigin : MonoBehaviour
 
     void TryGenerateSword()
     {
-        if (currentSword == null && Controller3D.IsHunter)
+        if (currentSword == null && PlayerState.IsHunter)
             currentSword = ProjectilePooler.Spawn(poolingID, transform.position, Quaternion.identity, this.transform);
     }
 

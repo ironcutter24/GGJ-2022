@@ -12,7 +12,7 @@ public class TrapPlacer : MonoBehaviour
 
     private void Update()
     {
-	    if(Input.GetKeyDown(KeyCode.LeftShift) && Controller3D.IsPrey)
+	    if(Input.GetKeyDown(KeyCode.LeftShift) && PlayerState.IsPrey)
 		    PlaceTrap();
     }
 

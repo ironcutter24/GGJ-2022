@@ -20,51 +20,15 @@ public class LightingTransition : MonoBehaviour
     [SerializeField] float duration = 1f;
     [SerializeField] bool testMode = false;
 
-    private void Start()
+    private void Awake()
     {
+        PlayerState.OnStateTransition += SetLighting;
         SetLighting(0f);
-
-        if(testMode)
-            Timing.RunCoroutine(_Test());
     }
 
-    IEnumerator<float> _Test()
+    private void OnDestroy()
     {
-        while (true)
-        {
-            yield return Timing.WaitForSeconds(duration + 2f);
-            ToHunter();
-            yield return Timing.WaitForSeconds(duration + 2f);
-            ToPrey();
-        }
-    }
-
-    public void ToPrey()
-    {
-        string timingID = "Backward" + gameObject.GetInstanceID();
-        Timing.KillCoroutines(timingID);
-        Timing.RunCoroutine(_Transition(duration, false), timingID);
-    }
-
-    public void ToHunter()
-    {
-        string timingID = "Forward" + gameObject.GetInstanceID();
-        Timing.KillCoroutines(timingID);
-        Timing.RunCoroutine(_Transition(duration, true), timingID);
-    }
-
-    IEnumerator<float> _Transition(float duration, bool isForward)
-    {
-        float speed = 1 / duration;
-        float interpolation = 0f;
-        while (interpolation < 1f)
-        {
-            SetLighting(isForward ? interpolation : 1 - interpolation);
-            interpolation += speed * Time.deltaTime;
-            yield return Timing.WaitForOneFrame;
-        }
-        interpolation = 1f;
-        SetLighting(isForward ? interpolation : 1 - interpolation);
+        PlayerState.OnStateTransition -= SetLighting;
     }
 
     void SetLighting(float parameter)

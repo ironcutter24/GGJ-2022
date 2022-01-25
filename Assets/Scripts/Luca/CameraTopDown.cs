@@ -17,7 +17,7 @@ public class CameraTopDown : Singleton<CameraTopDown>
     [SerializeField] float heightHunter;
     [SerializeField] float verticalOffset;
 
-    private float HeightFromPlayer { get { return Controller3D.IsHunter ? heightHunter : heightPrey; } }
+    private float HeightFromPlayer { get { return PlayerState.IsHunter ? heightHunter : heightPrey; } }
 
     Controller3D player;
 
