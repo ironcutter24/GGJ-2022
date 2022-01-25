@@ -8,6 +8,10 @@ public class CameraTopDown : Singleton<CameraTopDown>
 {
     [SerializeField] float speed = 10f;
 
+    //[SerializeField]
+    //[Range(0f, 1f)]
+    //private float moveAndLookInterpolation = 1f;
+
     [Header("Bounds")]
     [SerializeField] float maxDistanceX;
     [SerializeField] float maxDistanceZ;
