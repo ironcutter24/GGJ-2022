@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRend: {fileID: 7264327091726914570}
-  transitionDuration: 1
+  transitionDuration: 0.6
+  startAlpha: 0.4
   anim: {fileID: 5168622584245880702}
 --- !u!1001 &8306764721762960536
 PrefabInstance:

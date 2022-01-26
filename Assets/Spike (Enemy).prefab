@@ -160,7 +160,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 5
+  m_Speed: 2.2
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -213,17 +213,18 @@ MonoBehaviour:
   anim: {fileID: 3888494096204656829}
   agent: {fileID: 4006380225902879959}
   nearFieldCollider: {fileID: 5400561769573742262}
+  graphics: {fileID: 8510083802301358437}
   disengageDistance: 9
   engageDistancePassive: 4
   engageDistanceVision: 7
   attackDistance: 2.5
   fieldOfView: 60
   maxHealth: 100
-  moveSpeed: 0
-  attackSpeed: 0
+  attackSpeed: 1
   waypoints:
   - {fileID: 0}
   - {fileID: 0}
+  spikeLair: {fileID: 0}
 --- !u!1 &8510083802301358437
 GameObject:
   m_ObjectHideFlags: 0

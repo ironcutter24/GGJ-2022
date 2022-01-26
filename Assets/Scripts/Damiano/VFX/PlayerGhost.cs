@@ -7,15 +7,14 @@ public class PlayerGhost : MonoBehaviour
 {
     [SerializeField] SkinnedMeshRenderer meshRend;
     [SerializeField] public float transitionDuration = 1f;
+    [SerializeField] float startAlpha = 1f;
 
     [SerializeField] protected Animator anim;
     Color color;
-    float startAlpha;
 
     protected virtual void Start()
     {
         color = meshRend.material.color;
-        startAlpha = color.a;
         OnEnable();
     }
 
@@ -43,8 +42,6 @@ public class PlayerGhost : MonoBehaviour
                 yield return null;
             }
             interpolation = 1f;
-
-            Debug.Log("SAlpha" + startAlpha);
             SetAlpha(startAlpha);
 
             gameObject.SetActive(false);

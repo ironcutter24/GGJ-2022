@@ -65,6 +65,12 @@ namespace FSM
         public override void Process()
         {
             Actor.SetDestination(Controller3D.Instance.Pos);
+
+            if (Actor.HasReachedDestination() && Actor.IsPlayerInAttackRange())
+                SetState(States.Attack);
+
+            if (!Actor.CanSeePlayer())
+                SetState(States.Patrol);
         }
     }
 
@@ -74,7 +80,14 @@ namespace FSM
 
         public override void Process()
         {
-            throw new System.NotImplementedException();
+            if (Actor.IsPlayerInAttackRange())
+            {
+                Actor.Attack();
+            }
+            else
+            {
+                SetState(States.Chase);
+            }
         }
     }
 }
