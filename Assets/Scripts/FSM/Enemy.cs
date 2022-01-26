@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -91,10 +91,7 @@ public abstract class Enemy : MonoBehaviour, ITargetable
         return distanceFromPlayer < attackDistance;
     }
 
-    public void Attack()
-    {
-        Debug.Log("Attack");
-    }
+	public abstract void Attack();
 
     #endregion
 
