@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class DecoyTrap : PlayerGhost
 {
+    [Header("DecoyTrap")]
+    [SerializeField] GameObject particles;
+
     public void Activate()
     {
-        
+        particles.SetActive(true);
     }
 }
