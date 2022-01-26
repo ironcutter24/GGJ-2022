@@ -4,32 +4,30 @@ using UnityEngine;
 
 namespace FSM
 {
-	/*
+   /*
 	* METHODS EXAMPLE
 	* 
 	* 
     
 	public class StateClassDocumentation : State
 	{
-	public StateClassDocumentation(FSMController controller) : base(controller) { }
+	    public StateClassDocumentation(FSMController controller) : base(controller) { }
 
-	public override void Enter()
-	{
-	TargetUnit.TestMethod();
-	SetState(States.Chase);
-	}
+	    public override void Enter() { }
 
-	public override void Process() { }
+	    public override void Process()
+        {
+            TargetUnit.TestMethod();
+            SetState(States.Chase);
+        }
 
-	public override void Exit() { }
+	    public override void Exit() { }
 	}
 
 	*/
     public class IdleState : State
     {
         public IdleState(FSMController controller) : base(controller) { }
-
-        //public override void Enter() { }
 
         public override void Process()
         {
@@ -43,8 +41,6 @@ namespace FSM
 
             throw new System.NotImplementedException();
         }
-
-        //public override void Exit() { }
     }
 
     public class PatrolState : State
