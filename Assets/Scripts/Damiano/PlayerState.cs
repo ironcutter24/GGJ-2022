@@ -5,6 +5,7 @@ using UnityEngine;
 using MEC;
 using Utility;
 using Utility.Patterns;
+using System.Linq;
 
 public class PlayerState : Singleton<PlayerState>
 {
@@ -14,8 +15,25 @@ public class PlayerState : Singleton<PlayerState>
     public static bool IsPrey { get { return !_instance._isHunter; } }
     public static bool IsHunter { get { return _instance._isHunter; } }
 
-    private bool _isInCombat;
-    public bool IsInCombat { get { return _isInCombat; } }
+    private List<Enemy> _nearEnemies = new List<Enemy>();
+    private int _engagedEnemies;
+    public static bool IsInCombat { get { return _instance._engagedEnemies > 0; } }
+
+    public static int EngagedEnemies
+    {
+        get
+        {
+            return _instance._engagedEnemies;
+        }
+        set
+        {
+            _instance._engagedEnemies = value >= 0 ? value : 0;
+            if(_instance._engagedEnemies > 0)
+                OnBattleEngaged();
+            else
+                OnBattleDisengaged();
+        }
+    }
 
     ///<summary>
     ///<para>Parameter is interpolation between 0f (Prey) and 1f (Hunter)</para>
@@ -32,6 +50,12 @@ public class PlayerState : Singleton<PlayerState>
     {
         if (Input.GetKeyDown(KeyCode.Space))
             ChangeHunterState();
+
+        if(_nearEnemies.Count > 0)
+        {
+            Enemy e = _nearEnemies.OrderBy(x => x.DistanceFromPlayer).First();
+            AudioManager.SetDangerProximity(UMath.Normalize(e.DistanceFromPlayer, e.DangerDistanceMax, e.DangerDistanceMin));
+        }
     }
 
     void ChangeHunterState()
@@ -52,16 +76,6 @@ public class PlayerState : Singleton<PlayerState>
         }
     }
 
-    public static void SetCombatState(bool state)
-    {
-        _instance._isInCombat = state;
-
-        if (_instance.IsInCombat)
-            OnBattleEngaged();
-        else
-            OnBattleDisengaged();
-    }
-
     bool isTransitioning = false;
     IEnumerator<float> _Transition(float duration, bool isForward)
     {
@@ -80,4 +94,12 @@ public class PlayerState : Singleton<PlayerState>
 
         void ApplyInterpolation() { Util.TryAction(OnStateTransition, isForward ? interpolation : 1 - interpolation); }
     }
+
+    #region Enemy proximity
+
+    public static void AddNearEnemy(Enemy enemy) { _instance._nearEnemies.Add(enemy); }
+
+    public static void RemoveNearEnemy(Enemy enemy) { _instance._nearEnemies.Remove(enemy); }
+
+    #endregion
 }

@@ -4,12 +4,12 @@ using UnityEngine;
 using UnityEngine.AI;
 using Utility;
 
-public abstract class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour, ITargetable
 {
     [Header("Components")]
     [SerializeField] Animator anim;
     [SerializeField] NavMeshAgent agent;
-    [SerializeField] SphereCollider sphereCollider;
+    [SerializeField] SphereCollider nearFieldCollider;
 
     [Header("Engaging")]
     [SerializeField] float disengageDistance;
@@ -17,6 +17,10 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] float engageDistanceVision;
     [SerializeField] float attackDistance;
     
+    public float DangerDistanceMin { get { return engageDistanceVision; } }
+
+    public float DangerDistanceMax { get { return nearFieldCollider.radius; } }
+
     [SerializeField]
     [Range(0f, 180f)]
     float fieldOfView = 60f;
@@ -32,21 +36,33 @@ public abstract class Enemy : MonoBehaviour
     private int currentWaypoint;
 
     float distanceFromPlayer = Mathf.Infinity;
+    public float DistanceFromPlayer { get { return distanceFromPlayer; } }
 
     Controller3D player;
 
     private void Start()
     {
         player = Controller3D.Instance;
-        sphereCollider.radius = disengageDistance;
+        _health = maxHealth;
     }
 
-#if UNITY_EDITOR
-    private void Update()
+    void ITargetable.ApplyDamage(float amount)
     {
-        sphereCollider.radius = disengageDistance;
+        _health -= amount;
+
+        if(_health <= 0f)
+        {
+            StartCoroutine(_Death());
+        }
+
+        IEnumerator _Death()
+        {
+            // Material dissolve transition
+
+            Destroy(this.gameObject);
+            yield break;
+        }
     }
-#endif
 
     #region Patrol state
 
@@ -64,15 +80,6 @@ public abstract class Enemy : MonoBehaviour
 
     #endregion
 
-    #region Chase state
-
-    public void ChaseUpdate()
-    {
-
-    }
-
-    #endregion
-
     #region Attack state
 
     public bool IsPlayerInAttackRange()
@@ -85,6 +92,14 @@ public abstract class Enemy : MonoBehaviour
     #endregion
 
     #region Trigger events
+
+    private void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.CompareTag("Player"))
+        {
+            PlayerState.AddNearEnemy(this);
+        }
+    }
 
     private void OnTriggerStay(Collider collider)
     {
@@ -99,6 +114,7 @@ public abstract class Enemy : MonoBehaviour
         if (collider.gameObject.CompareTag("Player"))
         {
             distanceFromPlayer = Mathf.Infinity;
+            PlayerState.RemoveNearEnemy(this);
         }
     }
 
@@ -125,17 +141,14 @@ public abstract class Enemy : MonoBehaviour
         {
             if(distanceFromPlayer < engageDistanceVision)
             {
-                if(distanceFromPlayer < engageDistancePassive)
+                if(distanceFromPlayer < engageDistancePassive || IsInFieldOfView(Controller3D.Instance.Pos))
                 {
-                    return true;
-                }
-
-                if (IsInFieldOfView(Controller3D.Instance.Pos))
-                {
+                    PlayerState.EngagedEnemies++;
                     return true;
                 }
             }
         }
+        PlayerState.EngagedEnemies--;
         return false;
     }
 

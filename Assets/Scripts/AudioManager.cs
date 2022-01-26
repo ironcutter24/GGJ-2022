@@ -44,7 +44,7 @@ public class AudioManager : Singleton<AudioManager>
 
         // Test only
         SetMusicalTheme(Theme.Exploration);
-        PlayerState.SetCombatState(true);
+        //PlayerState.SetCombatState(true);
     }
 
 #if UNITY_EDITOR
@@ -76,7 +76,12 @@ public class AudioManager : Singleton<AudioManager>
 
     public static void SetDangerProximity(float interpolation)
     {
-        _instance.FMODEventInstance.setParameterByName("DangerProximity", interpolation);
+        if (PlayerState.IsInCombat)
+        {
+            _instance.FMODEventInstance.setParameterByName("DangerProximity", 0f);
+            return;
+        }
+        _instance.FMODEventInstance.setParameterByName("DangerProximity", interpolation * 2f);
     }
 
     public enum Theme { MainMenu, LoadingScreen, Exploration }
