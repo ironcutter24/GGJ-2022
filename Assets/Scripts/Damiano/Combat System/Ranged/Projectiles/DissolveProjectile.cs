@@ -41,10 +41,15 @@ public class DissolveProjectile : Projectile
 
             parameterValue += delta * Time.deltaTime;
             outputValue = isForward ? parameterValue : 1 - parameterValue;
-            meshRend.material.SetFloat("_CutoffHeight", outputValue * 15f - 5f);
+            ApplyToMaterial(outputValue);
 
             timeInLoop += Time.deltaTime;
         }
+    }
+
+    void ApplyToMaterial(float interpolation)
+    {
+        meshRend.material.SetFloat("_CutoffHeight", Mathf.Lerp(-5f, 15f, interpolation));
     }
 
     public override void Discharge()
