@@ -66,4 +66,12 @@ public abstract class Enemy : MonoBehaviour
             UpdateDistanceFromPlayer();
         }
     }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            distanceFromPlayer = Mathf.Infinity;
+        }
+    }
 }

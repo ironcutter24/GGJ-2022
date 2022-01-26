@@ -4,41 +4,37 @@ using UnityEngine;
 
 namespace FSM
 {
-   /*
-	* METHODS EXAMPLE
-	* 
-	* 
-    
-	public class StateClassDocumentation : State
-	{
-	    public StateClassDocumentation(FSMController controller) : base(controller) { }
+    /*
+     * METHODS EXAMPLE
+     * 
+     * 
 
-	    public override void Enter() { }
+     public class StateClassDocumentation : State
+     {
+         public StateClassDocumentation(FSMController controller) : base(controller) { }
 
-	    public override void Process()
-        {
-            TargetUnit.TestMethod();
-            SetState(States.Chase);
-        }
+         public override void Enter()
+         {
+             TargetUnit.PerformAction();
+         }
 
-	    public override void Exit() { }
-	}
+         public override void Process()
+         {
+             if(TargetUnit.ActionIsDone())
+                SetState(States.NextState);
+         }
 
-	*/
+         public override void Exit() { }
+     }
+
+     */
+
     public class IdleState : State
     {
         public IdleState(FSMController controller) : base(controller) { }
 
         public override void Process()
         {
-            /*
-             * Use example:
-             * 
-             *  TargetUnit.TestMethod();
-             *  SetState(States.Chase);
-             * 
-             */
-
             throw new System.NotImplementedException();
         }
     }

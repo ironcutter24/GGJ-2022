@@ -4,16 +4,17 @@ using UnityEngine;
 
 namespace FSM
 {
-	public class FSMController : MonoBehaviour
+	public abstract class FSMController : MonoBehaviour
 	{
 		[SerializeField] public Enemy targetUnit;
 
 		State currentState;
 		State oldState = null;
 
+		#region Old StateCollection implementation
 
-        #region States definition and initialization
 
+		/*
 		public struct StateCollection
         {
 			public State Idle;
@@ -36,9 +37,19 @@ namespace FSM
 
 			currentState = States.Patrol;
 		}
-
+		*/
 		#endregion
 
+		private void Awake()
+		{
+			InitializeStates();
+			currentState = States.Patrol;
+		}
+
+		protected StateCollection validStates;
+		public StateCollection States { get { return validStates; } }
+
+		protected abstract void InitializeStates();
 
 		private void Update()
 		{
@@ -60,6 +71,26 @@ namespace FSM
 		{
 			oldState = currentState;
 			currentState = newState;
+		}
+
+
+		[System.Serializable]
+		public class StateCollection
+		{
+			public State Idle;
+			public State Patrol;
+			public State Chase;
+			public State RunAway;
+			public State Attack;
+
+			public StateCollection(State idle, State patrol, State chase, State runAway, State attack)
+			{
+				this.Idle = idle;
+				this.Patrol = patrol;
+				this.Chase = chase;
+				this.RunAway = runAway;
+				this.Attack = attack;
+			}
 		}
 	}
 

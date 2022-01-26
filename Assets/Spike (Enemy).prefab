@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 4006380225902879953}
   - component: {fileID: 3888494096204656829}
   - component: {fileID: 4006380225902879959}
+  - component: {fileID: 4824188804466880154}
   - component: {fileID: 995943883478524426}
   m_Layer: 0
-  m_Name: EnemyFSM
+  m_Name: Spike (Enemy)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,6 +76,19 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 3
+--- !u!114 &4824188804466880154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4006380225902879917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd2f2ef52e74134bb9504a7f8742105, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetUnit: {fileID: 995943883478524426}
 --- !u!114 &995943883478524426
 MonoBehaviour:
   m_ObjectHideFlags: 0
