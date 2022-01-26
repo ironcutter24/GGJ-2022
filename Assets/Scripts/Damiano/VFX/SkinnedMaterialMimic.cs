@@ -9,7 +9,7 @@ public class SkinnedMaterialMimic : MonoBehaviour
 
 	private void Awake()
 	{
-		var mesh = GetComponent<MeshRenderer>();
+		var mesh = GetComponent<SkinnedMeshRenderer>();
 		mat = new Material(mesh.material);
 		mesh.material = mat;
 	}

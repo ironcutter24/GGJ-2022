@@ -2,22 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Utility;
 
 public abstract class Enemy : MonoBehaviour
 {
     [Header("Components")]
     [SerializeField] Animator anim;
     [SerializeField] NavMeshAgent agent;
+    [SerializeField] SphereCollider sphereCollider;
 
     [Header("Engaging")]
     [SerializeField] float disengageDistance;
-    [SerializeField] float engageDistanceNear;
-    [SerializeField] float engageDistanceFar;
+    [SerializeField] float engageDistancePassive;
+    [SerializeField] float engageDistanceVision;
     [SerializeField] float attackDistance;
     
     [SerializeField]
     [Range(0f, 180f)]
-    float fieldOfView;
+    float fieldOfView = 60f;
 
     [Header("Stats")]
     [SerializeField] float maxHealth = 100f;
@@ -36,22 +38,19 @@ public abstract class Enemy : MonoBehaviour
     private void Start()
     {
         player = Controller3D.Instance;
+        sphereCollider.radius = disengageDistance;
     }
+
+#if UNITY_EDITOR
+    private void Update()
+    {
+        sphereCollider.radius = disengageDistance;
+    }
+#endif
 
     #region Patrol state
 
-    public void PatrolInit()
-    {
-        SetDestination(PeekNextWaypoint());
-    }
-
-    public void PatrolUpdate()
-    {
-        if (HasReachedDestination())
-            SetDestination(PeekNextWaypoint());
-    }
-
-    Vector3 PeekNextWaypoint()
+    public Vector3 PeekNextWaypoint()
     {
         Vector3 temp = waypoints[currentWaypoint].position;
 
@@ -115,11 +114,51 @@ public abstract class Enemy : MonoBehaviour
 
     public bool HasReachedDestination()
     {
-        return agent.hasPath;
+        return agent.remainingDistance < .5f;
     }
 
     private void UpdateDistanceFromPlayer()
     {
         distanceFromPlayer = Vector3.Distance(transform.position, player.Pos);
+    }
+
+    public bool CanSeePlayer()
+    {
+        if(distanceFromPlayer < disengageDistance)
+        {
+            if(distanceFromPlayer < engageDistanceVision)
+            {
+                if(distanceFromPlayer < engageDistancePassive)
+                {
+                    return true;
+                }
+
+                if (IsInFieldOfView(Controller3D.Instance.Pos))
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    bool IsInFieldOfView(Vector3 position)
+    {
+        return Vector3.Angle(UMath.GetXZ(position) - UMath.GetXZ(transform.position), UMath.GetXZ(transform.forward)) < fieldOfView * .5f;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = new Color(0f, 1f, 1f, .35f);
+        Gizmos.DrawSphere(transform.position, attackDistance);
+
+        Gizmos.color = new Color(1f, 1f, 0f, .2f);
+        Gizmos.DrawSphere(transform.position, engageDistancePassive);
+
+        Gizmos.color = new Color(1f, 1f, 1f, .15f);
+        Gizmos.DrawSphere(transform.position, engageDistanceVision);
+
+        Gizmos.color = new Color(1f, 1f, 1f, .1f);
+        Gizmos.DrawSphere(transform.position, disengageDistance);
     }
 }

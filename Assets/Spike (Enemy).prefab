@@ -183,7 +183,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4824188804466880154
 MonoBehaviour:
@@ -212,15 +212,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 3888494096204656829}
   agent: {fileID: 4006380225902879959}
-  disengageDistance: 0
-  engageDistanceNear: 0
-  engageDistanceFar: 0
-  attackDistance: 0
-  fieldOfView: 0
+  sphereCollider: {fileID: 5400561769573742262}
+  disengageDistance: 12
+  engageDistancePassive: 4
+  engageDistanceVision: 10
+  attackDistance: 2.5
+  fieldOfView: 60
   maxHealth: 0
   moveSpeed: 0
   attackSpeed: 0
-  waypoints: []
+  waypoints:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &8510083802301358437
 GameObject:
   m_ObjectHideFlags: 0

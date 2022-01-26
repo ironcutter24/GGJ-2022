@@ -15,12 +15,12 @@ namespace FSM
 
          public override void Enter()
          {
-             TargetUnit.PerformAction();
+             Actor.PerformAction();
          }
 
          public override void Process()
          {
-             if(TargetUnit.ActionIsDone())
+             if(Actor.ActionIsDone())
                 SetState(States.NextState);
          }
 
@@ -45,12 +45,16 @@ namespace FSM
 
         public override void Enter()
         {
-            TargetUnit.PatrolInit();
+            Actor.SetDestination(Actor.PeekNextWaypoint());
         }
 
         public override void Process()
         {
-            TargetUnit.PatrolUpdate();
+            if (Actor.HasReachedDestination())
+                Actor.SetDestination(Actor.PeekNextWaypoint());
+
+            if (Actor.CanSeePlayer())
+                SetState(States.Chase);
         }
     }
 
@@ -60,7 +64,7 @@ namespace FSM
 
         public override void Process()
         {
-            throw new System.NotImplementedException();
+            Actor.SetDestination(Controller3D.Instance.Pos);
         }
     }
 

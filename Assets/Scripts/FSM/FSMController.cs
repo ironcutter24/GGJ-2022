@@ -95,7 +95,7 @@ namespace FSM
 	public abstract class State
 	{
 		private FSMController controller;
-		protected Enemy TargetUnit { get { return controller.targetUnit; } }
+		protected Enemy Actor { get { return controller.targetUnit; } }
 		protected FSMController.StateCollection States { get { return controller.States; } }
 
 		protected State(FSMController controller)

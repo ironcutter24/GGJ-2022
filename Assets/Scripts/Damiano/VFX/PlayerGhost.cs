@@ -43,6 +43,8 @@ public class PlayerGhost : MonoBehaviour
                 yield return null;
             }
             interpolation = 1f;
+
+            Debug.Log("SAlpha" + startAlpha);
             SetAlpha(startAlpha);
 
             gameObject.SetActive(false);
