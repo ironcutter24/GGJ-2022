@@ -14,12 +14,19 @@ public class PlayerState : Singleton<PlayerState>
     public static bool IsPrey { get { return !_instance._isHunter; } }
     public static bool IsHunter { get { return _instance._isHunter; } }
 
+    private bool _isInCombat;
+    public bool IsInCombat { get { return _isInCombat; } }
+
     ///<summary>
     ///<para>Parameter is interpolation between 0f (Prey) and 1f (Hunter)</para>
     ///</summary>
     public static Action<float> OnStateTransition;
+
     public static Action OnSwitchToHunter;
     public static Action OnSwitchToPrey;
+
+    public static Action OnBattleEngaged;
+    public static Action OnBattleDisengaged;
 
     private void Update()
     {
@@ -43,6 +50,16 @@ public class PlayerState : Singleton<PlayerState>
             Util.TryAction(OnSwitchToPrey);
             Timing.RunCoroutine(_Transition(transitionDuration, false));
         }
+    }
+
+    public static void SetCombatState(bool state)
+    {
+        _instance._isInCombat = state;
+
+        if (_instance.IsInCombat)
+            OnBattleEngaged();
+        else
+            OnBattleDisengaged();
     }
 
     bool isTransitioning = false;

@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utility.Patterns;
 
-public class AudioManager : MonoBehaviour
+public class AudioManager : Singleton<AudioManager>
 {
     private FMOD.Studio.EventInstance FMODEventInstance;
 
@@ -10,38 +11,102 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField]
     [Range(0f, 2f)]
-    private float playerState, combatEngaged, dangerLevel;
+    private float dangerLevel;
 
     [SerializeField]
     [Range(0, 1)]
-    int explorationStart = 0;
+    int playerState, combatEngaged, mainMenuTheme, loadingTheme, explorationTheme;
 
-    private void Awake()
+    protected override void Awake()
     {
-        PlayerState.OnStateTransition += ApplyInterpolation;
+        base.Awake();
+
+        PlayerState.OnSwitchToHunter += ToHunter;
+        PlayerState.OnSwitchToPrey += ToPrey;
+
+        PlayerState.OnBattleEngaged += EngageBattle;
+        PlayerState.OnBattleDisengaged += DisengageBattle;
     }
 
     private void OnDestroy()
     {
-        PlayerState.OnStateTransition -= ApplyInterpolation;
-    }
+        PlayerState.OnSwitchToHunter -= ToHunter;
+        PlayerState.OnSwitchToPrey -= ToPrey;
 
+        PlayerState.OnBattleEngaged -= EngageBattle;
+        PlayerState.OnBattleDisengaged -= DisengageBattle;
+    }
+    
     void Start()
     {
         FMODEventInstance = FMODUnity.RuntimeManager.CreateInstance(fmodEvent);
         FMODEventInstance.start();
+
+        // Test only
+        SetMusicalTheme(Theme.Exploration);
+        PlayerState.SetCombatState(true);
     }
 
+#if UNITY_EDITOR
+    [SerializeField] bool testMode;
     void Update()
     {
-        FMODEventInstance.setParameterByName("Switch WOLF", playerState);
-        FMODEventInstance.setParameterByName("Combat", combatEngaged);
-        FMODEventInstance.setParameterByName("Danger Proximity", dangerLevel);
-        FMODEventInstance.setParameterByName("Start", explorationStart);
+        if (!testMode) return;
+
+        FMODEventInstance.setParameterByName("IsHunter", playerState);
+        FMODEventInstance.setParameterByName("IsCombat", combatEngaged);
+        FMODEventInstance.setParameterByName("DangerProximity", dangerLevel);
+        FMODEventInstance.setParameterByName("IsMainMenuTheme", mainMenuTheme);
+        FMODEventInstance.setParameterByName("IsCaricamentoTheme", loadingTheme);
+        FMODEventInstance.setParameterByName("IsEsplorazioneTheme", explorationTheme);
+    }
+#endif
+
+    #region Events
+
+    // IsHunter
+    void ToHunter() { FMODEventInstance.setParameterByName("IsHunter", 1f); }
+    void ToPrey() { FMODEventInstance.setParameterByName("IsHunter", 0f); }
+
+    // IsCombat
+    void EngageBattle() { FMODEventInstance.setParameterByName("IsCombat", 1f); }
+    void DisengageBattle() { FMODEventInstance.setParameterByName("IsCombat", 0f); }
+
+    #endregion
+
+    public static void SetDangerProximity(float interpolation)
+    {
+        _instance.FMODEventInstance.setParameterByName("DangerProximity", interpolation);
     }
 
-    void ApplyInterpolation(float interpolation)
+    public enum Theme { MainMenu, LoadingScreen, Exploration }
+    public static void SetMusicalTheme(Theme theme)
     {
-        //FMODEventInstance.setParameterByName("Switch WOLF", interpolation * 2);
+        ResetTriggers();
+        ApplyTheme(theme);
+
+        
+        void ResetTriggers()
+        {
+            _instance.FMODEventInstance.setParameterByName(GetID(Theme.MainMenu), 0f);
+            _instance.FMODEventInstance.setParameterByName(GetID(Theme.LoadingScreen), 0f);
+            _instance.FMODEventInstance.setParameterByName(GetID(Theme.Exploration), 0f);
+        }
+
+        void ApplyTheme(Theme theme)
+        {
+            _instance.FMODEventInstance.setParameterByName(GetID(theme), 1f);
+        }
+
+        string GetID(Theme theme)
+        {
+            switch (theme)
+            {
+                case Theme.MainMenu:        return "IsMainMenuTheme";
+                case Theme.LoadingScreen:   return "IsCaricamentoTheme";
+                case Theme.Exploration:     return "IsEsplorazioneTheme";
+            }
+            throw new System.NotImplementedException();
+        }
     }
 }
