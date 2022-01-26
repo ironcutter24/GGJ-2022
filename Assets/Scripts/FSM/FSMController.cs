@@ -60,6 +60,7 @@ namespace FSM
 			}
 
 			currentState.Process();
+			currentState.LateProcess();
 
 			if (StateHasChanged)
 				oldState.Exit();
@@ -78,16 +79,18 @@ namespace FSM
 			public State Idle;
 			public State Patrol;
 			public State Chase;
-			public State RunAway;
 			public State Attack;
+			public State RunAway;
+			public State SafeZone;
 
-			public StateCollection(State idle, State patrol, State chase, State runAway, State attack)
+			public StateCollection(State idle, State patrol, State chase, State attack, State runAway, State safeZone)
 			{
 				this.Idle = idle;
 				this.Patrol = patrol;
 				this.Chase = chase;
-				this.RunAway = runAway;
 				this.Attack = attack;
+				this.RunAway = runAway;
+				this.SafeZone = safeZone;
 			}
 		}
 	}
@@ -111,6 +114,12 @@ namespace FSM
 		public virtual void Enter() { }
 
 		public abstract void Process();
+
+		public virtual void LateProcess()
+        {
+			if (PlayerState.IsHunter)
+				SetState(States.RunAway);
+        }
 
 		public virtual void Exit() { }
 	}

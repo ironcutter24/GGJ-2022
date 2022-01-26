@@ -68,16 +68,6 @@ namespace FSM
         }
     }
 
-    public class RunAwayState : State
-    {
-        public RunAwayState(FSMController controller) : base(controller) { }
-
-        public override void Process()
-        {
-            throw new System.NotImplementedException();
-        }
-    }
-
     public class AttackState : State
     {
         public AttackState(FSMController controller) : base(controller) { }
@@ -87,5 +77,4 @@ namespace FSM
             throw new System.NotImplementedException();
         }
     }
-
 }
