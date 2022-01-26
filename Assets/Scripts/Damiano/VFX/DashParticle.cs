@@ -8,6 +8,6 @@ public class DashParticle : PlayerGhost
     protected override void OnEnable()
     {
         base.OnEnable();
-        //Dissolve();
+        Dissolve();
     }
 }

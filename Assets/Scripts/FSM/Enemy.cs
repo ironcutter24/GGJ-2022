@@ -10,6 +10,7 @@ public abstract class Enemy : MonoBehaviour, ITargetable
     [SerializeField] Animator anim;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] SphereCollider nearFieldCollider;
+    [SerializeField] GameObject graphics;
 
     [Header("Engaging")]
     [SerializeField] float disengageDistance;
@@ -28,12 +29,15 @@ public abstract class Enemy : MonoBehaviour, ITargetable
     [Header("Stats")]
     [SerializeField] float maxHealth = 100f;
     private float _health;
-    [SerializeField] float moveSpeed = 1f;
+    //[SerializeField] float moveSpeed = 1f;
     [SerializeField] float attackSpeed = 1f;
 
     [Header("Path")]
     [SerializeField] List<Transform> waypoints = new List<Transform>();
     private int currentWaypoint;
+
+    [Header("Spike Enemy")]
+    [SerializeField] public GameObject spikeLair;
 
     float distanceFromPlayer = Mathf.Infinity;
     public float DistanceFromPlayer { get { return distanceFromPlayer; } }
@@ -119,6 +123,16 @@ public abstract class Enemy : MonoBehaviour, ITargetable
     }
 
     #endregion
+
+    public void EnableGraphics()
+    {
+        graphics.SetActive(true);
+    }
+
+    public void DisableGraphics()
+    {
+        graphics.SetActive(false);
+    }
 
     public void SetDestination(Vector3 targetPosition)
     {
