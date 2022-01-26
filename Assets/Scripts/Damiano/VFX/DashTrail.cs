@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DashTrail : MonoBehaviour
 {
-    [SerializeField] GameObject particlePrefab;
     [SerializeField] float step = .4f;
     [SerializeField] bool isEnabled = true;
 
@@ -33,7 +32,7 @@ public class DashTrail : MonoBehaviour
         for (int i = particlesSpawned; i < particlesNeeded; i++)
         {
             spawnPosition = startPosition + startDirection * step * i;
-            DashParticlePooler.Spawn("PlayerDash", spawnPosition, startRotation, null);
+            PlayerGhostPooler.Spawn("DashParticle", spawnPosition, startRotation, null);
             particlesSpawned++;
         }
     }

@@ -73,8 +73,6 @@ namespace FSM
 			currentState = newState;
 		}
 
-
-		[System.Serializable]
 		public class StateCollection
 		{
 			public State Idle;

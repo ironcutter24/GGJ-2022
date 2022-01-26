@@ -5,23 +5,32 @@ using UnityEngine.AI;
 
 public class EnemyAICopy : MonoBehaviour
 {
-    public NavMeshAgent navMeshAgent;               //  Nav mesh agent component
-    public float startWaitTime = 4;                 //  Wait time of every action
-    public float timeToRotate = 2;                  //  Wait time when the enemy detect near the player without seeing
-    public float speedWalk = 6;                     //  Walking speed, speed in the nav mesh agent
-    public float speedRun = 9;                      //  Running speed
+    [SerializeField] NavMeshAgent navMeshAgent;               //  Nav mesh agent component
+    [SerializeField] Animator animEnemy;
 
-    public float viewRadius = 15;                   //  Radius of the enemy view
-    public float viewAngle = 90;                    //  Angle of the enemy view
-    public LayerMask playerMask;                    //  To detect the player with the raycast
-    public LayerMask obstacleMask;                  //  To detect the obstacules with the raycast
-    public float meshResolution = 1.0f;             //  How many rays will cast per degree
-    public int edgeIterations = 4;                  //  Number of iterations to get a better performance of the mesh filter when the raycast hit an obstacule
-    public float edgeDistance = 0.5f;               //  Max distance to calcule the a minumun and a maximum raycast when hits something
+    [Header("Stats")]
+    [SerializeField] float startWaitTime = 4f;                 //  Wait time of every action
+    [SerializeField] float timeToRotate = 2f;                  //  Wait time when the enemy detect near the player without seeing
+    [SerializeField] float speedWalk = 6f;                     //  Walking speed, speed in the nav mesh agent
+    [SerializeField] float speedRun = 9f;                      //  Running speed
 
+    [Header("Vision")]
+    [SerializeField] float passivePerceptionRadius = 1f;
+    [SerializeField] float viewRadius = 15f;                   //  Radius of the enemy view
+    [SerializeField] float aggroRadius = 15f;                  //  Radius after which the enemy loses aggro
 
-    public Transform[] waypoints;                   //  All the waypoints where the enemy patrols
-    int m_CurrentWaypointIndex;                     //  Current waypoint where the enemy is going to
+    [SerializeField] [Range(0f, 180f)] float viewAngle = 60f;                    //  Angle of the enemy view
+    [SerializeField] LayerMask playerMask;                    //  To detect the player with the raycast
+    [SerializeField] LayerMask obstacleMask;                  //  To detect the obstacules with the raycast
+
+    [Header("Raycasting")]
+    [SerializeField] float meshResolution = 1.0f;             //  How many rays will cast per degree
+    [SerializeField] int edgeIterations = 4;                  //  Number of iterations to get a better performance of the mesh filter when the raycast hit an obstacule
+    [SerializeField] float edgeDistance = 0.5f;               //  Max distance to calcule the a minumun and a maximum raycast when hits something
+
+    [Header("Patrolling")]
+    [SerializeField] Transform[] waypoints;                //  All the waypoints where the enemy patrols
+    int m_CurrentWaypointIndex;                               //  Current waypoint where the enemy is going to
 
     Vector3 playerLastPosition = Vector3.zero;      //  Last position of the player when was near the enemy
     Vector3 m_PlayerPosition;                       //  Last position of the player when the player is seen by the enemy
@@ -31,8 +40,7 @@ public class EnemyAICopy : MonoBehaviour
     bool m_playerInRange;                           //  If the player is in range of vision, state of chasing
     bool m_PlayerNear;                              //  If the player is near, state of hearing
     bool m_IsPatrol;                                //  If the enemy is patrol, state of patroling
-	bool m_CaughtPlayer;                            //  if the enemy has caught the player
-	Animator animEnemy;
+    bool m_CaughtPlayer;                            //  if the enemy has caught the player
 
     void Start()
     {
@@ -43,10 +51,7 @@ public class EnemyAICopy : MonoBehaviour
         m_PlayerNear = false;
         m_WaitTime = startWaitTime;                 //  Set the wait time variable that will change
         m_TimeToRotate = timeToRotate;
-
         m_CurrentWaypointIndex = 0;                 //  Set the initial waypoint
-	    navMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-	    animEnemy = GetComponent<Animator>();
 
         navMeshAgent.isStopped = false;
         navMeshAgent.speed = speedWalk;             //  Set the navemesh speed with the normal speed of the enemy
@@ -60,7 +65,7 @@ public class EnemyAICopy : MonoBehaviour
         if (!m_IsPatrol)
         {
             Chasing();
-	        Attack();
+            Attack();
         }
         else
         {
@@ -101,29 +106,30 @@ public class EnemyAICopy : MonoBehaviour
             }
         }
     }
-	private void Attack()
-	{
-	
-		float dist = Vector3.Distance(transform.position,GameObject.FindGameObjectWithTag("Player").transform.position);
-		if(dist <= 2.5f){
-			
-			animEnemy.SetBool("IsNear",true);
-			navMeshAgent.velocity = new Vector3(0,0,0);
-		}else{
-			
-			animEnemy.SetBool("IsNear",false);
-			Move(speedWalk);
-		}
-		
-	}
-	private void Shield(){
-		
-		float dist = Vector3.Distance(transform.position,GameObject.FindGameObjectWithTag("Player").transform.position);
-		if(dist < 2.5f){
-			
-			
-		}
-	}
+
+    private void Attack()
+    {
+        float dist = Vector3.Distance(transform.position, Controller3D.Instance.Pos);
+        if (dist <= 2.5f)
+        {
+            animEnemy.SetBool("IsNear", true);
+            navMeshAgent.velocity = new Vector3(0, 0, 0);
+        }
+        else
+        {
+            animEnemy.SetBool("IsNear", false);
+            Move(speedWalk);
+        }
+    }
+
+    private void Shield()
+    {
+        float dist = Vector3.Distance(transform.position, Controller3D.Instance.Pos);
+        if (dist < 2.5f)
+        {
+
+        }
+    }
 
     private void Patroling()
     {
@@ -163,17 +169,6 @@ public class EnemyAICopy : MonoBehaviour
                 }
             }
         }
-    }
-
-    private void OnAnimatorMove()
-    {
-
-    }
-    // Implement OnDrawGizmos if you want to draw gizmos that are also pickable and always drawn.
-    protected void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, viewRadius);
     }
 
     public void NextPoint()
@@ -267,5 +262,13 @@ public class EnemyAICopy : MonoBehaviour
                 m_PlayerPosition = player.transform.position;       //  Save the player's current position if the player is in range of vision
             }
         }
+    }
+
+    void OnDrawGizmos()
+    {
+        Color gizmoColor = new Color(1f, 1f, 1f, .2f);
+
+        Gizmos.color = gizmoColor;
+        Gizmos.DrawSphere(transform.position, viewRadius);
     }
 }

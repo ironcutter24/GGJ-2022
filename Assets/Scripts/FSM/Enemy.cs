@@ -25,29 +25,56 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] float moveSpeed = 1f;
     [SerializeField] float attackSpeed = 1f;
 
-    Controller3D player;
+    [Header("Path")]
+    [SerializeField] List<Transform> waypoints = new List<Transform>();
+    private int currentWaypoint;
 
     float distanceFromPlayer = Mathf.Infinity;
+
+    Controller3D player;
 
     private void Start()
     {
         player = Controller3D.Instance;
     }
 
-    private void UpdateDistanceFromPlayer()
+    #region Patrol state
+
+    public void PatrolInit()
     {
-        distanceFromPlayer = Vector3.Distance(transform.position, player.Pos);
+        SetDestination(PeekNextWaypoint());
     }
 
-    public void SetDestination(Vector3 targetPosition)
+    public void PatrolUpdate()
     {
-        agent.SetDestination(targetPosition);
+        if (HasReachedDestination())
+            SetDestination(PeekNextWaypoint());
     }
 
-    public bool HasReachedDestination()
+    Vector3 PeekNextWaypoint()
     {
-        return agent.hasPath;
+        Vector3 temp = waypoints[currentWaypoint].position;
+
+        currentWaypoint++;
+
+        if (currentWaypoint >= waypoints.Count)
+            currentWaypoint -= waypoints.Count;
+
+        return temp;
     }
+
+    #endregion
+
+    #region Chase state
+
+    public void ChaseUpdate()
+    {
+
+    }
+
+    #endregion
+
+    #region Attack state
 
     public bool IsPlayerInAttackRange()
     {
@@ -59,19 +86,40 @@ public abstract class Enemy : MonoBehaviour
 
     }
 
-    private void OnCollisionStay(Collision collision)
+    #endregion
+
+    #region Trigger events
+
+    private void OnTriggerStay(Collider collider)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collider.gameObject.CompareTag("Player"))
         {
             UpdateDistanceFromPlayer();
         }
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerExit(Collider collider)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collider.gameObject.CompareTag("Player"))
         {
             distanceFromPlayer = Mathf.Infinity;
         }
+    }
+
+    #endregion
+
+    public void SetDestination(Vector3 targetPosition)
+    {
+        agent.SetDestination(targetPosition);
+    }
+
+    public bool HasReachedDestination()
+    {
+        return agent.hasPath;
+    }
+
+    private void UpdateDistanceFromPlayer()
+    {
+        distanceFromPlayer = Vector3.Distance(transform.position, player.Pos);
     }
 }

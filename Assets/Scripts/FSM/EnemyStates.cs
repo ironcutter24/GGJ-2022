@@ -43,9 +43,14 @@ namespace FSM
     {
         public PatrolState(FSMController controller) : base(controller) { }
 
+        public override void Enter()
+        {
+            TargetUnit.PatrolInit();
+        }
+
         public override void Process()
         {
-            throw new System.NotImplementedException();
+            TargetUnit.PatrolUpdate();
         }
     }
 

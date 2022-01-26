@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GizmoSeeViewRange : MonoBehaviour
 {
+	/*
 	public Transform Transform;
 	public float Radius = 20;
 	public float Alpha = 0.2f;
@@ -30,4 +31,5 @@ public class GizmoSeeViewRange : MonoBehaviour
 		
 		
 	}
+	*/
 }
