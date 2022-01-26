@@ -4,5 +4,7 @@ using UnityEngine;
 
 public class Spike : Enemy
 {
-    
+	public override void Attack(){
+		System.Console.Write("SPIKE ATTACK!");
+	}
 }
