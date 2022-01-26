@@ -31,7 +31,8 @@ public class EnemyAICopy : MonoBehaviour
     bool m_playerInRange;                           //  If the player is in range of vision, state of chasing
     bool m_PlayerNear;                              //  If the player is near, state of hearing
     bool m_IsPatrol;                                //  If the enemy is patrol, state of patroling
-    bool m_CaughtPlayer;                            //  if the enemy has caught the player
+	bool m_CaughtPlayer;                            //  if the enemy has caught the player
+	Animator animEnemy;
 
     void Start()
     {
@@ -44,7 +45,8 @@ public class EnemyAICopy : MonoBehaviour
         m_TimeToRotate = timeToRotate;
 
         m_CurrentWaypointIndex = 0;                 //  Set the initial waypoint
-        navMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+	    navMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+	    animEnemy = GetComponent<Animator>();
 
         navMeshAgent.isStopped = false;
         navMeshAgent.speed = speedWalk;             //  Set the navemesh speed with the normal speed of the enemy
@@ -58,6 +60,7 @@ public class EnemyAICopy : MonoBehaviour
         if (!m_IsPatrol)
         {
             Chasing();
+	        Attack();
         }
         else
         {
@@ -98,6 +101,29 @@ public class EnemyAICopy : MonoBehaviour
             }
         }
     }
+	private void Attack()
+	{
+	
+		float dist = Vector3.Distance(transform.position,GameObject.FindGameObjectWithTag("Player").transform.position);
+		if(dist <= 2.5f){
+			
+			animEnemy.SetBool("IsNear",true);
+			navMeshAgent.velocity = new Vector3(0,0,0);
+		}else{
+			
+			animEnemy.SetBool("IsNear",false);
+			Move(speedWalk);
+		}
+		
+	}
+	private void Shield(){
+		
+		float dist = Vector3.Distance(transform.position,GameObject.FindGameObjectWithTag("Player").transform.position);
+		if(dist < 2.5f){
+			
+			
+		}
+	}
 
     private void Patroling()
     {

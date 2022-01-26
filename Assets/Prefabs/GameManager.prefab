@@ -320,7 +320,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3900715388768602170}
   - component: {fileID: 3900715388768602173}
-  - component: {fileID: 5824395651449324806}
+  - component: {fileID: 8269961677709681103}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -357,7 +357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5438166baa34e9647bfddcc4863679ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5824395651449324806
+--- !u!114 &8269961677709681103
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -369,6 +369,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c69fe697788a0984daf554b7aea8716f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fmodEvent:
+    Guid:
+      Data1: 1173521850
+      Data2: 1311556815
+      Data3: 1289306260
+      Data4: 962956381
+    Path: event:/OST RED
+  playerState: 0
+  combatEngaged: 0
+  dangerLevel: 0
+  explorationStart: 0
 --- !u!1 &4704878901298479117
 GameObject:
   m_ObjectHideFlags: 0

@@ -38,7 +38,7 @@ public class Controller3D : Singleton<Controller3D>, ITargetable
     private enum State { Moving, Dashing }
     private State state = State.Moving;
 
-    public Vector3 Pos { get { return rb.position; } }
+    public Vector3 Pos { get { return _instance.rb.position; } }
 
     private Vector3 move = Vector3.zero;
     public Vector3 Move { get { return _instance.move; } }

@@ -33,6 +33,8 @@ namespace FSM
 			validStates.Chase = new ChaseState(this);
 			validStates.RunAway = new RunAwayState(this);
 			validStates.Attack = new AttackState(this);
+
+			currentState = States.Patrol;
 		}
 
 		#endregion
