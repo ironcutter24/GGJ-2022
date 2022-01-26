@@ -84,7 +84,7 @@ namespace FSM
 
         public override void Process()
         {
-            throw new System.NotImplementedException();
+	        Actor.Attack();
         }
     }
 
