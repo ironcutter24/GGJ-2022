@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class Jumper : Enemy
 {
-    public override void Attack()
-    {
-        throw new System.NotImplementedException();
-    }
-
+  
     public override void SetDestination(Vector3 targetPosition)
     {
-        // Start teleportation
-
-        throw new System.NotImplementedException();
+	    agent.SetDestination(targetPosition);
+    }
+    public override void Attack()
+    {
+	    System.Console.Write("JUMPER ATTACK!");
     }
 }
