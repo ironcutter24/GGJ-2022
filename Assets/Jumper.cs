@@ -5,16 +5,11 @@ using UnityEngine;
 public class Jumper : Enemy
 {
 
-    // Start is called before the first frame update
-    void Start()
+    public override void SetDestination(Vector3 targetPosition)
     {
-        
-    }
+        // Start teleportation
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        throw new System.NotImplementedException();
     }
     public override void Attack()
     {

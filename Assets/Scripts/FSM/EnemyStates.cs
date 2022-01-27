@@ -35,7 +35,15 @@ namespace FSM
 
         public override void Process()
         {
-            throw new System.NotImplementedException();
+            if (Actor.HasWaypoints)
+            {
+                SetState(States.Patrol);
+            }
+            else
+            {
+                if (Actor.CanSeePlayer())
+                    SetState(States.Chase);
+            }
         }
     }
 
