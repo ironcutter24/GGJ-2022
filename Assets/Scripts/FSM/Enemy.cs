@@ -7,10 +7,10 @@ using Utility;
 public abstract class Enemy : MonoBehaviour, ITargetable
 {
     [Header("Components")]
-    [SerializeField] Animator anim;
-    [SerializeField] NavMeshAgent agent;
+    [SerializeField] protected Animator anim;
+    [SerializeField] protected NavMeshAgent agent;
     [SerializeField] SphereCollider nearFieldCollider;
-    [SerializeField] GameObject graphics;
+    [SerializeField] protected GameObject graphics;
 
     [Header("Engaging")]
     [SerializeField] float disengageDistance;
@@ -36,6 +36,7 @@ public abstract class Enemy : MonoBehaviour, ITargetable
     [Header("Path")]
     [SerializeField] List<Transform> waypoints = new List<Transform>();
     private int currentWaypoint;
+    public bool HasWaypoints { get { return waypoints.Count > 0; } }
 
     [Header("Spike Enemy")]
     [SerializeField] public GameObject spikeLair;
@@ -135,10 +136,7 @@ public abstract class Enemy : MonoBehaviour, ITargetable
         graphics.SetActive(false);
     }
 
-    public void SetDestination(Vector3 targetPosition)
-    {
-        agent.SetDestination(targetPosition);
-    }
+    public abstract void SetDestination(Vector3 targetPosition);
 
     public bool HasReachedDestination()
     {
