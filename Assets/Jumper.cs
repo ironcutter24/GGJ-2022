@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class Jumper : Enemy
 {
-    public override void Attack()
-    {
-        throw new System.NotImplementedException();
-    }
 
     // Start is called before the first frame update
     void Start()
@@ -20,4 +16,12 @@ public class Jumper : Enemy
     {
         
     }
+    public override void Attack()
+    {
+        throw new System.NotImplementedException();
+    }
+    public void SetDestination()
+    {
+
+    } 
 }
