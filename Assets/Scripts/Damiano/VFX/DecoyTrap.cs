@@ -8,10 +8,15 @@ public class DecoyTrap : PlayerGhost
     [SerializeField] GameObject particles;
     [SerializeField] float trapDamage;
 
+    private void Awake()
+    {
+        particles.SetActive(false);
+    }
+
     protected override void Start()
     {
         base.Start();
-        particles.SetActive(false);
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -22,6 +27,7 @@ public class DecoyTrap : PlayerGhost
         {
             other.GetComponent<Enemy>().ApplyDamage(trapDamage);
             particles.SetActive(true);
+            Dissolve();
         }
     }
 }

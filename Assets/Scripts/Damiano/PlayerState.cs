@@ -1,11 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using MEC;
 using Utility;
 using Utility.Patterns;
-using System.Linq;
 
 public class PlayerState : Singleton<PlayerState>
 {

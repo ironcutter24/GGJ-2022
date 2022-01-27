@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 using Utility;
@@ -18,7 +19,7 @@ public abstract class Enemy : MonoBehaviour, ITargetable
     [SerializeField] float engageDistanceVision;
     [SerializeField] float attackDistance;
     [SerializeField] LayerMask blockView;
-    
+
     public float DangerDistanceMin { get { return engageDistanceVision; } }
 
     public float DangerDistanceMax { get { return nearFieldCollider.radius; } }
@@ -56,7 +57,7 @@ public abstract class Enemy : MonoBehaviour, ITargetable
     {
         _health -= amount;
 
-        if(_health <= 0f)
+        if (_health <= 0f)
         {
             StartCoroutine(_Death());
         }
@@ -72,16 +73,34 @@ public abstract class Enemy : MonoBehaviour, ITargetable
 
     #region Patrol state
 
-    public Vector3 PeekNextWaypoint()
+    public Vector3 GetNearestWaypoint()
     {
-        Vector3 temp = waypoints[currentWaypoint].position;
+        float nearestWaypointDistance = Mathf.Infinity;
+        int nearestWaypointIndex = 0;
 
+        for(int i = 0; i < waypoints.Count; i++)
+        {
+            float distance = UMath.DistanceXZ(waypoints[i].position, transform.position);
+
+            if(distance < nearestWaypointDistance)
+            {
+                nearestWaypointIndex = i;
+                nearestWaypointDistance = distance;
+            }
+        }
+
+        currentWaypoint = nearestWaypointIndex - 1;
+        return GetNextWaypoint();
+    }
+
+    public Vector3 GetNextWaypoint()
+    {
         currentWaypoint++;
 
         if (currentWaypoint >= waypoints.Count)
             currentWaypoint -= waypoints.Count;
 
-        return temp;
+        return waypoints[currentWaypoint].position;
     }
 
     #endregion
@@ -93,7 +112,7 @@ public abstract class Enemy : MonoBehaviour, ITargetable
         return distanceFromPlayer < attackDistance;
     }
 
-	public abstract void Attack();
+    public abstract void Attack();
 
     #endregion
 
@@ -150,14 +169,14 @@ public abstract class Enemy : MonoBehaviour, ITargetable
 
     public bool CanSeePlayer(bool isChasing = false)
     {
-        if(distanceFromPlayer < disengageDistance)
+        if (distanceFromPlayer < disengageDistance)
         {
             if (isChasing && IsInFieldOfView(Controller3D.Instance.Pos))
                 return true;
 
-            if(distanceFromPlayer < engageDistanceVision)
+            if (distanceFromPlayer < engageDistanceVision)
             {
-                if(distanceFromPlayer < engageDistancePassive || IsInFieldOfView(Controller3D.Instance.Pos))
+                if (distanceFromPlayer < engageDistancePassive || IsInFieldOfView(Controller3D.Instance.Pos))
                 {
                     PlayerState.EngagedEnemies++;
                     return true;
