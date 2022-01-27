@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6340352007875064100}
+  - component: {fileID: 7662975852869472421}
   - component: {fileID: 9067691276123094898}
   m_Layer: 7
   m_Name: DecoyTrap
@@ -33,6 +34,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &7662975852869472421
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6340352007875064101}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.6
+  m_Height: 1.2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.6, z: 0}
 --- !u!114 &9067691276123094898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50,6 +65,7 @@ MonoBehaviour:
   startAlpha: 0.4
   anim: {fileID: 5168622584245880702}
   particles: {fileID: 9134710066759955824}
+  trapDamage: 10
 --- !u!1001 &7861906738544453667
 PrefabInstance:
   m_ObjectHideFlags: 0

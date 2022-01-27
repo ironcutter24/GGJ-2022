@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7848693233198392594}
   - component: {fileID: 5610655031780626}
   - component: {fileID: 6991454828733640664}
-  - component: {fileID: 5089594458300103170}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -82,19 +81,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5089594458300103170
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3579328417121371272}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4006380225902879917
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,12 +92,13 @@ GameObject:
   - component: {fileID: 4006380225902879953}
   - component: {fileID: 3888494096204656829}
   - component: {fileID: 4006380225902879959}
-  - component: {fileID: 5400561769573742262}
+  - component: {fileID: 8105478299744006016}
+  - component: {fileID: 5174241521121889633}
   - component: {fileID: 4824188804466880154}
   - component: {fileID: 995943883478524426}
   m_Layer: 0
   m_Name: Spike (Enemy)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -164,7 +151,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -172,7 +159,7 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 3
---- !u!135 &5400561769573742262
+--- !u!135 &8105478299744006016
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -184,6 +171,20 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 15
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &5174241521121889633
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4006380225902879917}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4824188804466880154
 MonoBehaviour:
@@ -212,13 +213,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 3888494096204656829}
   agent: {fileID: 4006380225902879959}
-  nearFieldCollider: {fileID: 5400561769573742262}
+  nearFieldCollider: {fileID: 8105478299744006016}
   graphics: {fileID: 8510083802301358437}
-  disengageDistance: 9
-  engageDistancePassive: 4
-  engageDistanceVision: 7
-  attackDistance: 2.5
-  fieldOfView: 60
+  disengageDistance: 7.5
+  engageDistancePassive: 3.5
+  engageDistanceVision: 6
+  attackDistance: 2
+  blockView:
+    serializedVersion: 2
+    m_Bits: 64
+  fieldOfView: 180
   maxHealth: 100
   attackSpeed: 1
   waypoints:
@@ -236,9 +240,8 @@ GameObject:
   - component: {fileID: 3264709164185999158}
   - component: {fileID: 3730390835726626023}
   - component: {fileID: 383201651474890020}
-  - component: {fileID: 3660215098103204887}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -308,17 +311,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &3660215098103204887
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8510083802301358437}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}

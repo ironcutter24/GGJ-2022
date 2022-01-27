@@ -6,9 +6,22 @@ public class DecoyTrap : PlayerGhost
 {
     [Header("DecoyTrap")]
     [SerializeField] GameObject particles;
+    [SerializeField] float trapDamage;
 
-    public void Activate()
+    protected override void Start()
     {
-        particles.SetActive(true);
+        base.Start();
+        particles.SetActive(false);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Entered decoy: " + other.gameObject.name);
+
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            other.GetComponent<Enemy>().ApplyDamage(trapDamage);
+            particles.SetActive(true);
+        }
     }
 }

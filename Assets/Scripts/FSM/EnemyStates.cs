@@ -69,7 +69,7 @@ namespace FSM
             if (Actor.HasReachedDestination() && Actor.IsPlayerInAttackRange())
                 SetState(States.Attack);
 
-            if (!Actor.CanSeePlayer())
+            if (!Actor.CanSeePlayer(true))
                 SetState(States.Patrol);
         }
     }

@@ -17,6 +17,7 @@ public abstract class Enemy : MonoBehaviour, ITargetable
     [SerializeField] float engageDistancePassive;
     [SerializeField] float engageDistanceVision;
     [SerializeField] float attackDistance;
+    [SerializeField] LayerMask blockView;
     
     public float DangerDistanceMin { get { return engageDistanceVision; } }
 
@@ -50,7 +51,7 @@ public abstract class Enemy : MonoBehaviour, ITargetable
         _health = maxHealth;
     }
 
-    void ITargetable.ApplyDamage(float amount)
+    public void ApplyDamage(float amount)
     {
         _health -= amount;
 
@@ -141,7 +142,7 @@ public abstract class Enemy : MonoBehaviour, ITargetable
 
     public bool HasReachedDestination()
     {
-        return agent.remainingDistance < .5f;
+        return agent.remainingDistance < agent.stoppingDistance;
     }
 
     private void UpdateDistanceFromPlayer()
@@ -149,10 +150,13 @@ public abstract class Enemy : MonoBehaviour, ITargetable
         distanceFromPlayer = Vector3.Distance(transform.position, player.Pos);
     }
 
-    public bool CanSeePlayer()
+    public bool CanSeePlayer(bool isChasing = false)
     {
         if(distanceFromPlayer < disengageDistance)
         {
+            if (isChasing && IsInFieldOfView(Controller3D.Instance.Pos))
+                return true;
+
             if(distanceFromPlayer < engageDistanceVision)
             {
                 if(distanceFromPlayer < engageDistancePassive || IsInFieldOfView(Controller3D.Instance.Pos))
@@ -168,7 +172,16 @@ public abstract class Enemy : MonoBehaviour, ITargetable
 
     bool IsInFieldOfView(Vector3 position)
     {
-        return Vector3.Angle(UMath.GetXZ(position) - UMath.GetXZ(transform.position), UMath.GetXZ(transform.forward)) < fieldOfView * .5f;
+        if (Vector3.Angle(UMath.GetXZ(position) - UMath.GetXZ(transform.position), UMath.GetXZ(transform.forward)) < fieldOfView * .5f)
+        {
+            if (!Physics.Raycast(transform.position, Controller3D.Instance.Pos - transform.position, Mathf.Infinity, blockView))
+            {
+                Debug.DrawRay(transform.position, Controller3D.Instance.Pos - transform.position, Color.green);
+                return true;
+            }
+        }
+        Debug.DrawRay(transform.position, Controller3D.Instance.Pos - transform.position, Color.red);
+        return false;
     }
 
     private void OnDrawGizmos()
