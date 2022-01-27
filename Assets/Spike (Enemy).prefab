@@ -60,7 +60,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4006380225902879953}
-  - component: {fileID: 3888494096204656829}
   - component: {fileID: 4006380225902879959}
   - component: {fileID: 8105478299744006016}
   - component: {fileID: 5174241521121889633}
@@ -88,25 +87,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &3888494096204656829
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4006380225902879917}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5301fe4d1cf18f14bb6193272197ed86, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!195 &4006380225902879959
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -181,7 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59bbe0dc15c3e0a419f3a4e244bce040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 3888494096204656829}
+  anim: {fileID: 302668268252958812}
   agent: {fileID: 4006380225902879959}
   nearFieldCollider: {fileID: 8105478299744006016}
   graphics: {fileID: 2296777019752793741}
@@ -255,6 +235,10 @@ PrefabInstance:
     - target: {fileID: -8180594294032427945, guid: 3b6a878379becf3449351635d7547c30, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8180594294032427945, guid: 3b6a878379becf3449351635d7547c30, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -8.81
       objectReference: {fileID: 0}
     - target: {fileID: -8180594294032427945, guid: 3b6a878379becf3449351635d7547c30, type: 3}
       propertyPath: m_LocalRotation.y

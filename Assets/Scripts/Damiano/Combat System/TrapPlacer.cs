@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class TrapPlacer : MonoBehaviour
 {
-	[SerializeField] GameObject trapPrefab;
 	[SerializeField] int trapsMaxNumber = 2;
 
 	[SerializeField] Vector3 trapOffset;
