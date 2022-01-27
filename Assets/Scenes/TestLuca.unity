@@ -484,7 +484,7 @@ PrefabInstance:
     - target: {fileID: 4361322243882956617, guid: 83057645a2873e840b072f37207b4c7e, type: 3}
       propertyPath: trapPrefab
       value: 
-      objectReference: {fileID: 6340352007875064101, guid: d41463ee719f0f244854b9da174d5f7a, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 4361322243882956617, guid: 83057645a2873e840b072f37207b4c7e, type: 3}
       propertyPath: offsetTrap.x
       value: 0
