@@ -19,8 +19,16 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_925d7ad586af4bd5ac45d7ef3eef500f:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_b1c97698192e4d5ca84f5c705a7faaf1:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - Texture2D_df5a279ba5ae4561b15d22eb467eaf88:
-        m_Texture: {fileID: 2800000, guid: ddfa73c68c2332344980279d9c92615f, type: 3}
+        m_Texture: {fileID: 2800000, guid: bf63d680a3f08664dbe62291985a3d7a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -95,7 +103,7 @@ Material:
     - _ClearCoatSmoothness: 0
     - _Cull: 2
     - _Cutoff: 0.5
-    - _CutoffHeight: 0.29
+    - _CutoffHeight: -5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
