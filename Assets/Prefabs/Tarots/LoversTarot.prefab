@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &8491981592571359083
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 349178317421895281, guid: 9f5f4fd4684b0c346a41e309cbd32dcd, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 349178317421895281, guid: 9f5f4fd4684b0c346a41e309cbd32dcd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 349178317421895281, guid: 9f5f4fd4684b0c346a41e309cbd32dcd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 349178317421895281, guid: 9f5f4fd4684b0c346a41e309cbd32dcd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 349178317421895281, guid: 9f5f4fd4684b0c346a41e309cbd32dcd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 349178317421895281, guid: 9f5f4fd4684b0c346a41e309cbd32dcd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 349178317421895281, guid: 9f5f4fd4684b0c346a41e309cbd32dcd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 349178317421895281, guid: 9f5f4fd4684b0c346a41e309cbd32dcd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 349178317421895281, guid: 9f5f4fd4684b0c346a41e309cbd32dcd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 349178317421895281, guid: 9f5f4fd4684b0c346a41e309cbd32dcd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 349178317421895281, guid: 9f5f4fd4684b0c346a41e309cbd32dcd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2559916134109250536, guid: 9f5f4fd4684b0c346a41e309cbd32dcd, type: 3}
+      propertyPath: _captionPrey
+      value: Your values, your beliefs, your philosophy. You know what you stand
+        for now...
+      objectReference: {fileID: 0}
+    - target: {fileID: 2559916134109250536, guid: 9f5f4fd4684b0c346a41e309cbd32dcd, type: 3}
+      propertyPath: _captionHunter
+      value: To what extent do you honor and accept who you are? You have to understand
+        there is in the other, which you also have.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3875407420085240813, guid: 9f5f4fd4684b0c346a41e309cbd32dcd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6e91fd501de847f4a98291044e3c2b49, type: 2}
+    - target: {fileID: 8236250078424142864, guid: 9f5f4fd4684b0c346a41e309cbd32dcd, type: 3}
+      propertyPath: m_Name
+      value: LoversTarot
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9f5f4fd4684b0c346a41e309cbd32dcd, type: 3}

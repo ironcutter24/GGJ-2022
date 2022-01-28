@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: fba008349a99fee489e1271c49bdef49
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - FELL Great Primer
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: e1df4ea46718db642ae846a6e7299c2d, type: 3}
+  - {fileID: 12800000, guid: c9a89c26ce260354a8387fd76bfd4243, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
