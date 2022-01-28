@@ -69,7 +69,7 @@ Material:
     - _GradientPower: 2
     - _GradientPower1: 4.57
     - _OREEMISSIONONOFF: 1
-    - _OreEmissionIntensity: 0.3
+    - _OreEmissionIntensity: 0.15
     - _SNOWONOFF: 0
     - _Smoothness: 0.321
     - _SnowAmount: 0.215
@@ -81,7 +81,7 @@ Material:
     - _SnowONOFF: 0
     - _TOPPROJECTIONONOFF: 1
     - _TopProjectionONOFF: 0
-    - _TopProjectionTextureCoverage: 0.309
+    - _TopProjectionTextureCoverage: 0.239
     - _TopProjectionTextureTiling: 1.87
     - _WorldObjectGradient: 1
     - __dirty: 0
