@@ -51,7 +51,11 @@ public class Controller3D : Singleton<Controller3D>, ITargetable
     Timer dashTimer = new Timer();
 
     protected override void Awake()
-    {
+	{
+        _health = maxHealth;
+        StartCoroutine(DelayedDamage(2));//TODO remove
+        StartCoroutine(DelayedDamage(2));
+        StartCoroutine(DelayedDamage(2)); 
         base.Awake();
         PlayerState.OnSwitchToHunter += OnSwitchToHunter;
     }
@@ -92,10 +96,18 @@ public class Controller3D : Singleton<Controller3D>, ITargetable
         }
     }
 
-    void ITargetable.ApplyDamage(float amount)
+	public void ApplyDamage(float amount)
     {
-        _health -= amount;
+	    _health -= amount;
+        Singleton<HUD>._instance.SetHealthBar(_health);
     }
+    
+	IEnumerator DelayedDamage(float time) //TODO remove
+	{
+		yield return new WaitForSeconds(time);
+		ApplyDamage(1);
+	}
+
 
     IEnumerator _Invisibility()
     {
