@@ -11,7 +11,8 @@ Material:
   m_Shader: {fileID: 4800000, guid: cd18bd550ff6630468660d0150eed511, type: 3}
   m_ShaderKeywords: _ANIMATEDECALEMISSIONONOFF_ON _ANIMATEEMISSIONONOFF_ON _ANIMATEOREEMISSIONONOFF_ON
     _DECALEMISSIONONOFF_ON _DECALSONOFF_ON _DETAILTEXTUREONOFF1_ON _DETAILTEXTUREONOFF_ON
-    _GRADIENTONOFF_ON _OREEMISSIONONOFF_ON _SNOWNOISEONOFF_ON _WORLDOBJECTGRADIENT_ON
+    _GRADIENTONOFF_ON _OREEMISSIONONOFF_ON _SNOWNOISEONOFF_ON _TOPPROJECTIONONOFF_ON
+    _WORLDOBJECTGRADIENT_ON
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -68,20 +69,20 @@ Material:
     - _GradientPower: 2
     - _GradientPower1: 4.57
     - _OREEMISSIONONOFF: 1
-    - _OreEmissionIntensity: 7.23
+    - _OreEmissionIntensity: 0.3
     - _SNOWONOFF: 0
     - _Smoothness: 0.321
     - _SnowAmount: 0.215
     - _SnowCoverage: 0.272
     - _SnowFade: 0.736
-    - _SnowNoiseContrast: 0.223
+    - _SnowNoiseContrast: 0.103
     - _SnowNoiseOnOff: 1
-    - _SnowNoiseScale: 4.9
+    - _SnowNoiseScale: 4.4
     - _SnowONOFF: 0
-    - _TOPPROJECTIONONOFF: 0
+    - _TOPPROJECTIONONOFF: 1
     - _TopProjectionONOFF: 0
-    - _TopProjectionTextureCoverage: 1
-    - _TopProjectionTextureTiling: 0.8
+    - _TopProjectionTextureCoverage: 0.309
+    - _TopProjectionTextureTiling: 1.87
     - _WorldObjectGradient: 1
     - __dirty: 0
     m_Colors:
@@ -91,9 +92,9 @@ Material:
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _GroundColor: {r: 0.26415092, g: 0.23300104, b: 0.23300104, a: 1}
     - _GroundColor1: {r: 0.17009956, g: 0.1484069, b: 0.21698111, a: 1}
-    - _OreColor: {r: 2, g: 0.4804064, b: 0, a: 0}
+    - _OreColor: {r: 0, g: 0, b: 0, a: 0}
     - _OreColor1: {r: 0.0078125, g: 0, b: 0.000778351, a: 0}
-    - _OreEmissionColor: {r: 7.999999, g: 1.3359382, b: 0, a: 0}
+    - _OreEmissionColor: {r: 7.999999, g: 4.9509716, b: 0, a: 0}
     - _SnowDirection: {r: 0.1, g: 1, b: 0.1, a: 0}
     - _TopColor: {r: 2, g: 1.9716982, b: 1.9716982, a: 1}
     - _TopColor1: {r: 0.59574103, g: 0.51699895, b: 0.6981132, a: 1}
