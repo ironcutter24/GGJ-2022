@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Utility.Patterns;
 
 public class GameManager : Singleton<GameManager>
@@ -34,5 +35,10 @@ public class GameManager : Singleton<GameManager>
             yield return new WaitForEndOfFrame();
         }
         Application.Quit();
+    }
+
+    public void TransitionToScene(string sceneName)
+    {
+        SceneManager.LoadScene("sceneName");
     }
 }

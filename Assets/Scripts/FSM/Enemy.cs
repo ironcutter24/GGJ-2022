@@ -12,6 +12,7 @@ public abstract class Enemy : MonoBehaviour, ITargetable
     [SerializeField] protected NavMeshAgent agent;
     [SerializeField] SphereCollider nearFieldCollider;
     [SerializeField] protected GameObject graphics;
+    [SerializeField] MaterialMimic materialMimic;
 
     [Header("Engaging")]
     [SerializeField] float disengageDistance;
@@ -21,7 +22,6 @@ public abstract class Enemy : MonoBehaviour, ITargetable
     [SerializeField] LayerMask blockView;
 
     public float DangerDistanceMin { get { return engageDistanceVision; } }
-
     public float DangerDistanceMax { get { return nearFieldCollider.radius; } }
 
     [SerializeField]
@@ -29,10 +29,10 @@ public abstract class Enemy : MonoBehaviour, ITargetable
     float fieldOfView = 60f;
 
     [Header("Stats")]
-    [SerializeField] float maxHealth = 100f;
-    private float _health;
+    [SerializeField] int maxHealth = 3;
+    private int _health;
     //[SerializeField] float moveSpeed = 1f;
-    [SerializeField] float attackSpeed = 1f;
+    //[SerializeField] float attackSpeed = 1f;
 
     [Header("Path")]
     [SerializeField] List<Transform> waypoints = new List<Transform>();
@@ -53,21 +53,43 @@ public abstract class Enemy : MonoBehaviour, ITargetable
         _health = maxHealth;
     }
 
-    public void ApplyDamage(int amount)
+    float startAlpha = 1f;
+    public void ApplyDamage(AttackMessage attack)
     {
-        _health -= amount;
+        _health = Mathf.Clamp(_health - attack.damage, 0, maxHealth);
+
+        PlayerState.RecordSuccessfulAttack(attack);
 
         if (_health <= 0f)
         {
-            StartCoroutine(_Death());
-        }
+            if(CanSeePlayer())
+                PlayerState.EngagedEnemies--;
 
-        IEnumerator _Death()
+            PlayerState.RemoveNearEnemy(this);
+
+            StartCoroutine(_Death(.5f));
+        }
+        
+        IEnumerator _Death(float duration)
         {
-            // Material dissolve transition
+            float speed = 1 / duration;
+            float interpolation = 0f;
+            while (interpolation < 1f)
+            {
+                SetAlpha(Mathf.Lerp(startAlpha, 0f, interpolation));
+                interpolation += speed * Time.deltaTime;
+                yield return null;
+            }
+            interpolation = 1f;
+            SetAlpha(startAlpha);
 
             Destroy(this.gameObject);
-            yield break;
+
+
+            void SetAlpha(float alpha)
+            {
+                materialMimic.Mat.SetFloat("_CutoffHeight", alpha * 5);
+            }
         }
     }
 
@@ -132,6 +154,11 @@ public abstract class Enemy : MonoBehaviour, ITargetable
         {
             UpdateDistanceFromPlayer();
         }
+
+        if (collider.gameObject.CompareTag("PlayerDecoy"))
+        {
+            UpdateDistanceFromPlayer();
+        }
     }
 
     private void OnTriggerExit(Collider collider)
@@ -145,15 +172,7 @@ public abstract class Enemy : MonoBehaviour, ITargetable
 
     #endregion
 
-    public void EnableGraphics()
-    {
-        graphics.SetActive(true);
-    }
-
-    public void DisableGraphics()
-    {
-        graphics.SetActive(false);
-    }
+    #region Movement
 
     public abstract void SetDestination(Vector3 targetPosition);
 
@@ -162,10 +181,26 @@ public abstract class Enemy : MonoBehaviour, ITargetable
         return agent.remainingDistance < agent.stoppingDistance;
     }
 
+    public bool IsMovementPaused { get { return agent.isStopped; } }
+
+    public void PauseMovement()
+    {
+        agent.isStopped = true;
+    }
+
+    public void ResumeMovement()
+    {
+        agent.isStopped = false;
+    }
+
+    #endregion
+
     private void UpdateDistanceFromPlayer()
     {
         distanceFromPlayer = Vector3.Distance(transform.position, player.Pos);
     }
+
+    #region Sight
 
     public bool CanSeePlayer(bool isChasing = false)
     {
@@ -200,6 +235,8 @@ public abstract class Enemy : MonoBehaviour, ITargetable
         Debug.DrawRay(transform.position, Controller3D.Instance.Pos - transform.position, Color.red);
         return false;
     }
+
+    #endregion
 
     private void OnDrawGizmos()
     {

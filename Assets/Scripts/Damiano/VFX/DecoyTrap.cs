@@ -8,26 +8,47 @@ public class DecoyTrap : PlayerGhost
     [SerializeField] GameObject particles;
     [SerializeField] int trapDamage;
 
-    private void Awake()
+    private TrapPlacer placer;
+
+    public void SetPlacer(TrapPlacer placer)
     {
-        particles.SetActive(false);
+        this.placer = placer;
     }
 
     protected override void Start()
     {
         base.Start();
-        
+        particles.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Entered decoy: " + other.gameObject.name);
-
         if (other.gameObject.CompareTag("Enemy"))
         {
-            other.GetComponent<Enemy>().ApplyDamage(trapDamage);
+            Debug.Log("Entered decoy: " + other.gameObject.name);
+
+            AttackMessage attackMessage = new AttackMessage(trapDamage, gameObject, AttackMessage.Type.Melee);
+            other.GetComponent<Enemy>().ApplyDamage(attackMessage);
             particles.SetActive(true);
             Dissolve();
+            placer.RemoveFromPlacer(this);
         }
     }
+
+    /*
+    void ITargetable.ApplyDamage(AttackMessage attack)
+    {
+        if (attack.source.CompareTag("Enemy"))
+        {
+            if (attack.type == AttackMessage.Type.Melee)
+            {
+                AttackMessage attackMessage = new AttackMessage(trapDamage, gameObject, AttackMessage.Type.Melee);
+                attack.source.GetComponent<ITargetable>().ApplyDamage(attackMessage);
+                particles.SetActive(true);
+                Dissolve();
+                placer.RemoveFromPlacer(this);
+            }
+        }
+    }
+    */
 }

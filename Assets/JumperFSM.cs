@@ -22,18 +22,9 @@ namespace FSM
 		{
 			public RunAwayState(FSMController controller) : base(controller) { }
 
-			public override void Enter()
-			{
-				Actor.SetDestination(Actor.spikeLair.transform.position);
-			}
-
 			public override void Process()
 			{
-				if (Actor.HasReachedDestination())
-					SetState(States.SafeZone);
-
-				if (PlayerState.IsPrey)
-					SetState(States.Patrol);
+				throw new System.NotImplementedException();
 			}
 
 			public override void LateProcess() { }
@@ -43,24 +34,9 @@ namespace FSM
 		{
 			public SafeZoneState(FSMController controller) : base(controller) { }
 
-			public override void Enter()
-			{
-				// Enter lair
-
-				Actor.DisableGraphics();
-			}
-
 			public override void Process()
 			{
-				if (PlayerState.IsPrey)
-					SetState(States.Patrol);
-			}
-
-			public override void Exit()
-			{
-				// Exit lair
-
-				Actor.EnableGraphics();
+				throw new System.NotImplementedException();
 			}
 
 			public override void LateProcess() { }

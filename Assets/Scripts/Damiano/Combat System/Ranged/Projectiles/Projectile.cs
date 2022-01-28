@@ -35,14 +35,15 @@ public class Projectile : MonoBehaviour
             var target = hit.transform.gameObject.GetComponent<ITargetable>();
 
             if(target != null)
-                target.ApplyDamage(damage);
+            {
+                AttackMessage attackMessage = new AttackMessage(damage, gameObject, AttackMessage.Type.Ranged);
+                target.ApplyDamage(attackMessage);
+            }
 
             DeactivateForPooling();
         }
         else
-        {
             rb.MovePosition(newPosition);
-        }
     }
 
     public void StartMoving()

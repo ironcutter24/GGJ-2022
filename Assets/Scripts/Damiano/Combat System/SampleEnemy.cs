@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class SampleEnemy : MonoBehaviour, ITargetable
 {
-    [SerializeField] float health = 100f;
+    [SerializeField] int health = 10;
 
-    void ITargetable.ApplyDamage(int amount)
+    void ITargetable.ApplyDamage(AttackMessage attack)
     {
-        health -= amount;
+        health -= attack.damage;
         Debug.Log("SampleEnemy hit! Health: " + health);
     }
 }

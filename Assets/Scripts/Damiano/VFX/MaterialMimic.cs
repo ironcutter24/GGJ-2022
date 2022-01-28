@@ -2,20 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(MeshRenderer))]
 public class MaterialMimic : MonoBehaviour
 {
-	Material mat;
+	[SerializeField] MeshRenderer sourceMeshRend;
+	[SerializeField] List<MeshRenderer> destMeshRends = new List<MeshRenderer>();
+
+	Material _mat;
+	public Material Mat { get { return _mat; } }
 
 	private void Awake()
 	{
-		var mesh = GetComponent<MeshRenderer>();
-		mat = new Material(mesh.material);
-		mesh.material = mat;
+		if (sourceMeshRend == null)
+			sourceMeshRend = GetComponent<MeshRenderer>();
+
+		_mat = new Material(sourceMeshRend.material);
+
+		if(destMeshRends.Count <= 0)
+        {
+			sourceMeshRend.material = _mat;
+			return;
+		}
+
+		foreach(MeshRenderer meshRend in destMeshRends)
+        {
+			meshRend.material = _mat;
+        }
 	}
 
     private void OnDestroy()
     {
-		Destroy(mat);
+		Destroy(_mat);
     }
 }

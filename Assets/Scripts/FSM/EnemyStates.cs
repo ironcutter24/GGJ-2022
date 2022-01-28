@@ -101,6 +101,9 @@ namespace FSM
 
         public override void Process()
         {
+            if (Actor.IsMovementPaused)
+                return;
+
             if (Actor.IsPlayerInAttackRange())
             {
                 Actor.Attack();

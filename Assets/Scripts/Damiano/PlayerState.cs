@@ -27,7 +27,7 @@ public class PlayerState : Singleton<PlayerState>
         }
         set
         {
-            _instance._engagedEnemies = value >= 0 ? value : 0;
+            _instance._engagedEnemies = (value >= 0 ? value : 0);
             if(_instance._engagedEnemies > 0)
                 OnBattleEngaged();
             else
@@ -56,6 +56,20 @@ public class PlayerState : Singleton<PlayerState>
             Enemy e = _nearEnemies.OrderBy(x => x.DistanceFromPlayer).First();
             AudioManager.SetDangerProximity(UMath.Normalize(e.DistanceFromPlayer, e.DangerDistanceMax, e.DangerDistanceMin));
         }
+    }
+
+    private int _successfulAttacksHunter = 0;
+    private int _successfulAttacksPrey = 0;
+    public bool HasBeenMostlyHunter { get { return _successfulAttacksHunter > _successfulAttacksPrey; } }
+
+    public static void RecordSuccessfulAttack(AttackMessage attackData)
+    {
+        var proj = attackData.source.GetComponent<Projectile>();
+
+        if (proj == null)
+            _instance._successfulAttacksPrey++;
+        else
+            _instance._successfulAttacksHunter++;
     }
 
     void ChangeHunterState()

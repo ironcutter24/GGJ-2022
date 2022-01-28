@@ -7,7 +7,7 @@ public class TrapPlacer : MonoBehaviour
 	[SerializeField] int trapsMaxNumber = 2;
 
 	[SerializeField] Vector3 trapOffset;
-    Queue<PlayerGhost> activeTraps = new Queue<PlayerGhost>();
+	List<PlayerGhost> activeTraps = new List<PlayerGhost>();
 
     private void Update()
     {
@@ -18,11 +18,44 @@ public class TrapPlacer : MonoBehaviour
 	void PlaceTrap()
 	{
 		var temp = PlayerGhostPooler.Spawn("DecoyTrap", transform.position + trapOffset, transform.rotation, null);
-        activeTraps.Enqueue(temp);
+		temp.gameObject.GetComponent<DecoyTrap>().SetPlacer(this);
+
+		activeTraps.Add(temp);
 
 		if(activeTraps.Count > trapsMaxNumber)
         {
-			activeTraps.Dequeue().Dissolve();
+			activeTraps[0].Dissolve();
+			activeTraps.RemoveAt(0);
         }
+	}
+
+	public void RemoveFromPlacer(PlayerGhost decoyTrap)
+	{
+		activeTraps.Remove(decoyTrap);
+	}
+}
+
+public class Traps
+{
+	PlayerGhost[] _traps = new PlayerGhost[2];
+	int index = 0;
+
+	public Traps(int length)
+    {
+		_traps = new PlayerGhost[length];
+	}
+
+	public PlayerGhost Current
+    {
+        get { return _traps[index]; }
+        set { _traps[index] = value; }
     }
+
+	public void Next()
+    {
+		index++;
+
+		if (index >= _traps.Length)
+			index -= _traps.Length;
+	}
 }

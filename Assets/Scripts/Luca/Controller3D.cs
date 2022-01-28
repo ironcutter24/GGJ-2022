@@ -34,6 +34,7 @@ public class Controller3D : Singleton<Controller3D>, ITargetable
     
     [SerializeField] int maxHealth;
     private int _health;
+    public int Health { get { return _health; } }
 
     private enum State { Moving, Dashing }
     private State state = State.Moving;
@@ -93,10 +94,19 @@ public class Controller3D : Singleton<Controller3D>, ITargetable
         }
     }
 
-	public void ApplyDamage(int amount)
+	public void ApplyDamage(AttackMessage attack)
     {
-	    _health -= amount;
-        HUD.Instance.SetHealthBar(_health);
+	    _health = Mathf.Clamp(_health - attack.damage, 0, maxHealth);
+
+        if(HUD.Instance != null)
+            HUD.Instance.SetHealthBar(_health);
+
+        Debug.Log("Player hit! Health: " + _health);
+
+        if(_health <= 0)
+        {
+            // Death animation
+        }
     }
 
     IEnumerator _Invisibility()
@@ -160,7 +170,6 @@ public class Controller3D : Singleton<Controller3D>, ITargetable
 
     #endregion
 
-    
     void SetAnimation()
     {
         Vector3 relativeMove = transform.InverseTransformDirection(move);

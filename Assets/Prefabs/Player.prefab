@@ -213,7 +213,7 @@ MonoBehaviour:
   dashSpeed: 24
   dashDuration: 0.1
   healthRegenAmount: 0
-  maxHealth: 100
+  maxHealth: 5
   dashTrail: {fileID: 5264168479862327809}
 --- !u!114 &4361322243882956617
 MonoBehaviour:

@@ -47,7 +47,7 @@ namespace FSM
             {
                 // Enter lair
 
-                Actor.DisableGraphics();
+                //Actor.DisableGraphics();
             }
 
             public override void Process()
@@ -60,7 +60,7 @@ namespace FSM
             {
                 // Exit lair
 
-                Actor.EnableGraphics();
+                //Actor.EnableGraphics();
             }
 
             public override void LateProcess() { }
