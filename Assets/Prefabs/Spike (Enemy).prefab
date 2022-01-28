@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1669906371420930494}
   - component: {fileID: 340581136458094958}
   m_Layer: 0
-  m_Name: DetectionField
+  m_Name: DetectionArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4006380225902879953}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &340581136458094958
 SphereCollider:
@@ -74,7 +74,7 @@ Transform:
   m_Children:
   - {fileID: 1482838950574103607}
   m_Father: {fileID: 4006380225902879953}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &302668268252958812
 Animator:
@@ -127,8 +127,8 @@ Transform:
   m_LocalPosition: {x: 2.71, y: 1, z: 13.89}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4422290311790274683}
   - {fileID: 1669906371420930494}
+  - {fileID: 4422290311790274683}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -211,7 +211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 302668268252958812}
   agent: {fileID: 4006380225902879959}
-  nearFieldCollider: {fileID: 0}
+  nearFieldCollider: {fileID: 340581136458094958}
   graphics: {fileID: 2296777019752793741}
   disengageDistance: 7.5
   engageDistancePassive: 3.5
