@@ -47,6 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c04f296b254ca124a92eda85642f81a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
   swordOrigins:
   - {fileID: 4045335135688201074}
   - {fileID: 226704478505959458}
@@ -54,10 +57,9 @@ MonoBehaviour:
   - {fileID: 226704478340601926}
   - {fileID: 226704478250315521}
   shootHeight: 1
-  recoilDuration: 0.1
-  reloadDuration: 1.2
+  recoilTime: 0.4
+  reloadTime: 1.6
   minAimDistance: 2
-  doesRotateX: 0
 --- !u!1 &1435285452340779386
 GameObject:
   m_ObjectHideFlags: 0
@@ -75,7 +77,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1435285452340779385
 Transform:
   m_ObjectHideFlags: 0
