@@ -453,7 +453,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4704878901298479123}
-  - component: {fileID: 2792110295803835886}
+  - component: {fileID: 2438544319049261418}
   - component: {fileID: 5832599210706813727}
   m_Layer: 0
   m_Name: ObjectPooler
@@ -476,7 +476,7 @@ Transform:
   m_Father: {fileID: 3900715388768602170}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2792110295803835886
+--- !u!114 &2438544319049261418
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -485,12 +485,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4704878901298479117}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 899db7493ae247f4199c7573c3cfc214, type: 3}
+  m_Script: {fileID: 11500000, guid: 5bd15c95889539142a08e9b8ba65ed70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pools:
   - tag: DecoyTrap
-    prefab: {fileID: 6340352007875064101, guid: d41463ee719f0f244854b9da174d5f7a, type: 3}
+    prefab: {fileID: 6340352007875064101, guid: 49e846d3ca1570348856c3c6caf9a9e8, type: 3}
     size: 0
     toBeInitialized: 0
     objectPool: []
@@ -513,12 +513,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pools:
   - tag: PlayerSword
-    prefab: {fileID: 1965927921148605066, guid: 5d40a3873bb097746a8f8a9edebf4559, type: 3}
+    prefab: {fileID: 1965927921148605066, guid: 2788763090b4f1848acd59d18060edff, type: 3}
     size: 0
     toBeInitialized: 0
     objectPool: []
   - tag: PlayerMachete
-    prefab: {fileID: 2806312013139963538, guid: c03002660481b244aa21a9d6cd98a335, type: 3}
+    prefab: {fileID: 2806312013139963538, guid: e8d72aa8e79f28c4d9b4891d4c0ec935, type: 3}
     size: 0
     toBeInitialized: 0
     objectPool: []

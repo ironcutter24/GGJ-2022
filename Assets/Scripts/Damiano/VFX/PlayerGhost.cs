@@ -7,7 +7,7 @@ public class PlayerGhost : MonoBehaviour
 {
     [SerializeField] SkinnedMeshRenderer meshRend;
     [SerializeField] public float transitionDuration = 1f;
-    [SerializeField] float startAlpha = 1f;
+    [SerializeField] float startAlpha = .4f;
 
     [SerializeField] protected Animator anim;
     Color color;

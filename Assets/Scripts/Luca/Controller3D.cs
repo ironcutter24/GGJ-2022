@@ -25,15 +25,15 @@ public class Controller3D : Singleton<Controller3D>, ITargetable
     private int dashesLeft;
     [SerializeField] float dashSpeed;
     [SerializeField] float dashDuration;
-    [SerializeField] float healthRegenAmount;
+    [SerializeField] int healthRegenAmount;
 
     #region Variables
 
     private bool _isInvisible;
     public static bool IsInvisible { get { return _instance._isInvisible; } }
     
-    [SerializeField] float maxHealth;
-    private float _health;
+    [SerializeField] int maxHealth;
+    private int _health;
 
     private enum State { Moving, Dashing }
     private State state = State.Moving;
@@ -52,12 +52,9 @@ public class Controller3D : Singleton<Controller3D>, ITargetable
 
     protected override void Awake()
 	{
-        _health = maxHealth;
-        StartCoroutine(DelayedDamage(2));//TODO remove
-        StartCoroutine(DelayedDamage(2));
-        StartCoroutine(DelayedDamage(2)); 
         base.Awake();
         PlayerState.OnSwitchToHunter += OnSwitchToHunter;
+        _health = maxHealth;
     }
 
     private void OnDestroy()
@@ -96,18 +93,11 @@ public class Controller3D : Singleton<Controller3D>, ITargetable
         }
     }
 
-	public void ApplyDamage(float amount)
+	public void ApplyDamage(int amount)
     {
 	    _health -= amount;
-        Singleton<HUD>._instance.SetHealthBar(_health);
+        HUD.Instance.SetHealthBar(_health);
     }
-    
-	IEnumerator DelayedDamage(float time) //TODO remove
-	{
-		yield return new WaitForSeconds(time);
-		ApplyDamage(1);
-	}
-
 
     IEnumerator _Invisibility()
     {

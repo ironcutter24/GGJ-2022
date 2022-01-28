@@ -6,7 +6,7 @@ public class DecoyTrap : PlayerGhost
 {
     [Header("DecoyTrap")]
     [SerializeField] GameObject particles;
-    [SerializeField] float trapDamage;
+    [SerializeField] int trapDamage;
 
     private void Awake()
     {

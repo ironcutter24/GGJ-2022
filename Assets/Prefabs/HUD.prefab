@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1a254aa2ff5716943a49c182c1f0ea32, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bf0a56b518b105c40a6c47bc4100ad1e, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -292,7 +292,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1a254aa2ff5716943a49c182c1f0ea32, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bf0a56b518b105c40a6c47bc4100ad1e, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -367,7 +367,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1a254aa2ff5716943a49c182c1f0ea32, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bf0a56b518b105c40a6c47bc4100ad1e, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -895,7 +895,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1a254aa2ff5716943a49c182c1f0ea32, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bf0a56b518b105c40a6c47bc4100ad1e, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -917,7 +917,7 @@ GameObject:
   - component: {fileID: 8938702981000039959}
   - component: {fileID: 8938702981000039956}
   - component: {fileID: 8938702981000039957}
-  - component: {fileID: 8938702981000039953}
+  - component: {fileID: 9040873095147467142}
   m_Layer: 5
   m_Name: HUD
   m_TagString: Untagged
@@ -1008,7 +1008,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &8938702981000039953
+--- !u!114 &9040873095147467142
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1017,20 +1017,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 8938702981000039946}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b650cb7a4797d047ac2adc233f0ac36, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d52371c9f555d24883e8aca7dec93e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spritePrey: {fileID: 21300000, guid: 4d8ae33810af19a469a3129106e7d2d4, type: 3}
-  spriteHunter: {fileID: 21300000, guid: 1a254aa2ff5716943a49c182c1f0ea32, type: 3}
-  portraits:
-  - {fileID: 8938702980575459785}
-  - {fileID: 8938702978919254762}
-  - {fileID: 8938702979228974122}
-  - {fileID: 8938702979329807662}
+  spritePrey: {fileID: 21300000, guid: bf0a56b518b105c40a6c47bc4100ad1e, type: 3}
+  spriteHunter: {fileID: 21300000, guid: 5ebc6e43f2d3868408ef8f3a16e40eec, type: 3}
+  portraits: []
+  healthBubbles: []
   minimum: 0
   maximum: 3
-  current: 0
-  clampHalfMax: 1
-  mask: {fileID: 8938702980416119122}
-  fill: {fileID: 8938702979096030122}
-  color: {r: 1, g: 0, b: 0, a: 0.85882354}
+  current: 3
+  clampHalfMax: 0
+  mask: {fileID: 0}
+  fill: {fileID: 0}
+  color: {r: 0, g: 0, b: 0, a: 0}

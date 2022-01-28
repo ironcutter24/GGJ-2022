@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Spike_Back_Mat
-  m_Shader: {fileID: -6465566751694194690, guid: 202a674637ebad34596b32c2609db4b2, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: f932c611f7588c14fa32986e09af2a21, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -33,19 +33,19 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_53d6a9fa574c48b19fb037517881258b:
-        m_Texture: {fileID: 2800000, guid: 46548108e861566409429757effd0c31, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8930e838851dae04599fe53a86a6de91, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_5e985ec2b91d47cfb1706a2ab04a73f5:
-        m_Texture: {fileID: 2800000, guid: 4ce41842404ec9447b06fedb5994d46b, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5bbb7e0795d23ca4195dde088e9d59f1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_9e5f903aafb448da90f55bf0bc4ba9af:
-        m_Texture: {fileID: 2800000, guid: 351982af8db82734ea03a17261297f45, type: 3}
+        m_Texture: {fileID: 2800000, guid: 6d8665f70f0da444f8eb761b27f52402, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_df5a279ba5ae4561b15d22eb467eaf88:
-        m_Texture: {fileID: 2800000, guid: 31b2ee30b33256a45b3a9841efb12164, type: 3}
+        m_Texture: {fileID: 2800000, guid: 725905727d7daa442a879d3778849d4b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -106,9 +106,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Boolean_707F4C21: 0
+    - Vector1_1e38a7c81c5f47cc9c0b3d896518dc84: 0
     - Vector1_36B9162F: 1
     - Vector1_3880c7b0601d4cdeb538d867050d5d37: 100
     - Vector1_5C4FEA22: 0.4
+    - Vector1_615c60133af84e48aef9590d73a3e3a5: 0
     - Vector1_9C074DA1: 1
     - Vector1_C8E292BE: 1
     - Vector1_b80645a1a8cc40e294157556734aebb5: 1

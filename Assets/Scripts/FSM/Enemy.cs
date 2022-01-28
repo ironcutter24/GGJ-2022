@@ -53,7 +53,7 @@ public abstract class Enemy : MonoBehaviour, ITargetable
         _health = maxHealth;
     }
 
-    public void ApplyDamage(float amount)
+    public void ApplyDamage(int amount)
     {
         _health -= amount;
 

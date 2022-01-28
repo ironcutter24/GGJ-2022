@@ -32,10 +32,6 @@ public class HUD : Singleton<HUD>
 	[SerializeField] Image mask;
 	[SerializeField] Image fill;
 	[SerializeField] Color color;
-	
-	void Start()
-    {
-    }
 
 	void Update()
 	{

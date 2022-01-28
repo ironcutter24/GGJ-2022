@@ -6,7 +6,7 @@ public class SampleEnemy : MonoBehaviour, ITargetable
 {
     [SerializeField] float health = 100f;
 
-    void ITargetable.ApplyDamage(float amount)
+    void ITargetable.ApplyDamage(int amount)
     {
         health -= amount;
         Debug.Log("SampleEnemy hit! Health: " + health);

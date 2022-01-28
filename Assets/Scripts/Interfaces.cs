@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface ITargetable
 {
-    void ApplyDamage(float amount);
+    void ApplyDamage(int amount);
 }
