@@ -43,7 +43,7 @@ namespace FSM
 		private void Awake()
 		{
 			InitializeStates();
-			currentState = States.Patrol;
+			currentState = States.Idle;
 		}
 
 		protected StateCollection validStates;

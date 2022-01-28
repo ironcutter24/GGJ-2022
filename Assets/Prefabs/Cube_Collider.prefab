@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1988564113222382664}
   - component: {fileID: 5508033133904491776}
   - component: {fileID: 600227610034933090}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube_Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -35,7 +35,15 @@ namespace FSM
 
         public override void Process()
         {
-            throw new System.NotImplementedException();
+            if (Actor.HasWaypoints)
+            {
+                SetState(States.Patrol);
+            }
+            else
+            {
+                if (Actor.CanSeePlayer())
+                    SetState(States.Chase);
+            }
         }
     }
 
@@ -45,13 +53,13 @@ namespace FSM
 
         public override void Enter()
         {
-            Actor.SetDestination(Actor.PeekNextWaypoint());
+            Actor.SetDestination(Actor.GetNearestWaypoint());
         }
 
         public override void Process()
         {
             if (Actor.HasReachedDestination())
-                Actor.SetDestination(Actor.PeekNextWaypoint());
+                Actor.SetDestination(Actor.GetNextWaypoint());
 
             if (Actor.CanSeePlayer())
                 SetState(States.Chase);
@@ -62,15 +70,28 @@ namespace FSM
     {
         public ChaseState(FSMController controller) : base(controller) { }
 
-        public override void Process()
+        public override void Enter()
         {
             Actor.SetDestination(Controller3D.Instance.Pos);
+        }
 
-            if (Actor.HasReachedDestination() && Actor.IsPlayerInAttackRange())
-                SetState(States.Attack);
+        public override void Process()
+        {
+            if (Actor.CanSeePlayer())
+            {
+                Actor.SetDestination(Controller3D.Instance.Pos);
+            }
 
-            if (!Actor.CanSeePlayer())
-                SetState(States.Patrol);
+            if (Actor.HasReachedDestination())
+            {
+                if (Actor.CanSeePlayer())
+                {
+                    if (Actor.IsPlayerInAttackRange())
+                        SetState(States.Attack);
+                }
+                else
+                    SetState(States.Patrol);
+            }
         }
     }
 
