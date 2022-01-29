@@ -26,6 +26,8 @@ public class AudioManager : Singleton<AudioManager>
 
         PlayerState.OnBattleEngaged += EngageBattle;
         PlayerState.OnBattleDisengaged += DisengageBattle;
+
+        ResetBools();
     }
 
     private void OnDestroy()
@@ -74,6 +76,11 @@ public class AudioManager : Singleton<AudioManager>
 
     #endregion
 
+    public static void SetVictory(bool state)
+    {
+        _instance.FMODEventInstance.setParameterByName("Victory", state ? 1f : 0f);
+    }
+
     public static void SetDangerProximity(float interpolation)
     {
         if (PlayerState.IsInCombat)
@@ -113,5 +120,12 @@ public class AudioManager : Singleton<AudioManager>
             }
             throw new System.NotImplementedException();
         }
+    }
+
+    private void ResetBools()
+    {
+        FMODEventInstance.setParameterByName("IsCombat", 0f);
+        FMODEventInstance.setParameterByName("IsHunter", 0f);
+        FMODEventInstance.setParameterByName("Victory", 0f);
     }
 }
