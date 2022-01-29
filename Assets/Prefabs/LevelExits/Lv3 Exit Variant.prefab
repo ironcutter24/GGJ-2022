@@ -56,6 +56,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9198519678522709262, guid: d87d94bd276e8ff4785402f79c4b8b4d, type: 3}
+      propertyPath: nextScene
+      value: Level_04
+      objectReference: {fileID: 0}
+    - target: {fileID: 9198519678522709262, guid: d87d94bd276e8ff4785402f79c4b8b4d, type: 3}
       propertyPath: captionPrey
       value: 5
       objectReference: {fileID: 0}
