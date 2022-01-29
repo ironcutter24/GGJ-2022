@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour
 {
 	[SerializeReference] GameObject pressAnyContainer;
 	[SerializeReference] GameObject mainMenuButtons;
-	[SerializeReference] GameObject optionsMenu;
+	/*[SerializeReference] GameObject optionsMenu;*/
 
 	private bool optionMenuOpened;
 
@@ -17,14 +17,15 @@ public class MainMenu : MonoBehaviour
 	}
 	
 	public void QuitGame() {
-		Application.Quit();
+		Application.Quit(0);
 	}
 	
+	/*
 	public void EnableOptions(bool enable) {
 		optionMenuOpened = enable;
 		optionsMenu.SetActive(enable);
 		mainMenuButtons.SetActive(!enable);
-	}
+	}*/
 	
 	void Update() {
 		if (Input.anyKey)
@@ -32,9 +33,9 @@ public class MainMenu : MonoBehaviour
 			pressAnyContainer.SetActive(false);
 			mainMenuButtons.SetActive(true);
 		}
-		if(optionMenuOpened && Input.GetKey(KeyCode.Escape)){
+		/*if(optionMenuOpened && Input.GetKey(KeyCode.Escape)){
 			EnableOptions(false);
-		}
+		}*/
 	}
 	
 }
