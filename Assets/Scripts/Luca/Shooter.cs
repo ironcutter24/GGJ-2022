@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Jumper : Enemy
+public class Shooter : Enemy
 {
     public override void SetDestination(Vector3 targetPosition)
     {
@@ -13,3 +13,4 @@ public class Jumper : Enemy
         System.Console.Write("JUMPER ATTACK!");
     }
 }
+
