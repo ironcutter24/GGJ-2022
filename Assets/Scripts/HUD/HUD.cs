@@ -15,7 +15,11 @@ public class HUD : Singleton<HUD>
     public bool isPrey
     {
         get { return isPrey_; }
-        set { isPrey_ = value; SwitchSprite(value); }
+	    set 
+	    { 
+	    	isPrey_ = value;
+			SwitchSprite(value); 
+	    }
     }
 
     [Header("Health Bar Values")]
@@ -32,6 +36,10 @@ public class HUD : Singleton<HUD>
     [SerializeField] Image fill;
     [SerializeField] Color color;
 
+	void Start() {
+		
+	}
+
     void Update()
     {
 	    GetCurrentFill();
@@ -43,15 +51,27 @@ public class HUD : Singleton<HUD>
         {
             portraits[i].sprite = isActivePreySprite ? spritePrey : spriteHunter;
         }
+	    if (isActivePreySprite) {
+		    ResetResourceBar();
+	    }
     }
+    
+	private void ResetResourceBar()
+	{
+		resourceMax = 0;
+		resourceCurrent = 0;
+	}
 
     public void GetCurrentFill()
     {
         float currentOffset = resourceCurrent - resourceMin;
         float maximumOffset = resourceMax - resourceMin;
-        float fillAmount = currentOffset / maximumOffset;
+	    float fillAmount = currentOffset / maximumOffset;
+	    if(resourceMax == 0 && resourceMin== 0 ){
+	    	fillAmount = 0;
+	    }
         fill.fillAmount = clampHalfMax ? (float)(fillAmount * 0.5f) : fillAmount;
-        fill.color = color;
+	    fill.color = color;
     }
 
     public void SetHealthBar(float health)
