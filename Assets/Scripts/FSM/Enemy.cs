@@ -11,7 +11,8 @@ public abstract class Enemy : MonoBehaviour, ITargetable
     [SerializeField] protected Animator anim;
     [SerializeField] protected NavMeshAgent agent;
     [SerializeField] SphereCollider nearFieldCollider;
-    [SerializeField] protected GameObject graphics;
+    [SerializeField] GameObject graphics;
+    [SerializeField] Collider collider;
     [SerializeField] MaterialMimic materialMimic;
 
     [Header("Engaging")]
@@ -198,6 +199,12 @@ public abstract class Enemy : MonoBehaviour, ITargetable
     private void UpdateDistanceFromPlayer()
     {
         distanceFromPlayer = Vector3.Distance(transform.position, player.Pos);
+    }
+
+    public void SetCollisionsAndGraphics(bool state)
+    {
+        graphics.SetActive(state);
+        collider.enabled = state;
     }
 
     #region Sight

@@ -45,9 +45,7 @@ namespace FSM
 
             public override void Enter()
             {
-                // Enter lair
-
-                //Actor.DisableGraphics();
+                Actor.SetCollisionsAndGraphics(false);  // Enter lair
             }
 
             public override void Process()
@@ -58,9 +56,7 @@ namespace FSM
 
             public override void Exit()
             {
-                // Exit lair
-
-                //Actor.EnableGraphics();
+                Actor.SetCollisionsAndGraphics(true);  // Exit lair
             }
 
             public override void LateProcess() { }

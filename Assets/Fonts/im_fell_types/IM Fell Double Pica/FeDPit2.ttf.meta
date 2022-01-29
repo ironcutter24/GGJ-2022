@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: fcf6017639510df47978a1f23600684f
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - FELL Double Pica
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 4ae9772e978c3c743b058be0a8369160, type: 3}
+  - {fileID: 12800000, guid: a4239a5ce6d3bf747b905c8d61854846, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

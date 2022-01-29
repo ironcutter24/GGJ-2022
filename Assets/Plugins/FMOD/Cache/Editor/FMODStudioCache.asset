@@ -67,7 +67,7 @@ MonoBehaviour:
     Data3: 1289306260
     Data4: 962956381
   Banks:
-  - {fileID: 5880318159493479635}
+  - {fileID: 4358034157923501246}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -118,15 +118,15 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: 6009437756888465599}
-  - {fileID: 5880318159493479635}
+  - {fileID: 2609526301488171540}
+  - {fileID: 4358034157923501246}
   EditorEvents:
   - {fileID: -4352188395198566424}
   EditorParameters: []
   MasterBanks:
-  - {fileID: 5880318159493479635}
+  - {fileID: 4358034157923501246}
   StringsBanks:
-  - {fileID: 6009437756888465599}
+  - {fileID: 2609526301488171540}
   cacheTime: 637787615991438049
   cacheVersion: 10
 --- !u!114 &2191322134696379200
@@ -153,6 +153,26 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &2609526301488171540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/OST Red n Goats/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 637787615991438049
+  FileSizes:
+  - Name: Desktop
+    Value: 1064
+  Exists: 1
 --- !u!114 &3674776795505091411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,6 +197,26 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &4358034157923501246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/OST Red n Goats/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 637787615991428040
+  FileSizes:
+  - Name: Desktop
+    Value: 4961024
+  Exists: 1
 --- !u!114 &5102710331825348720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,44 +240,4 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 0
   Labels: []
-  Exists: 1
---- !u!114 &5880318159493479635
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
-  m_EditorClassIdentifier: 
-  Path: Assets/Audio/OST Red n Goats/Build/Desktop/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-  lastModified: 637787615991428040
-  FileSizes:
-  - Name: Desktop
-    Value: 4961024
-  Exists: 1
---- !u!114 &6009437756888465599
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
-  m_EditorClassIdentifier: 
-  Path: Assets/Audio/OST Red n Goats/Build/Desktop/Desktop/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 637787615991438049
-  FileSizes:
-  - Name: Desktop
-    Value: 1064
   Exists: 1

@@ -60,7 +60,7 @@ public class PlayerState : Singleton<PlayerState>
 
     private int _successfulAttacksHunter = 0;
     private int _successfulAttacksPrey = 0;
-    public bool HasBeenMostlyHunter { get { return _successfulAttacksHunter > _successfulAttacksPrey; } }
+    public static bool HasBeenMostlyHunter { get { return _instance._successfulAttacksHunter > _instance._successfulAttacksPrey; } }
 
     public static void RecordSuccessfulAttack(AttackMessage attackData)
     {
