@@ -19,13 +19,12 @@ public class HUD : Singleton<HUD>
     }
 
     [Header("Health Bar Values")]
-    [SerializeField] Image[] healthBubbles;
-    public int maxHealth { get; private set; }
+    [SerializeField] Slider healthBar;
 
     [Header("Resource Bar Values")]
-    [SerializeField] int minimum;
-    [SerializeField] int maximum;
-    [SerializeField] int current;
+    [SerializeField] int resourceMin;
+	[SerializeField] int resourceMax;
+	[SerializeField] int resourceCurrent;
     [SerializeField] bool clampHalfMax;
 
     [Header("Resource Bar Images")]
@@ -35,12 +34,7 @@ public class HUD : Singleton<HUD>
 
     void Update()
     {
-        GetCurrentFill();
-        // NB: va agganciato allo stato del player
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SwitchSprite(true);
-        }
+	    GetCurrentFill();
     }
 
     public void SwitchSprite(bool isActivePreySprite)
@@ -53,8 +47,8 @@ public class HUD : Singleton<HUD>
 
     public void GetCurrentFill()
     {
-        float currentOffset = current - minimum;
-        float maximumOffset = maximum - minimum;
+        float currentOffset = resourceCurrent - resourceMin;
+        float maximumOffset = resourceMax - resourceMin;
         float fillAmount = currentOffset / maximumOffset;
         fill.fillAmount = clampHalfMax ? (float)(fillAmount * 0.5f) : fillAmount;
         fill.color = color;
@@ -62,14 +56,15 @@ public class HUD : Singleton<HUD>
 
     public void SetHealthBar(float health)
     {
-        for (int i = 0; i < healthBubbles.Length; i++)
-        {
-            if (i + 1 > (int)health)
-            {
-                Color fade = healthBubbles[i].color;
-                fade.a = 0;
-                healthBubbles[i].color = fade;
-            }
-        }
+	    healthBar.value = health;
     }
+    
+	public void setResourceCurrent(int resCurrent) {
+		resourceCurrent = resCurrent;
+	}
+	
+	public void setResourceMax(int resMax) {
+		resourceMax = resMax;
+		resourceCurrent = resMax;
+	}
 }

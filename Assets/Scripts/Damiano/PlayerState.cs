@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,10 +21,7 @@ public class PlayerState : Singleton<PlayerState>
 
     public static int EngagedEnemies
     {
-        get
-        {
-            return _instance._engagedEnemies;
-        }
+        get { return _instance._engagedEnemies; }
         set
         {
             _instance._engagedEnemies = (value >= 0 ? value : 0);
@@ -58,9 +55,29 @@ public class PlayerState : Singleton<PlayerState>
         }
     }
 
+    private int _activeEnemies;
+    public static int ActiveEnemies { get { return _instance._activeEnemies; } }
+
+    public static void AddActiveEnemy()
+    {
+        _instance._activeEnemies++;
+    }
+
+    public static void RemoveActiveEnemy()
+    {
+        _instance._activeEnemies--;
+
+        if(_instance._activeEnemies <= 0)
+        {
+            // Victory!!!
+
+            ExitDoor.Instance.Open();
+        }
+    }
+
     private int _successfulAttacksHunter = 0;
     private int _successfulAttacksPrey = 0;
-    public bool HasBeenMostlyHunter { get { return _successfulAttacksHunter > _successfulAttacksPrey; } }
+    public static bool HasBeenMostlyHunter { get { return _instance._successfulAttacksHunter > _instance._successfulAttacksPrey; } }
 
     public static void RecordSuccessfulAttack(AttackMessage attackData)
     {
@@ -77,6 +94,9 @@ public class PlayerState : Singleton<PlayerState>
         if (isTransitioning) return;
         isTransitioning = true;
         _isHunter = !_isHunter;
+	   
+	    if(HUD.Instance != null)
+		    HUD.Instance.isPrey = !_instance._isHunter;
 
         if (_isHunter)
         {

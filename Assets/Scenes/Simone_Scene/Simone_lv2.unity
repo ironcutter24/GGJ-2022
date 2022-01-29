@@ -18792,34 +18792,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3455821952078856341, guid: d87d94bd276e8ff4785402f79c4b8b4d, type: 3}
-      propertyPath: m_Text
-      value: "The Fool: Take a leap of Faith! \r\n> Defeat all enemies <"
-      objectReference: {fileID: 0}
-    - target: {fileID: 3455821952078856341, guid: d87d94bd276e8ff4785402f79c4b8b4d, type: 3}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: 1d3ad9a996e9b0c4ea15fe1fe2935c21, type: 3}
-    - target: {fileID: 3455821952078856341, guid: d87d94bd276e8ff4785402f79c4b8b4d, type: 3}
-      propertyPath: m_FontData.m_MinSize
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3455821952078856341, guid: d87d94bd276e8ff4785402f79c4b8b4d, type: 3}
-      propertyPath: m_FontData.m_FontSize
-      value: 22
-      objectReference: {fileID: 0}
-    - target: {fileID: 3455821952078856341, guid: d87d94bd276e8ff4785402f79c4b8b4d, type: 3}
-      propertyPath: m_FontData.m_FontStyle
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4074391848333017613, guid: d87d94bd276e8ff4785402f79c4b8b4d, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 70
-      objectReference: {fileID: 0}
-    - target: {fileID: 7496680510575913583, guid: d87d94bd276e8ff4785402f79c4b8b4d, type: 3}
-      propertyPath: tarotPrefab
-      value: 
-      objectReference: {fileID: 2100567150325364211, guid: b3308a6fe93275844897c97c60d0829b, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d87d94bd276e8ff4785402f79c4b8b4d, type: 3}
 --- !u!1001 &7167972458940181996
