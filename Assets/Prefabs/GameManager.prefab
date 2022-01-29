@@ -651,7 +651,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7790dfcf9c7442438930837c96d7a4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clip: {fileID: 0}
+  playerStateTransition: {fileID: 8300000, guid: a88379719f8e4a243b2a1d618e967aed, type: 3}
+  playerTrapDetonation: {fileID: 8300000, guid: ab297b593498a6e47ba84de770477cbe, type: 3}
+  playerKnifeThrow: {fileID: 8300000, guid: 2fbce70ae2186dd4bbfb8c3b932f96a8, type: 3}
+  playerKnifeHit: {fileID: 8300000, guid: 20981fd20c3aaa647937a2fd0c8ef48d, type: 3}
+  playerDash: {fileID: 8300000, guid: 3f7a6944c3a996e4dbaa3a80713bff33, type: 3}
+  playerHit: {fileID: 8300000, guid: 23eac382fa19b7847ac57d9170c757d9, type: 3}
+  spikeMeleeAttack: {fileID: 8300000, guid: cc47d394ade5def4dac3043b144bc740, type: 3}
+  spikeDeath: {fileID: 8300000, guid: ac8bfd78c85dedf48a5f381020f55853, type: 3}
 --- !u!1 &4704878901298479117
 GameObject:
   m_ObjectHideFlags: 0
