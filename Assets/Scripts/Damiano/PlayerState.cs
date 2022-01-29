@@ -51,7 +51,7 @@ public class PlayerState : Singleton<PlayerState>
         if(_nearEnemies.Count > 0)
         {
             Enemy e = _nearEnemies.OrderBy(x => x.DistanceFromPlayer).First();
-            AudioManager.SetDangerProximity(UMath.Normalize(e.DistanceFromPlayer, e.DangerDistanceMax, e.DangerDistanceMin));
+            MusicManager.SetDangerProximity(UMath.Normalize(e.DistanceFromPlayer, e.DangerDistanceMax, e.DangerDistanceMin));
         }
     }
 

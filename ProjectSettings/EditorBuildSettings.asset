@@ -6,9 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MainMenu/MainMenu.unity
-    guid: 98060eb572e42f947a01fc3843719c71
-  - enabled: 1
     path: Assets/Scenes/Simone_Scene/Level_01.unity
     guid: b43e456ba2c09324496add76c53987e7
   - enabled: 1
@@ -20,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Simone_Scene/Level_04.unity
     guid: ba12dc7f6d9113c4bb22a98eccde4f74
+  - enabled: 1
+    path: Assets/Scenes/MainMenu/MainMenu.unity
+    guid: 98060eb572e42f947a01fc3843719c71
   m_configObjects: {}
