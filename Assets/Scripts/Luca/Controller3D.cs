@@ -47,6 +47,9 @@ public class Controller3D : Singleton<Controller3D>, ITargetable
     private Vector3 lookDirection;
     public Vector3 LookDir { get { return lookDirection; } }
 
+    private Vector3 spawnPosition = Vector3.zero;
+    public Vector3 SpawnPosition { get { return spawnPosition; } }
+
     #endregion
 
     Timer dashTimer = new Timer();
@@ -57,6 +60,7 @@ public class Controller3D : Singleton<Controller3D>, ITargetable
 		PlayerState.OnSwitchToHunter += OnSwitchToHunter;
         
         _health = maxHealth;
+        spawnPosition = rb.position;
     }
 
     private void OnDestroy()
@@ -85,7 +89,6 @@ public class Controller3D : Singleton<Controller3D>, ITargetable
             
 	        if(HUD.Instance != null)
 	        	HUD.Instance.setResourceCurrent(dashesLeft);
-		        
         }
 
         if (Input.GetKeyDown(KeyCode.F))
@@ -113,7 +116,9 @@ public class Controller3D : Singleton<Controller3D>, ITargetable
 
         if(_health <= 0)
         {
-            // Death animation
+            rb.MovePosition(spawnPosition);
+            _health = maxHealth;
+            HUD.Instance.SetHealthBar(_health);
         }
     }
 
