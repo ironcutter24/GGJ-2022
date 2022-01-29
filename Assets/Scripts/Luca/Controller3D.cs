@@ -54,7 +54,8 @@ public class Controller3D : Singleton<Controller3D>, ITargetable
     protected override void Awake()
 	{
         base.Awake();
-        PlayerState.OnSwitchToHunter += OnSwitchToHunter;
+		PlayerState.OnSwitchToHunter += OnSwitchToHunter;
+        
         _health = maxHealth;
     }
 
@@ -65,7 +66,10 @@ public class Controller3D : Singleton<Controller3D>, ITargetable
 
     void OnSwitchToHunter()
     {
-        dashesLeft = dashNumber;
+	    dashesLeft = dashNumber;
+	    
+	    if(HUD.Instance != null)
+		    HUD.Instance.setResourceMax(dashNumber);
     }
 
     private void Update()
@@ -77,7 +81,11 @@ public class Controller3D : Singleton<Controller3D>, ITargetable
         {
             StartCoroutine(_Dash(dashDuration));
             dashTimer.Set(dashDuration);
-            dashesLeft--;
+	        dashesLeft--;
+            
+	        if(HUD.Instance != null)
+	        	HUD.Instance.setResourceCurrent(dashesLeft);
+		        
         }
 
         if (Input.GetKeyDown(KeyCode.F))

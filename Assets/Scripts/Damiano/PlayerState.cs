@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -94,6 +94,9 @@ public class PlayerState : Singleton<PlayerState>
         if (isTransitioning) return;
         isTransitioning = true;
         _isHunter = !_isHunter;
+	   
+	    if(HUD.Instance != null)
+		    HUD.Instance.isPrey = !_instance._isHunter;
 
         if (_isHunter)
         {
