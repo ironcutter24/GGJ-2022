@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace FSM
 {
-	public class JumperFSM : FSMController
+	public class ShooterFSM : FSMController
 	{
 		protected override void InitializeStates()
 		{
