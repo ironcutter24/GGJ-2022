@@ -11,7 +11,7 @@ public class GameManager : Singleton<GameManager>
         base.Awake();
         DontDestroyOnLoad(this.gameObject);
 
-#if !UNITY_EDITOR
+#if UNITY_EDITOR
         Cursor.visible = false;
 #endif
     }
