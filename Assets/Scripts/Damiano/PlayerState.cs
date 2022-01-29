@@ -21,10 +21,7 @@ public class PlayerState : Singleton<PlayerState>
 
     public static int EngagedEnemies
     {
-        get
-        {
-            return _instance._engagedEnemies;
-        }
+        get { return _instance._engagedEnemies; }
         set
         {
             _instance._engagedEnemies = (value >= 0 ? value : 0);
@@ -55,6 +52,26 @@ public class PlayerState : Singleton<PlayerState>
         {
             Enemy e = _nearEnemies.OrderBy(x => x.DistanceFromPlayer).First();
             AudioManager.SetDangerProximity(UMath.Normalize(e.DistanceFromPlayer, e.DangerDistanceMax, e.DangerDistanceMin));
+        }
+    }
+
+    private int _activeEnemies;
+    public static int ActiveEnemies { get { return _instance._activeEnemies; } }
+
+    public static void AddActiveEnemy()
+    {
+        _instance._activeEnemies++;
+    }
+
+    public static void RemoveActiveEnemy()
+    {
+        _instance._activeEnemies--;
+
+        if(_instance._activeEnemies <= 0)
+        {
+            // Victory!!!
+
+            ExitDoor.Instance.Open();
         }
     }
 

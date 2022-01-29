@@ -12,7 +12,7 @@ public abstract class Enemy : MonoBehaviour, ITargetable
     [SerializeField] protected NavMeshAgent agent;
     [SerializeField] SphereCollider nearFieldCollider;
     [SerializeField] GameObject graphics;
-    [SerializeField] Collider collider;
+    [SerializeField] Collider hitCollider;
     [SerializeField] MaterialMimic materialMimic;
 
     [Header("Engaging")]
@@ -32,16 +32,12 @@ public abstract class Enemy : MonoBehaviour, ITargetable
     [Header("Stats")]
     [SerializeField] int maxHealth = 3;
     private int _health;
-    //[SerializeField] float moveSpeed = 1f;
-    //[SerializeField] float attackSpeed = 1f;
 
-    [Header("Path")]
+    [Header("Spike Enemy")]
+    [SerializeField] public GameObject spikeCoffin;
     [SerializeField] List<Transform> waypoints = new List<Transform>();
     private int currentWaypoint;
     public bool HasWaypoints { get { return waypoints.Count > 0; } }
-
-    [Header("Spike Enemy")]
-    [SerializeField] public GameObject spikeLair;
 
     float distanceFromPlayer = Mathf.Infinity;
     public float DistanceFromPlayer { get { return distanceFromPlayer; } }
@@ -52,6 +48,8 @@ public abstract class Enemy : MonoBehaviour, ITargetable
     {
         player = Controller3D.Instance;
         _health = maxHealth;
+
+        PlayerState.AddActiveEnemy();
     }
 
     float startAlpha = 1f;
@@ -84,6 +82,7 @@ public abstract class Enemy : MonoBehaviour, ITargetable
             interpolation = 1f;
             SetAlpha(startAlpha);
 
+            PlayerState.RemoveActiveEnemy();
             Destroy(this.gameObject);
 
 
@@ -204,7 +203,7 @@ public abstract class Enemy : MonoBehaviour, ITargetable
     public void SetCollisionsAndGraphics(bool state)
     {
         graphics.SetActive(state);
-        collider.enabled = state;
+        hitCollider.enabled = state;
     }
 
     #region Sight

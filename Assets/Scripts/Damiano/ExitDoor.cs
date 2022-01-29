@@ -22,7 +22,7 @@ public class ExitDoor : Singleton<ExitDoor>
     private void Start()
     {
         textbox.enabled = false;
-        StartCoroutine(_ShowTarot());
+        //StartCoroutine(_ShowTarot());
     }
 
     private void OnTriggerEnter(Collider other)
@@ -61,6 +61,13 @@ public class ExitDoor : Singleton<ExitDoor>
         }
         interpolation = 1f;
         UpdateTransition(interpolation);
+
+        while (!Input.GetKeyDown(KeyCode.Space))
+        {
+            yield return null;
+        }
+
+        // Change scene
     }
 
     void UpdateTransition(float interpolation)
