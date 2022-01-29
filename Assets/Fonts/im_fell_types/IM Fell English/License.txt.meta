@@ -1,6 +1,12 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Fonts/im_fell_types/IM Fell English/License.txt.meta
 guid: dcb5fe571a74e344495a6eb3c5f3a866
 TextScriptImporter:
+=======
+guid: ff93396378eee5b469ab54b8b67bb7be
+folderAsset: yes
+DefaultImporter:
+>>>>>>> 7a7a57d10e2636d16804b9c5175f1ef0ef4258f5:Assets/Fonts/lib/x86_64.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
