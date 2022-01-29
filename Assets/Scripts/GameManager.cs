@@ -11,9 +11,7 @@ public class GameManager : Singleton<GameManager>
         base.Awake();
         DontDestroyOnLoad(this.gameObject);
 
-#if UNITY_EDITOR
         Cursor.visible = false;
-#endif
     }
 
     private void Update()
@@ -37,8 +35,8 @@ public class GameManager : Singleton<GameManager>
         Application.Quit();
     }
 
-    public void TransitionToScene(string sceneName)
+    public static void LoadScene(string sceneName)
     {
-        SceneManager.LoadScene("sceneName");
+        SceneManager.LoadScene(sceneName);
     }
 }

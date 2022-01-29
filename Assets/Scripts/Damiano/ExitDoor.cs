@@ -9,21 +9,23 @@ public class ExitDoor : Singleton<ExitDoor>
     [Header("Components")]
     [SerializeField] MeshRenderer meshRend;
     [SerializeField] BoxCollider invisibleWall;
-    [SerializeField] Text textbox;
 
     [Header("Scene specific")]
     [SerializeField] GameObject tarotPrefab;
+    [SerializeField] CanvasManager.TarotId captionPrey;
+    [SerializeField] CanvasManager.TarotId captionHunter;
     [SerializeField] string nextScene;
 
     bool isTarotInverted;
 
     GameObject _tarot;
 
+#if UNITY_EDITOR
     private void Start()
     {
-        textbox.enabled = false;
         //StartCoroutine(_ShowTarot());
     }
+#endif
 
     private void OnTriggerEnter(Collider other)
     {
@@ -45,9 +47,7 @@ public class ExitDoor : Singleton<ExitDoor>
         _tarot.transform.localPosition = new Vector3(0f, .02f, .2f);
 
         isTarotInverted = PlayerState.HasBeenMostlyHunter;
-
-        textbox.text = _tarot.GetComponent<TarotData>().GetCaption(isTarotInverted);
-        textbox.enabled = true;
+        CanvasManager.SetTarotText(isTarotInverted ? captionHunter : captionPrey);
 
         float duration = 1.6f;
         float speed = 1 / duration;
@@ -66,8 +66,10 @@ public class ExitDoor : Singleton<ExitDoor>
         {
             yield return null;
         }
+        Destroy(_tarot.gameObject);
+        CanvasManager.SetTarotText(CanvasManager.TarotId.Unassigned);
 
-        // Change scene
+        GameManager.LoadScene(nextScene);
     }
 
     void UpdateTransition(float interpolation)
@@ -77,6 +79,6 @@ public class ExitDoor : Singleton<ExitDoor>
         float deltaRotation = interpolation * 540f;
         _tarot.transform.localRotation = Quaternion.Euler(0f, _tarot.transform.localRotation.y - deltaRotation, isTarotInverted ? 180f : 0f);
 
-        textbox.transform.localScale = Vector3.one * Mathf.Clamp(interpolation - .5f, 0f, 1f) * 2;
+        CanvasManager.TarotTextScale = Vector3.one * Mathf.Clamp(interpolation - .5f, 0f, 1f) * 2;
     }
 }
