@@ -10,6 +10,7 @@ using Utility.Patterns;
 public class PlayerState : Singleton<PlayerState>
 {
     [SerializeField] float transitionDuration = 1f;
+    [SerializeField] float coolDownDuration = 3f;
 
     private bool _isHunter = false;
     public static bool IsPrey { get { return !_instance._isHunter; } }
@@ -125,6 +126,8 @@ public class PlayerState : Singleton<PlayerState>
         }
         interpolation = 1f;
         ApplyInterpolation();
+
+        yield return Timing.WaitForSeconds(coolDownDuration);
 
         isTransitioning = false;
 

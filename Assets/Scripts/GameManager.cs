@@ -39,4 +39,12 @@ public class GameManager : Singleton<GameManager>
     {
         SceneManager.LoadScene(sceneName);
     }
+
+    /*
+    void OnSceneChanged(Scene _ignoreThis, Scene _currentScene)
+    {
+        PlayerGhostPooler.ClearAll();
+        ProjectilePooler.ClearAll();
+    }
+    */
 }

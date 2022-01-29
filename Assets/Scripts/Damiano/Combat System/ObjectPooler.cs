@@ -54,6 +54,15 @@ public class ObjectPooler<T> : Singleton<ObjectPooler<T>> where T : MonoBehaviou
         }
     }
 
+    public static void ClearAll()
+    {
+        foreach (var pool in _instance.pools)
+        {
+            pool.objectPool.Clear();
+        }
+        _instance.pools = new List<Pool>();
+    }
+
     public static T Spawn(string tag, Vector3 position, Quaternion rotation, Transform parent)
     {
         return _instance.SpawnOrInstantiate(tag, position, rotation, false, parent);

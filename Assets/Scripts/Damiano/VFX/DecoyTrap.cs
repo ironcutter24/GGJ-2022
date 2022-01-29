@@ -5,20 +5,17 @@ using UnityEngine;
 public class DecoyTrap : PlayerGhost
 {
     [Header("DecoyTrap")]
-    [SerializeField] GameObject particles;
     [SerializeField] int trapDamage;
+
+    [Header("Particles")]
+    [SerializeField] GameObject groundParticles;
+    [SerializeField] GameObject airParticles;
 
     private TrapPlacer placer;
 
     public void SetPlacer(TrapPlacer placer)
     {
         this.placer = placer;
-    }
-
-    protected override void Start()
-    {
-        base.Start();
-        particles.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -29,7 +26,10 @@ public class DecoyTrap : PlayerGhost
 
             AttackMessage attackMessage = new AttackMessage(trapDamage, gameObject, AttackMessage.Type.Melee);
             other.GetComponent<Enemy>().ApplyDamage(attackMessage);
-            particles.SetActive(true);
+
+            Instantiate(airParticles, transform.position, Quaternion.identity);
+            Instantiate(groundParticles, transform.position, Quaternion.identity);
+
             Dissolve();
             placer.RemoveFromPlacer(this);
         }

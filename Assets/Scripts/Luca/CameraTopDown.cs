@@ -29,7 +29,11 @@ public class CameraTopDown : Singleton<CameraTopDown>
 
     private void Start()
     {
-        player = Controller3D.Instance;
+        if (Controller3D.Instance != null)
+            player = Controller3D.Instance;
+        else
+            player = new Controller3D();
+
         transform.position = KeepTransformY(player.Pos);
     }
 

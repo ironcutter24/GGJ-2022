@@ -30,8 +30,8 @@ public class CanvasManager : Singleton<CanvasManager>
         { TarotId.DevilPrey,       "Even in evil, find the opportunity to do the right thing.\nYou have control of your Shadow." },
         { TarotId.DevilHunter,     "Offer your fears and troubles to free yourself from the shackles of unhealthy behavior." },
 
-        { TarotId.FoolPrey,        "A leap of faith:\nDefeat all foes" },
-        { TarotId.FoolHunter,      "A leap of faith:\nDefeat all foes" },
+        { TarotId.FoolPrey,        "A leap of faith:\nErase all shadows" },
+        { TarotId.FoolHunter,      "A leap of faith:\nErase all shadows" },
 
         { TarotId.LoversPrey,      "Your values, your beliefs, your philosophy.\nYou know what you stand for now..." },
         { TarotId.LoversHunter,    "To what extent do you honor and accept who you are?\nYou have to understand there is in the other,\nwhich you also have." },

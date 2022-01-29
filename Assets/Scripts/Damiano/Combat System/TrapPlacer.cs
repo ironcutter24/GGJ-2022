@@ -5,15 +5,29 @@ using UnityEngine;
 public class TrapPlacer : MonoBehaviour
 {
 	[SerializeField] int trapsMaxNumber = 2;
+	[SerializeField] float trapCoolDown = .2f;
 
 	[SerializeField] Vector3 trapOffset;
 	List<PlayerGhost> activeTraps = new List<PlayerGhost>();
 
     private void Update()
     {
-	    if(Input.GetKeyDown(KeyCode.LeftShift) && PlayerState.IsPrey)
-		    PlaceTrap();
+	    if(Input.GetKeyDown(KeyCode.LeftShift) && PlayerState.IsPrey && !isPlacingTrap)
+        {
+			isPlacingTrap = true;
+			StartCoroutine(_PlaceTrap());
+        }
     }
+
+	bool isPlacingTrap = false;
+	IEnumerator _PlaceTrap()
+    {
+		PlaceTrap();
+
+		yield return new WaitForSeconds(trapCoolDown);
+
+		isPlacingTrap = false;
+	}
 
 	void PlaceTrap()
 	{

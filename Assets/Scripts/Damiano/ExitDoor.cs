@@ -16,7 +16,7 @@ public class ExitDoor : Singleton<ExitDoor>
     [SerializeField] CanvasManager.TarotId captionHunter;
     [SerializeField] string nextScene;
 
-    bool isTarotInverted;
+    bool isTarotInverted = false;
 
     GameObject _tarot;
 
@@ -35,6 +35,11 @@ public class ExitDoor : Singleton<ExitDoor>
         }
     }
 
+    public void StartTarotAnimation()
+    {
+        StartCoroutine(_ShowTarot());
+    }
+
     public void Open()
     {
         meshRend.enabled = false;
@@ -46,7 +51,12 @@ public class ExitDoor : Singleton<ExitDoor>
         _tarot = Instantiate(tarotPrefab, Camera.main.transform);
         _tarot.transform.localPosition = new Vector3(0f, .02f, .2f);
 
-        isTarotInverted = PlayerState.HasBeenMostlyHunter;
+        if(PlayerState.Instance != null)
+        {
+            Controller3D.DisableController();
+            isTarotInverted = PlayerState.HasBeenMostlyHunter;
+        }
+
         CanvasManager.SetTarotText(isTarotInverted ? captionHunter : captionPrey);
 
         float duration = 1.6f;
@@ -62,7 +72,7 @@ public class ExitDoor : Singleton<ExitDoor>
         interpolation = 1f;
         UpdateTransition(interpolation);
 
-        while (!Input.GetKeyDown(KeyCode.Space))
+        while (!Input.anyKeyDown)
         {
             yield return null;
         }

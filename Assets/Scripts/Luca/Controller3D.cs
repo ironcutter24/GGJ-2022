@@ -36,7 +36,7 @@ public class Controller3D : Singleton<Controller3D>, ITargetable
     private int _health;
     public int Health { get { return _health; } }
 
-    private enum State { Moving, Dashing }
+    private enum State { Moving, Dashing, Disabled }
     private State state = State.Moving;
 
     public Vector3 Pos { get { return _instance.rb.position; } }
@@ -76,6 +76,15 @@ public class Controller3D : Singleton<Controller3D>, ITargetable
 		    HUD.Instance.setResourceMax(dashNumber);
     }
 
+    public static void DisableController()
+    {
+        _instance.state = State.Disabled;
+
+        _instance.anim.SetFloat("Horizontal", 0f);
+        _instance.anim.SetFloat("Vertical", 0f);
+        _instance.anim.SetFloat("MoveSpeed", 0f);
+    }
+
     private void Update()
     {
         move = GetDirectionalInput();
@@ -91,8 +100,8 @@ public class Controller3D : Singleton<Controller3D>, ITargetable
 	        	HUD.Instance.setResourceCurrent(dashesLeft);
         }
 
-        if (Input.GetKeyDown(KeyCode.F))
-            StartCoroutine(_Invisibility());
+        //if (Input.GetKeyDown(KeyCode.F))
+        //    StartCoroutine(_Invisibility());
     }
 
     void FixedUpdate()
