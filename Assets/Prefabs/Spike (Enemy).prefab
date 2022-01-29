@@ -250,6 +250,7 @@ MonoBehaviour:
   agent: {fileID: 4006380225902879959}
   nearFieldCollider: {fileID: 340581136458094958}
   graphics: {fileID: 3446605627808141869}
+  collider: {fileID: 5174241521121889633}
   materialMimic: {fileID: 225834403712892468}
   disengageDistance: 7.5
   engageDistancePassive: 3.5
@@ -266,7 +267,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   spikeLair: {fileID: 0}
-  materialMimic: {fileID: 0}
+  materialMimic: {fileID: 225834403712892468}
 --- !u!1 &7763464138302109423
 GameObject:
   m_ObjectHideFlags: 0
