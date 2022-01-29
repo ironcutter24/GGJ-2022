@@ -460,7 +460,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 0
+  m_FillAmount: 0.5
   m_FillClockwise: 0
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -1189,10 +1189,10 @@ MonoBehaviour:
   spriteHunter: {fileID: 21300000, guid: 5ebc6e43f2d3868408ef8f3a16e40eec, type: 3}
   portraits:
   - {fileID: 6752396812137799851}
-  healthBubbles: []
-  minimum: 0
-  maximum: 3
-  current: 0
+  healthBar: {fileID: 2430239691825799141}
+  resourceMin: 0
+  resourceMax: 3
+  resourceCurrent: 3
   clampHalfMax: 1
   mask: {fileID: 6752396811173197872}
   fill: {fileID: 6752396810387878600}
