@@ -24,7 +24,8 @@ namespace FSM
 
             public override void Enter()
             {
-                Actor.SetDestination(Actor.spikeCoffin.transform.position);
+                //Actor.SetDestination(Actor.spikeCoffin.transform.position);
+                Actor.SetDestination(Actor.GetNearestCoffin());
             }
 
             public override void Process()

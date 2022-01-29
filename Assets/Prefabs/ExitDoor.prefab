@@ -230,7 +230,7 @@ MonoBehaviour:
   meshRend: {fileID: 3327318982465617043}
   invisibleWall: {fileID: 3611722439704209527}
   textbox: {fileID: 3455821952078856341}
-  tarotPrefab: {fileID: 546234675507379067, guid: 0e01667a6fac231468368b29a4e57c2a, type: 3}
+  tarotPrefab: {fileID: 7194558215124603272, guid: efc9c1aa7fe84524e88e380a82987615, type: 3}
   nextScene: 
 --- !u!1 &3327318982465617041
 GameObject:
@@ -260,7 +260,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3327318982465617041}
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0.7071068, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.32, y: 2.6, z: 20.75}
   m_LocalScale: {x: 1.19, y: 0.57000023, z: 1.1500005}
   m_Children: []
   m_Father: {fileID: 3327318981520365623}

@@ -34,7 +34,7 @@ public abstract class Enemy : MonoBehaviour, ITargetable
     private int _health;
 
     [Header("Spike Enemy")]
-    [SerializeField] public GameObject spikeCoffin;
+    //[SerializeField] public GameObject spikeCoffin;
     [SerializeField] List<Transform> waypoints = new List<Transform>();
     private int currentWaypoint;
     public bool HasWaypoints { get { return waypoints.Count > 0; } }
@@ -135,6 +135,29 @@ public abstract class Enemy : MonoBehaviour, ITargetable
     }
 
     public abstract void Attack();
+
+    #endregion
+
+    #region RunAway
+
+    public Vector3 GetNearestCoffin()
+    {
+        float shortestSqrDistance = Mathf.Infinity;
+        float dist;
+        Vector3 nearestCoffin = Vector3.zero;
+
+        foreach (SpikeCoffin coffin in SpikeCoffin.InScene)
+        {
+            dist = UMath.SqrDistanceXZ(coffin.transform.position, this.transform.position);
+
+            if (dist < shortestSqrDistance)
+            {
+                nearestCoffin = coffin.transform.position;
+                shortestSqrDistance = dist;
+            }
+        }
+        return nearestCoffin;
+    }
 
     #endregion
 
