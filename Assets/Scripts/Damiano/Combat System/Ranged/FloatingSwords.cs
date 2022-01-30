@@ -50,7 +50,7 @@ public class FloatingSwords : Singleton<FloatingSwords>
         {
             targetPosition = ClampMinRadius(MouseRaycaster.Hit.point + Vector3.up * shootHeight);
 
-            if (Input.GetMouseButton(1) && PlayerState.IsHunter && recoilTimer.IsExpired && reloadTimer.IsExpired)
+            if (Input.GetMouseButton(0) && PlayerState.IsHunter && recoilTimer.IsExpired && reloadTimer.IsExpired)
                 ShootAt(targetPosition);
         }
         ApplyLookDirection();
