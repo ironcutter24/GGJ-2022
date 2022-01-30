@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 using Utility;
@@ -61,10 +60,12 @@ public abstract class Enemy : MonoBehaviour, ITargetable
 
         if (_health <= 0f)
         {
-            if(CanSeePlayer())
+            if(_isEngaged)
                 PlayerState.EngagedEnemies--;
 
             PlayerState.RemoveNearEnemy(this);
+
+            AudioManager.SpikeDeath();
 
             StartCoroutine(_Death(.5f));
         }
@@ -231,6 +232,7 @@ public abstract class Enemy : MonoBehaviour, ITargetable
 
     #region Sight
 
+    bool _isEngaged = false;
     public bool CanSeePlayer(bool isChasing = false)
     {
         if (distanceFromPlayer < disengageDistance)
@@ -242,12 +244,18 @@ public abstract class Enemy : MonoBehaviour, ITargetable
             {
                 if (distanceFromPlayer < engageDistancePassive || IsInFieldOfView(Controller3D.Instance.Pos))
                 {
-                    PlayerState.EngagedEnemies++;
+                    if (!_isEngaged)
+                        PlayerState.EngagedEnemies++;
+
+                    _isEngaged = true;
                     return true;
                 }
             }
         }
-        PlayerState.EngagedEnemies--;
+        if (_isEngaged)
+            PlayerState.EngagedEnemies--;
+
+        _isEngaged = false;
         return false;
     }
 

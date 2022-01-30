@@ -36,6 +36,8 @@ public class Projectile : MonoBehaviour
 
             if(target != null)
             {
+                AudioManager.PlayerKnifeHit();
+
                 AttackMessage attackMessage = new AttackMessage(damage, gameObject, AttackMessage.Type.Ranged);
                 target.ApplyDamage(attackMessage);
             }

@@ -24,46 +24,6 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
---- !u!114 &-7723788630926788715
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
-  m_EditorClassIdentifier: 
-  Path: Assets/Audio/Neden Finito/Build/Desktop/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 637791072826434269
-  FileSizes:
-  - Name: Desktop
-    Value: 1474
-  Exists: 1
---- !u!114 &-5679676538027589052
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
-  m_EditorClassIdentifier: 
-  Path: Assets/Audio/Neden Finito/Build/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-  lastModified: 637791072826134002
-  FileSizes:
-  - Name: Desktop
-    Value: 7447168
-  Exists: 1
 --- !u!114 &-4959491251673399542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,7 +43,7 @@ MonoBehaviour:
     Data3: 1443814074
     Data4: -1509158735
   Banks:
-  - {fileID: -5679676538027589052}
+  - {fileID: 2106948727201168312}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -134,7 +94,7 @@ MonoBehaviour:
     Data3: 1289306260
     Data4: 962956381
   Banks:
-  - {fileID: -5679676538027589052}
+  - {fileID: 2106948727201168312}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -168,7 +128,7 @@ MonoBehaviour:
     Data3: 732505494
     Data4: -139156598
   Banks:
-  - {fileID: -5679676538027589052}
+  - {fileID: 2106948727201168312}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -195,7 +155,7 @@ MonoBehaviour:
     Data3: 2052746666
     Data4: -2007283918
   Banks:
-  - {fileID: -5679676538027589052}
+  - {fileID: 2106948727201168312}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -222,7 +182,7 @@ MonoBehaviour:
     Data3: 1589655180
     Data4: 1964415413
   Banks:
-  - {fileID: -5679676538027589052}
+  - {fileID: 2106948727201168312}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -267,8 +227,8 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: -7723788630926788715}
-  - {fileID: -5679676538027589052}
+  - {fileID: 9220748475384579895}
+  - {fileID: 2106948727201168312}
   EditorEvents:
   - {fileID: -4352188395198566424}
   - {fileID: -4959491251673399542}
@@ -281,10 +241,10 @@ MonoBehaviour:
   - {fileID: 508734500026003411}
   EditorParameters: []
   MasterBanks:
-  - {fileID: -5679676538027589052}
+  - {fileID: 2106948727201168312}
   StringsBanks:
-  - {fileID: -7723788630926788715}
-  cacheTime: 637791072826434269
+  - {fileID: 9220748475384579895}
+  cacheTime: 637791109326878617
   cacheVersion: 10
 --- !u!114 &508734500026003411
 MonoBehaviour:
@@ -305,7 +265,7 @@ MonoBehaviour:
     Data3: -1895530870
     Data4: -933247938
   Banks:
-  - {fileID: -5679676538027589052}
+  - {fileID: 2106948727201168312}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -332,7 +292,7 @@ MonoBehaviour:
     Data3: -2031497831
     Data4: -430459579
   Banks:
-  - {fileID: -5679676538027589052}
+  - {fileID: 2106948727201168312}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -340,6 +300,26 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 366
+--- !u!114 &2106948727201168312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/Neden Finito Veramente/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 637791109326858598
+  FileSizes:
+  - Name: Desktop
+    Value: 7449888
+  Exists: 1
 --- !u!114 &2191322134696379200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -383,7 +363,7 @@ MonoBehaviour:
     Data3: 1839971204
     Data4: -2009760711
   Banks:
-  - {fileID: -5679676538027589052}
+  - {fileID: 2106948727201168312}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -458,7 +438,7 @@ MonoBehaviour:
     Data3: -1725889362
     Data4: 29359378
   Banks:
-  - {fileID: -5679676538027589052}
+  - {fileID: 2106948727201168312}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -489,4 +469,24 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 0
   Labels: []
+  Exists: 1
+--- !u!114 &9220748475384579895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/Neden Finito Veramente/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 637791109326878617
+  FileSizes:
+  - Name: Desktop
+    Value: 1474
   Exists: 1

@@ -74,13 +74,7 @@ public class PlayerState : Singleton<PlayerState>
         _instance._activeEnemies--;
 
         if(_instance._activeEnemies <= 0)
-        {
-            // Victory!!!
-
-            
-
             ExitDoor.Instance.Open();
-        }
     }
 
     private int _successfulAttacksHunter = 0;
@@ -100,8 +94,11 @@ public class PlayerState : Singleton<PlayerState>
     void ChangeHunterState()
     {
         if (isTransitioning) return;
+
         isTransitioning = true;
         _isHunter = !_isHunter;
+
+        AudioManager.PlayerStateTransition();
 	   
 	    if(HUD.Instance != null)
 		    HUD.Instance.isPrey = !_instance._isHunter;

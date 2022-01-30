@@ -101,6 +101,8 @@ public class FloatingSwords : Singleton<FloatingSwords>
     */
     void ShootAt(Vector3 targetPosition)
     {
+        AudioManager.PlayerKnifeThrow();
+
         swordOrigins[currentOrigin].ShootAt(targetPosition);
         currentOrigin++;
 

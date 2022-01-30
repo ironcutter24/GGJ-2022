@@ -13,5 +13,7 @@ public class Spike : Enemy
 	{
 		PauseMovement();
 		anim.SetTrigger("AttackTrigger");
+
+		AudioManager.SpikeMeleeAttack();
 	}
 }

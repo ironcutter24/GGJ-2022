@@ -92,8 +92,9 @@ public class MusicManager : Singleton<MusicManager>
     {
         ResetTriggers();
         ApplyTheme(theme);
+        //ResetTriggers();
 
-        
+
         void ResetTriggers()
         {
             _instance.FMODEventInstance.setParameterByName(GetThemeID(Theme.MainMenu), 0f);

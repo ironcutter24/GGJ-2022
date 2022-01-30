@@ -24,6 +24,8 @@ public class DecoyTrap : PlayerGhost
         {
             Debug.Log("Entered decoy: " + other.gameObject.name);
 
+            AudioManager.PlayerTrapDetonation();
+
             AttackMessage attackMessage = new AttackMessage(trapDamage, gameObject, AttackMessage.Type.Melee);
             other.GetComponent<Enemy>().ApplyDamage(attackMessage);
 

@@ -92,6 +92,7 @@ public class Controller3D : Singleton<Controller3D>, ITargetable
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && PlayerState.IsHunter && dashTimer.IsExpired && dashesLeft > 0 && move != Vector3.zero)
         {
+            AudioManager.PlayerDash();
             StartCoroutine(_Dash(dashDuration));
             dashTimer.Set(dashDuration);
 	        dashesLeft--;
@@ -122,6 +123,8 @@ public class Controller3D : Singleton<Controller3D>, ITargetable
             HUD.Instance.SetHealthBar(_health);
 
         Debug.Log("Player hit! Health: " + _health);
+
+        AudioManager.PlayerHit();
 
         if(_health <= 0)
         {
