@@ -24,6 +24,73 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &-7723788630926788715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/Neden Finito/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 637791072826434269
+  FileSizes:
+  - Name: Desktop
+    Value: 1474
+  Exists: 1
+--- !u!114 &-5679676538027589052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/Neden Finito/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 637791072826134002
+  FileSizes:
+  - Name: Desktop
+    Value: 7447168
+  Exists: 1
+--- !u!114 &-4959491251673399542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerTrapDetonation
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerTrapDetonation
+  Guid:
+    Data1: 292373508
+    Data2: 1212746343
+    Data3: 1443814074
+    Data4: -1509158735
+  Banks:
+  - {fileID: -5679676538027589052}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1172
 --- !u!114 &-4811090819730164173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,7 +134,7 @@ MonoBehaviour:
     Data3: 1289306260
     Data4: 962956381
   Banks:
-  - {fileID: 4358034157923501246}
+  - {fileID: -5679676538027589052}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -78,9 +145,91 @@ MonoBehaviour:
   - {fileID: 2191322134696379200}
   - {fileID: -4811090819730164173}
   - {fileID: -8995548749520194619}
+  - {fileID: 6394563871082544103}
   MinDistance: 1
   MaxDistance: 20
-  Length: 273333
+  Length: 339333
+--- !u!114 &-3868991253125688148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerStateTransition
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerStateTransition
+  Guid:
+    Data1: -299292712
+    Data2: 1307097530
+    Data3: 732505494
+    Data4: -139156598
+  Banks:
+  - {fileID: -5679676538027589052}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4090
+--- !u!114 &-2952298829669018348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerKnifeThrow
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerKnifeThrow
+  Guid:
+    Data1: -1861478551
+    Data2: 1304390495
+    Data3: 2052746666
+    Data4: -2007283918
+  Banks:
+  - {fileID: -5679676538027589052}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 348
+--- !u!114 &-1113663864968691183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SpikeMeleeAttack
+  m_EditorClassIdentifier: 
+  Path: event:/SpikeMeleeAttack
+  Guid:
+    Data1: 471051450
+    Data2: 1337565931
+    Data3: 1589655180
+    Data4: 1964415413
+  Banks:
+  - {fileID: -5679676538027589052}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 600
 --- !u!114 &-242111384898902575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,17 +267,79 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: 2609526301488171540}
-  - {fileID: 4358034157923501246}
+  - {fileID: -7723788630926788715}
+  - {fileID: -5679676538027589052}
   EditorEvents:
   - {fileID: -4352188395198566424}
+  - {fileID: -4959491251673399542}
+  - {fileID: 1222904918632391733}
+  - {fileID: 2490035604541268308}
+  - {fileID: -2952298829669018348}
+  - {fileID: 6165790769950737237}
+  - {fileID: -1113663864968691183}
+  - {fileID: -3868991253125688148}
+  - {fileID: 508734500026003411}
   EditorParameters: []
   MasterBanks:
-  - {fileID: 4358034157923501246}
+  - {fileID: -5679676538027589052}
   StringsBanks:
-  - {fileID: 2609526301488171540}
-  cacheTime: 637787615991438049
+  - {fileID: -7723788630926788715}
+  cacheTime: 637791072826434269
   cacheVersion: 10
+--- !u!114 &508734500026003411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SpikeDeath
+  m_EditorClassIdentifier: 
+  Path: event:/SpikeDeath
+  Guid:
+    Data1: -1443119361
+    Data2: 1323044760
+    Data3: -1895530870
+    Data4: -933247938
+  Banks:
+  - {fileID: -5679676538027589052}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3750
+--- !u!114 &1222904918632391733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerKnifeHit
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerKnifeHit
+  Guid:
+    Data1: 891175972
+    Data2: 1300972854
+    Data3: -2031497831
+    Data4: -430459579
+  Banks:
+  - {fileID: -5679676538027589052}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 366
 --- !u!114 &2191322134696379200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,7 +364,7 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
---- !u!114 &2609526301488171540
+--- !u!114 &2490035604541268308
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,17 +373,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerHit
   m_EditorClassIdentifier: 
-  Path: Assets/Audio/OST Red n Goats/Build/Desktop/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 637787615991438049
-  FileSizes:
-  - Name: Desktop
-    Value: 1064
-  Exists: 1
+  Path: event:/PlayerHit
+  Guid:
+    Data1: 1834216508
+    Data2: 1125278971
+    Data3: 1839971204
+    Data4: -2009760711
+  Banks:
+  - {fileID: -5679676538027589052}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 567
 --- !u!114 &3674776795505091411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,26 +415,6 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
---- !u!114 &4358034157923501246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
-  m_EditorClassIdentifier: 
-  Path: Assets/Audio/OST Red n Goats/Build/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-  lastModified: 637787615991428040
-  FileSizes:
-  - Name: Desktop
-    Value: 4961024
-  Exists: 1
 --- !u!114 &5102710331825348720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,6 +436,57 @@ MonoBehaviour:
     data1: 1064158674
     data2: 335593750
   Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &6165790769950737237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerDash
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerDash
+  Guid:
+    Data1: -282608760
+    Data2: 1102198180
+    Data3: -1725889362
+    Data4: 29359378
+  Banks:
+  - {fileID: -5679676538027589052}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3155
+--- !u!114 &6394563871082544103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/OST RED/Victory
+  m_EditorClassIdentifier: 
+  Name: Victory
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 623435502
+    data2: 1332017058
+  Type: 1
   IsGlobal: 0
   Labels: []
   Exists: 1

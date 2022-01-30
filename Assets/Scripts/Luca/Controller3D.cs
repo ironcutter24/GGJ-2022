@@ -63,11 +63,6 @@ public class Controller3D : Singleton<Controller3D>, ITargetable
         spawnPosition = rb.position;
     }
 
-    private void Start()
-    {
-        MusicManager.SetMusicalTheme(MusicManager.Theme.Exploration);
-    }
-
     private void OnDestroy()
     {
         PlayerState.OnSwitchToHunter -= OnSwitchToHunter;

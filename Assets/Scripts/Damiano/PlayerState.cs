@@ -44,6 +44,11 @@ public class PlayerState : Singleton<PlayerState>
     public static Action OnBattleEngaged;
     public static Action OnBattleDisengaged;
 
+    private void Start()
+    {
+        MusicManager.SetMusicalTheme(MusicManager.Theme.Exploration);
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
