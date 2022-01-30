@@ -106,12 +106,12 @@ public class PlayerState : Singleton<PlayerState>
         if (_isHunter)
         {
             Util.TryAction(OnSwitchToHunter);
-            Timing.RunCoroutine(_Transition(transitionDuration, true));
+            Timing.RunCoroutine(_Transition(transitionDuration, true).CancelWith(gameObject));
         }
         else
         {
             Util.TryAction(OnSwitchToPrey);
-            Timing.RunCoroutine(_Transition(transitionDuration, false));
+            Timing.RunCoroutine(_Transition(transitionDuration, false).CancelWith(gameObject));
         }
     }
 

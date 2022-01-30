@@ -6,6 +6,7 @@ public class Spike : Enemy
 {
 	public override void SetDestination(Vector3 targetPosition)
 	{
+		ResumeMovement();
 		agent.SetDestination(targetPosition);
 	}
 
@@ -13,7 +14,6 @@ public class Spike : Enemy
 	{
 		PauseMovement();
 		anim.SetTrigger("AttackTrigger");
-
 		AudioManager.SpikeMeleeAttack();
 	}
 }

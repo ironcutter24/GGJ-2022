@@ -13,23 +13,23 @@ public class SpikeAttack : MonoBehaviour
         attackBounds.gameObject.GetComponent<MeshRenderer>().enabled = false;
     }
 
-    public void AnimationHasEnded()
-    {
-        actor.ResumeMovement();
-    }
-
     public void AttackAnimationEvent()
     {
         Collider[] colliders = GetCollidersInAttackBounds();
 
         foreach(Collider c in colliders)
         {
-            if (c.gameObject.CompareTag("Player") || c.gameObject.CompareTag("PlayerDecoy"))
+            if (c.gameObject.CompareTag("Player"))
             {
                 AttackMessage attackMessage = new AttackMessage(attackDamage, gameObject, AttackMessage.Type.Melee);
                 c.GetComponent<ITargetable>().ApplyDamage(attackMessage);
             }
         }
+    }
+
+    public void AnimationHasEnded()
+    {
+        actor.ResumeMovement();
     }
 
     private Collider[] GetCollidersInAttackBounds()

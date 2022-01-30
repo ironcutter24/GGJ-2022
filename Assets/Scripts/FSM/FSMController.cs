@@ -117,7 +117,7 @@ namespace FSM
 
 		public virtual void LateProcess()
         {
-			if (PlayerState.IsHunter)
+			if (PlayerState.IsHunter && !Actor.IsMovementPaused)
 				SetState(States.RunAway);
         }
 

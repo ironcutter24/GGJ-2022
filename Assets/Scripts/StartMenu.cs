@@ -12,6 +12,7 @@ public class StartMenu : MonoBehaviour
     void Start()
     {
         controlsPanel.SetActive(_areControlsActive);
+        MusicManager.SetMusicalTheme(MusicManager.Theme.MainMenu);
     }
 
     void Update()

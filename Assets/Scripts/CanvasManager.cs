@@ -28,18 +28,18 @@ public class CanvasManager : Singleton<CanvasManager>
         { TarotId.Unassigned,       "" },
 
         { TarotId.DevilPrey,       "Even in evil, find the opportunity to do the right thing.\nYou have control of your Shadow." },
-        { TarotId.DevilHunter,     "Offer your fears and troubles to free yourself from the shackles of unhealthy behavior." },
+        { TarotId.DevilHunter,     "Release your fears and troubles to unleash your potential." },
 
         { TarotId.FoolPrey,        "A leap of faith:\nErase all shadows" },
         { TarotId.FoolHunter,      "A leap of faith:\nErase all shadows" },
 
         { TarotId.LoversPrey,      "Your values, your beliefs, your philosophy.\nYou know what you stand for now..." },
-        { TarotId.LoversHunter,    "To what extent do you honor and accept who you are?\nYou have to understand there is in the other,\nwhich you also have." },
+        { TarotId.LoversHunter,    "To what extent do you Honor and accept Who you are?\nUnderstand what it Is in the other One which you also have." },
 
         { TarotId.MoonPrey,        "Remember what you have forgotten.\nBe considerate on this journey to your secrets." },
-        { TarotId.MoonHunter,      "Be careful of what you don't understand, fears and obsessions." },
+        { TarotId.MoonHunter,      "Be careful of your fears, obsessions and what you don't understand." },
 
-        { TarotId.SunPrey,         "Know your way, get to clarity." },
-        { TarotId.SunHunter,       "Appreciate who you are.\nDon't let pleasure take your eyes off the truth." }
+        { TarotId.SunPrey,         "Clear your mind, so you know your way." },
+        { TarotId.SunHunter,       "Look for what lies behind your victories." }
     };
 }
