@@ -43,10 +43,6 @@ public class MusicManager : Singleton<MusicManager>
     {
         FMODEventInstance = FMODUnity.RuntimeManager.CreateInstance(fmodEvent);
         FMODEventInstance.start();
-
-        // Test only
-        SetMusicalTheme(Theme.Exploration);
-        //PlayerState.SetCombatState(true);
     }
 
 #if UNITY_EDITOR
@@ -78,7 +74,7 @@ public class MusicManager : Singleton<MusicManager>
 
     public static void SetVictory(bool state)
     {
-        _instance.FMODEventInstance.setParameterByName("Victory", state ? 1f : 0f);
+        _instance.FMODEventInstance.setParameterByName(GetThemeID(Theme.Victory), state ? 1f : 0f);
     }
 
     public static void SetDangerProximity(float interpolation)
@@ -91,7 +87,7 @@ public class MusicManager : Singleton<MusicManager>
         _instance.FMODEventInstance.setParameterByName("DangerProximity", interpolation * 2f);
     }
 
-    public enum Theme { MainMenu, LoadingScreen, Exploration }
+    public enum Theme { MainMenu, LoadingScreen, Exploration, Victory }
     public static void SetMusicalTheme(Theme theme)
     {
         ResetTriggers();
@@ -100,26 +96,28 @@ public class MusicManager : Singleton<MusicManager>
         
         void ResetTriggers()
         {
-            _instance.FMODEventInstance.setParameterByName(GetID(Theme.MainMenu), 0f);
-            _instance.FMODEventInstance.setParameterByName(GetID(Theme.LoadingScreen), 0f);
-            _instance.FMODEventInstance.setParameterByName(GetID(Theme.Exploration), 0f);
+            _instance.FMODEventInstance.setParameterByName(GetThemeID(Theme.MainMenu), 0f);
+            _instance.FMODEventInstance.setParameterByName(GetThemeID(Theme.LoadingScreen), 0f);
+            _instance.FMODEventInstance.setParameterByName(GetThemeID(Theme.Exploration), 0f);
+            _instance.FMODEventInstance.setParameterByName(GetThemeID(Theme.Victory), 0f);
         }
 
         void ApplyTheme(Theme theme)
         {
-            _instance.FMODEventInstance.setParameterByName(GetID(theme), 1f);
+            _instance.FMODEventInstance.setParameterByName(GetThemeID(theme), 1f);
         }
+    }
 
-        string GetID(Theme theme)
+    static string GetThemeID(Theme theme)
+    {
+        switch (theme)
         {
-            switch (theme)
-            {
-                case Theme.MainMenu:        return "IsMainMenuTheme";
-                case Theme.LoadingScreen:   return "IsCaricamentoTheme";
-                case Theme.Exploration:     return "IsEsplorazioneTheme";
-            }
-            throw new System.NotImplementedException();
+            case Theme.MainMenu: return "IsMainMenuTheme";
+            case Theme.LoadingScreen: return "IsCaricamentoTheme";
+            case Theme.Exploration: return "IsEsplorazioneTheme";
+            case Theme.Victory: return "Victory";
         }
+        throw new System.NotImplementedException();
     }
 
     private void ResetBools()

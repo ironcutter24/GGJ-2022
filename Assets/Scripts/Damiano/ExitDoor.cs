@@ -20,12 +20,10 @@ public class ExitDoor : Singleton<ExitDoor>
 
     GameObject _tarot;
 
-#if UNITY_EDITOR
     private void Start()
     {
-        //StartCoroutine(_ShowTarot());
+        MusicManager.SetVictory(false);
     }
-#endif
 
     private void OnTriggerEnter(Collider other)
     {
@@ -44,6 +42,8 @@ public class ExitDoor : Singleton<ExitDoor>
     {
         meshRend.enabled = false;
         invisibleWall.enabled = false;
+
+        MusicManager.SetVictory(true);
     }
 
     IEnumerator _ShowTarot()
