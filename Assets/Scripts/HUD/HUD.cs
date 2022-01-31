@@ -11,6 +11,9 @@ public class HUD : Singleton<HUD>
     [SerializeField] Sprite spritePrey;
     [SerializeField] Sprite spriteHunter;
     [SerializeField] Image[] portraits;
+
+    [SerializeField] Text enemiesLeft;
+
     private bool isPrey_;
     public bool isPrey
     {
@@ -35,10 +38,6 @@ public class HUD : Singleton<HUD>
     [SerializeField] Image mask;
     [SerializeField] Image fill;
     [SerializeField] Color color;
-
-	void Start() {
-		
-	}
 
     void Update()
     {
@@ -87,4 +86,9 @@ public class HUD : Singleton<HUD>
 		resourceMax = resMax;
 		resourceCurrent = resMax;
 	}
+
+    public static void SetEnemiesLeft(int amount)
+    {
+        _instance.enemiesLeft.text = amount.ToString();
+    }
 }

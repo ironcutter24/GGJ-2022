@@ -57,8 +57,14 @@ public class PlayerState : Singleton<PlayerState>
         if(_nearEnemies.Count > 0)
         {
             Enemy e = _nearEnemies.OrderBy(x => x.DistanceFromPlayer).First();
-            MusicManager.SetDangerProximity(UMath.Normalize(e.DistanceFromPlayer, e.DangerDistanceMax, e.DangerDistanceMin));
+            MusicManager.SetDangerProximity(GetDangerLevel(e));
         }
+    }
+
+    private float GetDangerLevel(Enemy enemy)
+    {
+        if (!enemy) return 0f;
+        return UMath.Normalize(enemy.DistanceFromPlayer, enemy.DangerDistanceMax, enemy.DangerDistanceMin);
     }
 
     private int _activeEnemies;
@@ -67,13 +73,15 @@ public class PlayerState : Singleton<PlayerState>
     public static void AddActiveEnemy()
     {
         _instance._activeEnemies++;
+        HUD.SetEnemiesLeft(_instance._activeEnemies);
     }
 
     public static void RemoveActiveEnemy()
     {
         _instance._activeEnemies--;
+        HUD.SetEnemiesLeft(_instance._activeEnemies);
 
-        if(_instance._activeEnemies <= 0)
+        if (_instance._activeEnemies <= 0)
             ExitDoor.Instance.Open();
     }
 

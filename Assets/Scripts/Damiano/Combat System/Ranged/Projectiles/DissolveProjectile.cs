@@ -18,7 +18,7 @@ public class DissolveProjectile : Projectile
         base.OnEnable();
         
         Timing.KillCoroutines("Forward" + gameObject.GetInstanceID());
-        Timing.RunCoroutine(_Transition(true), "Forward" + gameObject.GetInstanceID());
+        Timing.RunCoroutine(_Transition(true).CancelWith(gameObject), "Forward" + gameObject.GetInstanceID());
     }
 
     protected virtual void Update()
@@ -54,7 +54,7 @@ public class DissolveProjectile : Projectile
 
     public override void Discharge()
     {
-        Timing.RunCoroutine(_Discharge());
+        Timing.RunCoroutine(_Discharge().CancelWith(gameObject));
     }
 
     IEnumerator<float> _Discharge()
@@ -62,7 +62,7 @@ public class DissolveProjectile : Projectile
         Timing.KillCoroutines("Backward" + gameObject.GetInstanceID());
 
 
-        var handle = Timing.RunCoroutine(_Transition(false), "Backward" + gameObject.GetInstanceID());
+        var handle = Timing.RunCoroutine(_Transition(false).CancelWith(gameObject), "Backward" + gameObject.GetInstanceID());
         yield return Timing.WaitUntilDone(handle);
         DeactivateForPooling();
         yield break;

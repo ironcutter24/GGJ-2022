@@ -51,6 +51,11 @@ public abstract class Enemy : MonoBehaviour, ITargetable
         PlayerState.AddActiveEnemy();
     }
 
+    void OnDestroy()
+    {
+        SetIsNearPlayer(false);
+    }
+
     float startAlpha = 1f;
     public void ApplyDamage(AttackMessage attack)
     {
@@ -63,7 +68,7 @@ public abstract class Enemy : MonoBehaviour, ITargetable
             if(_isEngaged)
                 PlayerState.EngagedEnemies--;
 
-            PlayerState.RemoveNearEnemy(this);
+            SetIsNearPlayer(false);
 
             AudioManager.SpikeDeath();
 
@@ -168,7 +173,7 @@ public abstract class Enemy : MonoBehaviour, ITargetable
     {
         if (collider.gameObject.CompareTag("Player"))
         {
-            PlayerState.AddNearEnemy(this);
+            SetIsNearPlayer(true);
         }
     }
 
@@ -190,7 +195,7 @@ public abstract class Enemy : MonoBehaviour, ITargetable
         if (collider.gameObject.CompareTag("Player"))
         {
             distanceFromPlayer = Mathf.Infinity;
-            PlayerState.RemoveNearEnemy(this);
+            SetIsNearPlayer(false);
         }
     }
 
@@ -271,6 +276,21 @@ public abstract class Enemy : MonoBehaviour, ITargetable
         }
         Debug.DrawRay(transform.position, Controller3D.Instance.Pos - transform.position, Color.red);
         return false;
+    }
+
+    bool _isNearPlayer = false;
+    void SetIsNearPlayer(bool state)
+    {
+        if (state)
+        {
+            if (!_isNearPlayer)
+                PlayerState.AddNearEnemy(this);
+        }
+        else
+        {
+            if (_isNearPlayer)
+                PlayerState.RemoveNearEnemy(this);
+        }
     }
 
     #endregion
