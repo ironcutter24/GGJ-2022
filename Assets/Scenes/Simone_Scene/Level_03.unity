@@ -642,7 +642,7 @@ GameObject:
   - component: {fileID: 136355270}
   - component: {fileID: 136355272}
   - component: {fileID: 136355271}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Box Volume (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1447,7 +1447,7 @@ GameObject:
   - component: {fileID: 305700248}
   - component: {fileID: 305700250}
   - component: {fileID: 305700249}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Box Volume (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1830,7 +1830,7 @@ GameObject:
   - component: {fileID: 374376253}
   - component: {fileID: 374376255}
   - component: {fileID: 374376254}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Box Volume (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2488,7 +2488,7 @@ GameObject:
   - component: {fileID: 523893974}
   - component: {fileID: 523893976}
   - component: {fileID: 523893975}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Box Volume (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2828,7 +2828,7 @@ GameObject:
   - component: {fileID: 612690782}
   - component: {fileID: 612690784}
   - component: {fileID: 612690783}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Box Volume (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3855,7 +3855,7 @@ GameObject:
   - component: {fileID: 861450796}
   - component: {fileID: 861450798}
   - component: {fileID: 861450797}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Box Volume (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5194,7 +5194,7 @@ GameObject:
   - component: {fileID: 1216204558}
   - component: {fileID: 1216204560}
   - component: {fileID: 1216204559}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Box Volume (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5416,7 +5416,7 @@ GameObject:
   - component: {fileID: 1245753292}
   - component: {fileID: 1245753294}
   - component: {fileID: 1245753293}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Box Volume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6044,7 +6044,7 @@ GameObject:
   - component: {fileID: 1468043430}
   - component: {fileID: 1468043432}
   - component: {fileID: 1468043431}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Box Volume (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6882,7 +6882,7 @@ GameObject:
   - component: {fileID: 1584959868}
   - component: {fileID: 1584959870}
   - component: {fileID: 1584959869}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Box Volume (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9040,7 +9040,7 @@ GameObject:
   - component: {fileID: 2005696869}
   - component: {fileID: 2005696871}
   - component: {fileID: 2005696870}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Box Volume (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9102,7 +9102,7 @@ GameObject:
   - component: {fileID: 2031526536}
   - component: {fileID: 2031526538}
   - component: {fileID: 2031526537}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Box Volume (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

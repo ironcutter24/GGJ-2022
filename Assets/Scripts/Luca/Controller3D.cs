@@ -11,6 +11,7 @@ public class Controller3D : Singleton<Controller3D>, ITargetable
     [Header("Components")]
     [SerializeField] Rigidbody rb;
     [SerializeField] Animator anim;
+    [SerializeField] CapsuleCollider mainCollider;
     
     [Header("Movement")]
     [SerializeField] float preySpeed;
@@ -25,7 +26,8 @@ public class Controller3D : Singleton<Controller3D>, ITargetable
     private int dashesLeft;
     [SerializeField] float dashSpeed;
     [SerializeField] float dashDuration;
-    [SerializeField] int healthRegenAmount;
+    [SerializeField] LayerMask blockDash;
+    //[SerializeField] int healthRegenAmount;
 
     #region Variables
 
@@ -93,7 +95,7 @@ public class Controller3D : Singleton<Controller3D>, ITargetable
         if (Input.GetKeyDown(KeyCode.LeftShift) && PlayerState.IsHunter && dashTimer.IsExpired && dashesLeft > 0 && move != Vector3.zero)
         {
             AudioManager.PlayerDash();
-            StartCoroutine(_Dash(dashDuration));
+            StartCoroutine(_Dash(dashDuration).CancelWith(gameObject));
             dashTimer.Set(dashDuration);
 	        dashesLeft--;
             
@@ -142,12 +144,12 @@ public class Controller3D : Singleton<Controller3D>, ITargetable
 
         _isInvisible = false;
     }
-
+    /*
     public void RegenHealth()
     {
         _health += healthRegenAmount;
     }
-
+    */
     #region Motion-related
 
     Vector3 GetDirectionalInput()
@@ -166,9 +168,9 @@ public class Controller3D : Singleton<Controller3D>, ITargetable
     }
 
     [SerializeField] DashTrail dashTrail;
+    Ray dashRay;
     IEnumerator<float> _Dash(float duration)
     {
-        //Physics.IgnoreLayerCollision(0, 0, true);  // Disable collision with enemies
         state = State.Dashing;
 
         Vector3 dashDirection = move;
@@ -181,6 +183,12 @@ public class Controller3D : Singleton<Controller3D>, ITargetable
         {
             deltaSpace = dashSpeed * Time.deltaTime;
 
+            dashRay = new Ray(transform.position, transform.forward);
+            if(Physics.Raycast(dashRay, mainCollider.radius + deltaSpace, blockDash))
+            {
+                break;
+            }
+
             distanceTraveled += deltaSpace;
             dashTrail.Process(distanceTraveled);
 
@@ -188,8 +196,6 @@ public class Controller3D : Singleton<Controller3D>, ITargetable
             timer -= Time.deltaTime;
             yield return Timing.WaitForOneFrame;
         }
-
-        //Physics.IgnoreLayerCollision(0, 0, false);  // Enable collision with enemies
         state = State.Moving;
     }
 

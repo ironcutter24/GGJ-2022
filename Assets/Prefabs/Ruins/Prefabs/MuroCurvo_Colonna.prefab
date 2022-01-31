@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7539024248272601165}
   - component: {fileID: 9013934004607165794}
   - component: {fileID: 719746154523008282}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Box Volume (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 1504175493692968407}
   - component: {fileID: 1504175493692968406}
   - component: {fileID: 1504175493692968401}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Box Volume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 1393123946659867323}
   - component: {fileID: 2664588693000381726}
   - component: {fileID: 224742399847403988}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MuroCurvo_Colonna
   m_TagString: Untagged
   m_Icon: {fileID: 0}

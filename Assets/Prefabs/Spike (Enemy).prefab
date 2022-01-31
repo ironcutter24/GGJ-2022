@@ -398,9 +398,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6611705545808362135, guid: 14ceb838d4a3b9d458485055465da58c, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2704595764714647141, guid: 14ceb838d4a3b9d458485055465da58c, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -377177839845913398, guid: 14ceb838d4a3b9d458485055465da58c, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 14ceb838d4a3b9d458485055465da58c, type: 3}
       propertyPath: m_Name
       value: Spike model
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 14ceb838d4a3b9d458485055465da58c, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1933434952479147289, guid: 14ceb838d4a3b9d458485055465da58c, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1934042278834895159, guid: 14ceb838d4a3b9d458485055465da58c, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14ceb838d4a3b9d458485055465da58c, type: 3}

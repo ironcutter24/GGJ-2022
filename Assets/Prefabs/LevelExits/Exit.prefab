@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3055606098142656456}
   - component: {fileID: 9198519678522709262}
   - component: {fileID: 9130329679564811089}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: ExitDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3327318981520365623}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Exit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 3327318982465617042}
   - component: {fileID: 3327318982465617043}
   - component: {fileID: 3611722439704209527}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}

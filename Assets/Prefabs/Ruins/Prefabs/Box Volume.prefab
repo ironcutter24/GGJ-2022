@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2788959438998732394}
   - component: {fileID: 6340884754642587955}
   - component: {fileID: 5073292148603407452}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Box Volume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,6 +129,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d91e182746b54c44bac94aa0cbcb4dc9, type: 3}
       propertyPath: m_Name
       value: MuroStraight (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d91e182746b54c44bac94aa0cbcb4dc9, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d91e182746b54c44bac94aa0cbcb4dc9, type: 3}
