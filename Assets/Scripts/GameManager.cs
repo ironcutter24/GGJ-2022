@@ -17,7 +17,15 @@ public class GameManager : Singleton<GameManager>
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
-            StartCoroutine(_ExitApplication());
+        {
+            //StartCoroutine(_ExitApplication());
+            Application.Quit();
+        }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            CanvasManager.ShowControlsPanel(!CanvasManager.IsShowingControls);
+        }
     }
 
     IEnumerator _ExitApplication()
@@ -37,14 +45,7 @@ public class GameManager : Singleton<GameManager>
 
     public static void LoadScene(string sceneName)
     {
+        CanvasManager.ShowControlsPanel(false);
         SceneManager.LoadScene(sceneName);
     }
-
-    /*
-    void OnSceneChanged(Scene _ignoreThis, Scene _currentScene)
-    {
-        PlayerGhostPooler.ClearAll();
-        ProjectilePooler.ClearAll();
-    }
-    */
 }

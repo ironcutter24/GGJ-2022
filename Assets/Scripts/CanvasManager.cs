@@ -6,6 +6,7 @@ using Utility.Patterns;
 
 public class CanvasManager : Singleton<CanvasManager>
 {
+    [SerializeField] GameObject _controlsPanel;
     [SerializeField] Text _tarotText;
 
     public static Vector3 TarotTextScale { get { return _instance._tarotText.transform.localScale; } set { _instance._tarotText.transform.localScale = value; } }
@@ -13,7 +14,16 @@ public class CanvasManager : Singleton<CanvasManager>
     protected override void Awake()
     {
         base.Awake();
+        ShowControlsPanel(_isShowingControls);
         _tarotText.text = "";
+    }
+
+    bool _isShowingControls = false;
+    public static bool IsShowingControls { get { return _instance._isShowingControls; } }
+    public static void ShowControlsPanel(bool state)
+    {
+        _instance._isShowingControls = state;
+        _instance._controlsPanel.SetActive(state);
     }
 
     public static void SetTarotText(TarotId tarotId)

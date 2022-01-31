@@ -27,7 +27,7 @@ public class ExitDoor : Singleton<ExitDoor>
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && _isOpen)
         {
             StartCoroutine(_ShowTarot());
         }
@@ -38,10 +38,12 @@ public class ExitDoor : Singleton<ExitDoor>
         StartCoroutine(_ShowTarot());
     }
 
+    bool _isOpen = false;
     public void Open()
     {
         meshRend.enabled = false;
         invisibleWall.enabled = false;
+        _isOpen = true;
 
         MusicManager.SetVictory(true);
     }
