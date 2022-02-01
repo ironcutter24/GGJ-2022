@@ -6,11 +6,9 @@ using Utility.Patterns;
 
 public class CameraTopDown : Singleton<CameraTopDown>
 {
-    [SerializeField] float speed = 10f;
-
-    //[SerializeField]
-    //[Range(0f, 1f)]
-    //private float moveAndLookInterpolation = 1f;
+    [SerializeField]
+    [Range(0f, .1f)]
+    float lerpInterpolation = .0051f;
 
     [Header("Bounds")]
     [SerializeField] float maxDistanceX;
@@ -39,7 +37,7 @@ public class CameraTopDown : Singleton<CameraTopDown>
 
     void LateUpdate()
     {
-        transform.position = Vector3.Lerp(transform.position, TargetPosition, speed * Time.deltaTime);
+        transform.position = Vector3.Lerp(transform.position, TargetPosition, lerpInterpolation);
     }
 
     Vector3 KeepTransformY(Vector3 source)

@@ -149,17 +149,17 @@ public abstract class Enemy : MonoBehaviour, ITargetable
     public Vector3 GetNearestCoffin()
     {
         float shortestSqrDistance = Mathf.Infinity;
-        float dist;
+        float sqrDist;
         Vector3 nearestCoffin = Vector3.zero;
 
         foreach (SpikeCoffin coffin in SpikeCoffin.InScene)
         {
-            dist = UMath.SqrDistanceXZ(coffin.transform.position, this.transform.position);
+            sqrDist = UMath.SqrDistanceXZ(coffin.transform.position, this.transform.position);
 
-            if (dist < shortestSqrDistance)
+            if (sqrDist < shortestSqrDistance)
             {
                 nearestCoffin = coffin.transform.position;
-                shortestSqrDistance = dist;
+                shortestSqrDistance = sqrDist;
             }
         }
         return nearestCoffin;

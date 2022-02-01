@@ -113,5 +113,11 @@ namespace FSM
                 SetState(States.Chase);
             }
         }
+
+        public override void LateProcess()
+        {
+            if (!Actor.IsMovementPaused)
+                base.LateProcess();
+        }
     }
 }

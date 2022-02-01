@@ -8,8 +8,8 @@ namespace FSM
 	{
 		[SerializeField] public Enemy targetUnit;
 
-		State currentState;
-		State oldState = null;
+		State currentState = null;
+		State newState;
 
 		#region Old StateCollection implementation
 
@@ -43,7 +43,7 @@ namespace FSM
 		private void Awake()
 		{
 			InitializeStates();
-			currentState = States.Idle;
+			newState = States.Idle;
 		}
 
 		protected StateCollection validStates;
@@ -55,23 +55,26 @@ namespace FSM
 		{
 			if (StateHasChanged)
 			{
+				currentState = newState;
+				Debug.Log("Entering: " + currentState.ToString());
 				currentState.Enter();
-				oldState = currentState;
 			}
 
 			currentState.Process();
 			currentState.LateProcess();
 
 			if (StateHasChanged)
-				oldState.Exit();
+            {
+				Debug.Log("Exiting: " + currentState.ToString());
+				currentState.Exit();
+			}
 		}
 
-		bool StateHasChanged { get { return currentState != oldState; } }
+		bool StateHasChanged { get { return newState != currentState; } }
 
 		public void SetState(State newState)
 		{
-			oldState = currentState;
-			currentState = newState;
+			this.newState = newState;
 		}
 
 		public class StateCollection
@@ -117,7 +120,7 @@ namespace FSM
 
 		public virtual void LateProcess()
         {
-			if (PlayerState.IsHunter && !Actor.IsMovementPaused)
+			if (PlayerState.IsHunter)
 				SetState(States.RunAway);
         }
 

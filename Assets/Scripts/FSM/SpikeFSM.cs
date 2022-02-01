@@ -30,10 +30,12 @@ namespace FSM
 
             public override void Process()
             {
-                if (Actor.HasReachedDestination())
-                    SetState(States.SafeZone);
-
-                if (PlayerState.IsPrey)
+                if (PlayerState.IsHunter)
+                {
+                    if (Actor.HasReachedDestination())
+                        SetState(States.SafeZone);
+                }
+                else 
                     SetState(States.Patrol);
             }
 
