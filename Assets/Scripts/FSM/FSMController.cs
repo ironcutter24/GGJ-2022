@@ -11,35 +11,6 @@ namespace FSM
 		State currentState = null;
 		State newState;
 
-		#region Old StateCollection implementation
-
-
-		/*
-		public struct StateCollection
-        {
-			public State Idle;
-			public State Patrol;
-			public State Chase;
-			public State RunAway;
-			public State Attack;
-		}
-
-		StateCollection validStates;
-		public StateCollection States { get { return validStates; } }
-
-		private void Awake()
-		{
-			validStates.Idle = new IdleState(this);
-			validStates.Patrol = new PatrolState(this);
-			validStates.Chase = new ChaseState(this);
-			validStates.RunAway = new RunAwayState(this);
-			validStates.Attack = new AttackState(this);
-
-			currentState = States.Patrol;
-		}
-		*/
-		#endregion
-
 		private void Awake()
 		{
 			InitializeStates();
@@ -56,7 +27,6 @@ namespace FSM
 			if (StateHasChanged)
 			{
 				currentState = newState;
-				Debug.Log("Entering: " + currentState.ToString());
 				currentState.Enter();
 			}
 
@@ -65,7 +35,6 @@ namespace FSM
 
 			if (StateHasChanged)
             {
-				Debug.Log("Exiting: " + currentState.ToString());
 				currentState.Exit();
 			}
 		}

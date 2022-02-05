@@ -53,45 +53,22 @@ namespace FSM
 
         public override void Enter()
         {
-            Actor.SetDestination(Actor.GetNearestWaypoint());
+            if (Actor.HasWaypoints)
+                Actor.SetDestination(Actor.GetNearestWaypoint());
         }
 
         public override void Process()
         {
-            if (Actor.HasReachedDestination())
-                Actor.SetDestination(Actor.GetNextWaypoint());
-
-            if (Actor.CanSeePlayer())
-                SetState(States.Chase);
-        }
-    }
-
-    public class ChaseState : State
-    {
-        public ChaseState(FSMController controller) : base(controller) { }
-
-        public override void Enter()
-        {
-            Actor.SetDestination(Controller3D.Instance.Pos);
-        }
-
-        public override void Process()
-        {
-            if (Actor.CanSeePlayer())
+            if (Actor.HasWaypoints)
             {
-                Actor.SetDestination(Controller3D.Instance.Pos);
-            }
+                if (Actor.HasReachedDestination())
+                    Actor.SetDestination(Actor.GetNextWaypoint());
 
-            if (Actor.HasReachedDestination())
-            {
                 if (Actor.CanSeePlayer())
-                {
-                    if (Actor.IsPlayerInAttackRange())
-                        SetState(States.Attack);
-                }
-                else
-                    SetState(States.Patrol);
+                    SetState(States.Chase);
             }
+            else
+                SetState(States.Idle);
         }
     }
 

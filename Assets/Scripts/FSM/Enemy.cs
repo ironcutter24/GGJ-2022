@@ -25,7 +25,7 @@ public abstract class Enemy : MonoBehaviour, ITargetable
     public float DangerDistanceMax { get { return nearFieldCollider.radius; } }
 
     [SerializeField]
-    [Range(0f, 180f)]
+    [Range(0f, 360f)]
     float fieldOfView = 60f;
 
     [Header("Stats")]
@@ -220,6 +220,11 @@ public abstract class Enemy : MonoBehaviour, ITargetable
     public void ResumeMovement()
     {
         agent.isStopped = false;
+    }
+
+    public Vector3 GetTeleportDestination()
+    {
+        throw new System.NotImplementedException();
     }
 
     #endregion

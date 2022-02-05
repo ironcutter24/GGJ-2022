@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace FSM
 {
-    public class SpikeFSM : FSMController
+    public class JumperFSM : FSMController
     {
         protected override void InitializeStates()
         {
@@ -24,16 +24,11 @@ namespace FSM
 
             public override void Enter()
             {
-                Actor.SetDestination(Controller3D.Instance.Pos);
+                Actor.SetDestination(Actor.GetTeleportDestination());
             }
 
             public override void Process()
             {
-                if (Actor.CanSeePlayer())
-                {
-                    Actor.SetDestination(Controller3D.Instance.Pos);
-                }
-
                 if (Actor.HasReachedDestination())
                 {
                     if (Actor.CanSeePlayer())
@@ -42,7 +37,7 @@ namespace FSM
                             SetState(States.Attack);
                     }
                     else
-                        SetState(States.Patrol);
+                        SetState(States.Idle);
                 }
             }
         }
@@ -51,23 +46,9 @@ namespace FSM
         {
             public RunAwayState(FSMController controller) : base(controller) { }
 
-            public override void Enter()
-            {
-                //Actor.SetDestination(Actor.spikeCoffin.transform.position);
-                Vector3 destination = Actor.GetNearestCoffin();
-                Debug.Log("Destination: " + destination);
-                Actor.SetDestination(destination);
-            }
-
             public override void Process()
             {
-                if (PlayerState.IsHunter)
-                {
-                    if (Actor.HasReachedDestination())
-                        SetState(States.SafeZone);
-                }
-                else 
-                    SetState(States.Patrol);
+                
             }
 
             public override void LateProcess() { }
@@ -77,23 +58,17 @@ namespace FSM
         {
             public SafeZoneState(FSMController controller) : base(controller) { }
 
-            public override void Enter()
-            {
-                Actor.SetCollisionsAndGraphics(false);  // Enter lair
-            }
-
             public override void Process()
             {
-                if (PlayerState.IsPrey)
-                    SetState(States.Patrol);
-            }
-
-            public override void Exit()
-            {
-                Actor.SetCollisionsAndGraphics(true);  // Exit lair
+                
             }
 
             public override void LateProcess() { }
         }
+    }
+
+    public abstract class JumperFSMState : State
+    {
+        public JumperFSMState(JumperFSM controller) : base(controller) { }
     }
 }

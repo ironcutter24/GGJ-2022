@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using Utility.Patterns;
 
-[ExecuteInEditMode]
 public class HUD : Singleton<HUD>
 {
     [Header("Portrait Sprites")]
