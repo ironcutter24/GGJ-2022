@@ -195,11 +195,11 @@ public abstract class Enemy : MonoBehaviour, ITargetable
         float nearestWaypointDistance = Mathf.Infinity;
         int nearestWaypointIndex = 0;
 
-        for(int i = 0; i < waypoints.Count; i++)
+        for (int i = 0; i < waypoints.Count; i++)
         {
             float distance = UMath.DistanceXZ(waypoints[i].position, transform.position);
 
-            if(distance < nearestWaypointDistance)
+            if (distance < nearestWaypointDistance)
             {
                 nearestWaypointIndex = i;
                 nearestWaypointDistance = distance;
@@ -244,7 +244,7 @@ public abstract class Enemy : MonoBehaviour, ITargetable
 
     #endregion
 
-    #region Hurt state
+    #region Stunned state
 
     float startAlpha = 1f;
     public void ApplyDamage(AttackMessage attack)
@@ -253,7 +253,8 @@ public abstract class Enemy : MonoBehaviour, ITargetable
 
         PlayerState.RecordSuccessfulAttack(attack);
 
-        _isStunned = true;
+        if (attack.source.GetComponent<DecoyTrap>() != null)
+            _isStunned = true;
 
         if (_health <= 0f)
         {
