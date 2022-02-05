@@ -137,7 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79ed9ed665d902e48aa93beb534f77e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  lerpInterpolation: 0.008
   maxDistanceX: 1
   maxDistanceZ: 0.6
   heightPrey: 7

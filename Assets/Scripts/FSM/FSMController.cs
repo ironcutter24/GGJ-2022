@@ -52,15 +52,17 @@ namespace FSM
 			public State Patrol;
 			public State Chase;
 			public State Attack;
+			public State Stunned;
 			public State RunAway;
 			public State SafeZone;
 
-			public StateCollection(State idle, State patrol, State chase, State attack, State runAway, State safeZone)
+			public StateCollection(State idle, State patrol, State chase, State attack, State stunned, State runAway, State safeZone)
 			{
 				this.Idle = idle;
 				this.Patrol = patrol;
 				this.Chase = chase;
 				this.Attack = attack;
+				this.Stunned = stunned;
 				this.RunAway = runAway;
 				this.SafeZone = safeZone;
 			}
@@ -89,7 +91,11 @@ namespace FSM
 
 		public virtual void LateProcess()
         {
-			if (PlayerState.IsHunter)
+            if (Actor.IsStunned)
+            {
+				SetState(States.Stunned);
+            }
+			else if (PlayerState.IsHunter)
 				SetState(States.RunAway);
         }
 

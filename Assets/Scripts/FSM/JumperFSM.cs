@@ -13,6 +13,7 @@ namespace FSM
                 new PatrolState(this),
                 new ChaseState(this),
                 new AttackState(this),
+                new StunnedState(this),
                 new RunAwayState(this),
                 new SafeZoneState(this)
                 );

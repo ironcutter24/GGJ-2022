@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpikeAttack : MonoBehaviour
 {
-    [SerializeField] Enemy actor;
+    [SerializeField] Spike Actor;
     [SerializeField] Transform attackBounds;
     [SerializeField] int attackDamage;
 
@@ -29,7 +29,7 @@ public class SpikeAttack : MonoBehaviour
 
     public void AnimationHasEnded()
     {
-        actor.ResumeMovement();
+        Actor.StopAttack();
     }
 
     private Collider[] GetCollidersInAttackBounds()

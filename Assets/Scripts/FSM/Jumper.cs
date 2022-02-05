@@ -27,7 +27,7 @@ public class Jumper : Enemy
 
     #endregion
 
-    public override void Attack()
+    public override void StartAttack()
 	{
 		throw new System.NotImplementedException();
 	}

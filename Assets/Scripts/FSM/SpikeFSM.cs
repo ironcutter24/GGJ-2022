@@ -13,6 +13,7 @@ namespace FSM
                 new PatrolState(this),
                 new ChaseState(this),
                 new AttackState(this),
+                new StunnedState(this),
                 new RunAwayState(this),
                 new SafeZoneState(this)
                 );
@@ -53,10 +54,7 @@ namespace FSM
 
             public override void Enter()
             {
-                //Actor.SetDestination(Actor.spikeCoffin.transform.position);
-                Vector3 destination = Actor.GetNearestCoffin();
-                Debug.Log("Destination: " + destination);
-                Actor.SetDestination(destination);
+                Actor.SetDestination(Actor.GetNearestCoffin());
             }
 
             public override void Process()
@@ -70,7 +68,11 @@ namespace FSM
                     SetState(States.Patrol);
             }
 
-            public override void LateProcess() { }
+            public override void LateProcess()
+            {
+                if (Actor.IsStunned)
+                    SetState(States.Stunned);
+            }
         }
 
         private class SafeZoneState : State

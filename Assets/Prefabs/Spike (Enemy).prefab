@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f62e4dbf8e1130459a8c36c052cbda0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actor: {fileID: 995943883478524426}
+  Actor: {fileID: 995943883478524426}
   attackBounds: {fileID: 718437496897886613}
   attackDamage: 1
 --- !u!114 &225834403712892468
@@ -261,6 +261,7 @@ MonoBehaviour:
     m_Bits: 64
   fieldOfView: 120
   maxHealth: 3
+  stunDuration: 0.4
   waypoints:
   - {fileID: 0}
   - {fileID: 0}

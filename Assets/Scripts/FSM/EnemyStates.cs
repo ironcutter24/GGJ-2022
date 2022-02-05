@@ -76,25 +76,47 @@ namespace FSM
     {
         public AttackState(FSMController controller) : base(controller) { }
 
-        public override void Process()
+        public override void Enter()
         {
-            if (Actor.IsMovementPaused)
-                return;
-
-            if (Actor.IsPlayerInAttackRange())
-            {
-                Actor.Attack();
-            }
-            else
-            {
-                SetState(States.Chase);
-            }
+            Actor.PauseMovement();
+            Actor.StartAttack();
         }
 
-        public override void LateProcess()
+        public override void Process()
         {
-            if (!Actor.IsMovementPaused)
-                base.LateProcess();
+            if (!Actor.IsAttacking)
+                SetState(States.Chase);
+        }
+
+        public override void LateProcess() { }
+
+        public override void Exit()
+        {
+            Actor.ResumeMovement();
+        }
+    }
+
+    public class StunnedState : State
+    {
+        public StunnedState(FSMController controller) : base(controller) { }
+
+        public override void Enter()
+        {
+            Actor.PauseMovement();
+            Actor.StartStunCountdown();
+        }
+
+        public override void Process()
+        {
+            if(!Actor.IsStunned)
+                SetState(States.Patrol);
+        }
+
+        public override void LateProcess() { }
+
+        public override void Exit()
+        {
+            Actor.ResumeMovement();
         }
     }
 }

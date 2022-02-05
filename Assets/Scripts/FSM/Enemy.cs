@@ -32,8 +32,10 @@ public abstract class Enemy : MonoBehaviour, ITargetable
     [SerializeField] int maxHealth = 3;
     private int _health;
 
+    [SerializeField] float stunDuration = 1f;
+
     [Header("Spike Enemy")]
-    //[SerializeField] public GameObject spikeCoffin;
+    //[SerializeField] public SpikeCoffin spikeCoffin;
     [SerializeField] List<Transform> waypoints = new List<Transform>();
     private int currentWaypoint;
     public bool HasWaypoints { get { return waypoints.Count > 0; } }
@@ -56,150 +58,6 @@ public abstract class Enemy : MonoBehaviour, ITargetable
         SetIsNearPlayer(false);
     }
 
-    float startAlpha = 1f;
-    public void ApplyDamage(AttackMessage attack)
-    {
-        _health = Mathf.Clamp(_health - attack.damage, 0, maxHealth);
-
-        PlayerState.RecordSuccessfulAttack(attack);
-
-        if (_health <= 0f)
-        {
-            if(_isEngaged)
-                PlayerState.EngagedEnemies--;
-
-            SetIsNearPlayer(false);
-
-            AudioManager.SpikeDeath();
-
-            StartCoroutine(_Death(.5f));
-        }
-        
-        IEnumerator _Death(float duration)
-        {
-            float speed = 1 / duration;
-            float interpolation = 0f;
-            while (interpolation < 1f)
-            {
-                SetAlpha(Mathf.Lerp(startAlpha, 0f, interpolation));
-                interpolation += speed * Time.deltaTime;
-                yield return null;
-            }
-            interpolation = 1f;
-            SetAlpha(startAlpha);
-
-            PlayerState.RemoveActiveEnemy();
-            Destroy(this.gameObject);
-
-
-            void SetAlpha(float alpha)
-            {
-                materialMimic.Mat.SetFloat("_CutoffHeight", alpha * 5);
-            }
-        }
-    }
-
-    #region Patrol state
-
-    public Vector3 GetNearestWaypoint()
-    {
-        float nearestWaypointDistance = Mathf.Infinity;
-        int nearestWaypointIndex = 0;
-
-        for(int i = 0; i < waypoints.Count; i++)
-        {
-            float distance = UMath.DistanceXZ(waypoints[i].position, transform.position);
-
-            if(distance < nearestWaypointDistance)
-            {
-                nearestWaypointIndex = i;
-                nearestWaypointDistance = distance;
-            }
-        }
-
-        currentWaypoint = nearestWaypointIndex - 1;
-        return GetNextWaypoint();
-    }
-
-    public Vector3 GetNextWaypoint()
-    {
-        currentWaypoint++;
-
-        if (currentWaypoint >= waypoints.Count)
-            currentWaypoint -= waypoints.Count;
-
-        return waypoints[currentWaypoint].position;
-    }
-
-    #endregion
-
-    #region Attack state
-
-    public bool IsPlayerInAttackRange()
-    {
-        return distanceFromPlayer < attackDistance;
-    }
-
-    public abstract void Attack();
-
-    #endregion
-
-    #region RunAway
-
-    public Vector3 GetNearestCoffin()
-    {
-        float shortestSqrDistance = Mathf.Infinity;
-        float sqrDist;
-        Vector3 nearestCoffin = Vector3.zero;
-
-        foreach (SpikeCoffin coffin in SpikeCoffin.InScene)
-        {
-            sqrDist = UMath.SqrDistanceXZ(coffin.transform.position, this.transform.position);
-
-            if (sqrDist < shortestSqrDistance)
-            {
-                nearestCoffin = coffin.transform.position;
-                shortestSqrDistance = sqrDist;
-            }
-        }
-        return nearestCoffin;
-    }
-
-    #endregion
-
-    #region Trigger events
-
-    private void OnTriggerEnter(Collider collider)
-    {
-        if (collider.gameObject.CompareTag("Player"))
-        {
-            SetIsNearPlayer(true);
-        }
-    }
-
-    private void OnTriggerStay(Collider collider)
-    {
-        if (collider.gameObject.CompareTag("Player"))
-        {
-            UpdateDistanceFromPlayer();
-        }
-
-        if (collider.gameObject.CompareTag("PlayerDecoy"))
-        {
-            UpdateDistanceFromPlayer();
-        }
-    }
-
-    private void OnTriggerExit(Collider collider)
-    {
-        if (collider.gameObject.CompareTag("Player"))
-        {
-            distanceFromPlayer = Mathf.Infinity;
-            SetIsNearPlayer(false);
-        }
-    }
-
-    #endregion
 
     #region Movement
 
@@ -228,17 +86,6 @@ public abstract class Enemy : MonoBehaviour, ITargetable
     }
 
     #endregion
-
-    private void UpdateDistanceFromPlayer()
-    {
-        distanceFromPlayer = Vector3.Distance(transform.position, player.Pos);
-    }
-
-    public void SetCollisionsAndGraphics(bool state)
-    {
-        graphics.SetActive(state);
-        hitCollider.enabled = state;
-    }
 
     #region Sight
 
@@ -298,7 +145,202 @@ public abstract class Enemy : MonoBehaviour, ITargetable
         }
     }
 
+    private void UpdateDistanceFromPlayer()
+    {
+        distanceFromPlayer = Vector3.Distance(transform.position, player.Pos);
+    }
+
     #endregion
+
+    #region Trigger events
+
+    private void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.CompareTag("Player"))
+        {
+            SetIsNearPlayer(true);
+        }
+    }
+
+    private void OnTriggerStay(Collider collider)
+    {
+        if (collider.gameObject.CompareTag("Player"))
+        {
+            UpdateDistanceFromPlayer();
+        }
+
+        if (collider.gameObject.CompareTag("PlayerDecoy"))
+        {
+            UpdateDistanceFromPlayer();
+        }
+    }
+
+    private void OnTriggerExit(Collider collider)
+    {
+        if (collider.gameObject.CompareTag("Player"))
+        {
+            distanceFromPlayer = Mathf.Infinity;
+            SetIsNearPlayer(false);
+        }
+    }
+
+    #endregion
+
+
+
+    #region Patrol state
+
+    public Vector3 GetNearestWaypoint()
+    {
+        float nearestWaypointDistance = Mathf.Infinity;
+        int nearestWaypointIndex = 0;
+
+        for(int i = 0; i < waypoints.Count; i++)
+        {
+            float distance = UMath.DistanceXZ(waypoints[i].position, transform.position);
+
+            if(distance < nearestWaypointDistance)
+            {
+                nearestWaypointIndex = i;
+                nearestWaypointDistance = distance;
+            }
+        }
+
+        currentWaypoint = nearestWaypointIndex - 1;
+        return GetNextWaypoint();
+    }
+
+    public Vector3 GetNextWaypoint()
+    {
+        currentWaypoint++;
+
+        if (currentWaypoint >= waypoints.Count)
+            currentWaypoint -= waypoints.Count;
+
+        return waypoints[currentWaypoint].position;
+    }
+
+    #endregion
+
+    #region Attack state
+
+    public bool IsPlayerInAttackRange()
+    {
+        return distanceFromPlayer < attackDistance;
+    }
+
+    private bool _isAttacking;
+    public bool IsAttacking { get { return _isAttacking; } }
+
+    public virtual void StartAttack()
+    {
+        _isAttacking = true;
+    }
+
+    public virtual void StopAttack()
+    {
+        _isAttacking = false;
+    }
+
+    #endregion
+
+    #region Hurt state
+
+    float startAlpha = 1f;
+    public void ApplyDamage(AttackMessage attack)
+    {
+        _health = Mathf.Clamp(_health - attack.damage, 0, maxHealth);
+
+        PlayerState.RecordSuccessfulAttack(attack);
+
+        _isStunned = true;
+
+        if (_health <= 0f)
+        {
+            if (_isEngaged)
+                PlayerState.EngagedEnemies--;
+
+            SetIsNearPlayer(false);
+
+            AudioManager.SpikeDeath();
+
+            StartCoroutine(_Death(.5f));
+        }
+
+        IEnumerator _Death(float duration)
+        {
+            float speed = 1 / duration;
+            float interpolation = 0f;
+            while (interpolation < 1f)
+            {
+                SetAlpha(Mathf.Lerp(startAlpha, 0f, interpolation));
+                interpolation += speed * Time.deltaTime;
+                yield return null;
+            }
+            interpolation = 1f;
+            SetAlpha(startAlpha);
+
+            PlayerState.RemoveActiveEnemy();
+            Destroy(this.gameObject);
+
+
+            void SetAlpha(float alpha)
+            {
+                materialMimic.Mat.SetFloat("_CutoffHeight", alpha * 5);
+            }
+        }
+    }
+
+    public void StartStunCountdown()
+    {
+        StartCoroutine(_StunCountdown(stunDuration));
+    }
+
+    IEnumerator _StunCountdown(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+
+        _isStunned = false;
+    }
+
+    bool _isStunned;
+
+    public bool IsStunned
+    {
+        get { return _isStunned; }
+    }
+
+    #endregion
+
+    #region RunAway state
+
+    public Vector3 GetNearestCoffin()
+    {
+        float shortestSqrDistance = Mathf.Infinity;
+        float sqrDist;
+        Vector3 nearestCoffin = Vector3.zero;
+
+        foreach (SpikeCoffin coffin in SpikeCoffin.InScene)
+        {
+            sqrDist = UMath.SqrDistanceXZ(coffin.transform.position, this.transform.position);
+
+            if (sqrDist < shortestSqrDistance)
+            {
+                nearestCoffin = coffin.transform.position;
+                shortestSqrDistance = sqrDist;
+            }
+        }
+        return nearestCoffin;
+    }
+
+    #endregion
+
+
+    public void SetCollisionsAndGraphics(bool state)
+    {
+        graphics.SetActive(state);
+        hitCollider.enabled = state;
+    }
 
     private void OnDrawGizmos()
     {
