@@ -62,6 +62,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1965927921148605071}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 2039
   speed: 25
   damage: 1
   meshRend: {fileID: 1965927921242076585}
@@ -160,6 +163,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 607942b292ba17342ae322841adecef5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sourceMeshRend: {fileID: 0}
+  destMeshRends: []
 --- !u!136 &1965927921242076586
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -77,6 +77,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 2806312013139963543}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 2039
   speed: 16
   damage: 1
   meshRend: {fileID: 5836115319274009242}

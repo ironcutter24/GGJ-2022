@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,7 +10,6 @@ public class MacheteProjectile : DissolveProjectile
     protected override void OnEnable()
     {
         base.OnEnable();
-
         graphics.transform.rotation = Quaternion.identity;
     }
 
@@ -20,8 +19,6 @@ public class MacheteProjectile : DissolveProjectile
         base.Update();
 
         if (isMoving)
-        {
             graphics.transform.Rotate(angularSpeed * Time.deltaTime, 0f, 0f);
-        }
     }
 }
