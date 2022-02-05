@@ -5,6 +5,7 @@ using UnityEngine;
 public class DecoyTrap : PlayerGhost
 {
     [Header("DecoyTrap")]
+    [SerializeField] Collider triggerCollider;
     [SerializeField] int trapDamage;
 
     [Header("Particles")]
@@ -16,6 +17,7 @@ public class DecoyTrap : PlayerGhost
     public void SetPlacer(TrapPlacer placer)
     {
         this.placer = placer;
+        triggerCollider.enabled = true;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -31,6 +33,8 @@ public class DecoyTrap : PlayerGhost
 
             Instantiate(airParticles, transform.position, Quaternion.identity);
             Instantiate(groundParticles, transform.position, Quaternion.identity);
+
+            triggerCollider.enabled = false;
 
             Dissolve();
             placer.RemoveFromPlacer(this);

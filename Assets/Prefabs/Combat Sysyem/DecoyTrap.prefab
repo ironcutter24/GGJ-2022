@@ -63,9 +63,10 @@ MonoBehaviour:
   transitionDuration: 0.4
   startAlpha: 0.4
   anim: {fileID: 6989400473682444529}
+  triggerCollider: {fileID: 7662975852869472421}
   trapDamage: 1
-  airParticles: {fileID: 11906930789079634, guid: d3e68b52d3063714a8d5aa56cdbdae24, type: 3}
   groundParticles: {fileID: 5590119877582114544, guid: 5fa7768a3cc353940b2afe5751d12a8f, type: 3}
+  airParticles: {fileID: 11906930789079634, guid: d3e68b52d3063714a8d5aa56cdbdae24, type: 3}
 --- !u!1001 &6053535989407548183
 PrefabInstance:
   m_ObjectHideFlags: 0
