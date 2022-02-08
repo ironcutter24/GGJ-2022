@@ -28,6 +28,13 @@ public abstract class Enemy : MonoBehaviour, ITargetable
     [Range(0f, 360f)]
     float fieldOfView = 60f;
 
+    [Header("Speed")]
+    [SerializeField] float walkSpeed = 1f;
+    [SerializeField] float walkAngularSpeed = 90f;
+
+    [SerializeField] float runSpeed = 2f;
+    [SerializeField] float runAngularSpeed = 120f;
+
     [Header("Stats")]
     [SerializeField] int maxHealth = 3;
     private int _health;
@@ -65,6 +72,9 @@ public abstract class Enemy : MonoBehaviour, ITargetable
 
     public bool HasReachedDestination()
     {
+        if(agent.pathPending)
+            return false;
+
         return agent.remainingDistance < agent.stoppingDistance;
     }
 
@@ -83,6 +93,18 @@ public abstract class Enemy : MonoBehaviour, ITargetable
     public Vector3 GetTeleportDestination()
     {
         throw new System.NotImplementedException();
+    }
+
+    public void SetSpeedToWalk()
+    {
+        agent.speed = walkSpeed;
+        agent.angularSpeed = walkAngularSpeed;
+    }
+
+    public void SetSpeedToRun()
+    {
+        agent.speed = runSpeed;
+        agent.angularSpeed = runAngularSpeed;
     }
 
     #endregion
@@ -331,6 +353,10 @@ public abstract class Enemy : MonoBehaviour, ITargetable
                 shortestSqrDistance = sqrDist;
             }
         }
+        var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        cube.transform.position = nearestCoffin;
+        cube.transform.localScale = new Vector3(.2f, 20f, .2f);
+
         return nearestCoffin;
     }
 

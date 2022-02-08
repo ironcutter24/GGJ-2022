@@ -33,6 +33,11 @@ namespace FSM
     {
         public IdleState(FSMController controller) : base(controller) { }
 
+        public override void Enter()
+        {
+            Actor.SetSpeedToWalk();
+        }
+
         public override void Process()
         {
             if (Actor.HasWaypoints)
@@ -53,6 +58,8 @@ namespace FSM
 
         public override void Enter()
         {
+            Actor.SetSpeedToWalk();
+
             if (Actor.HasWaypoints)
                 Actor.SetDestination(Actor.GetNearestWaypoint());
         }

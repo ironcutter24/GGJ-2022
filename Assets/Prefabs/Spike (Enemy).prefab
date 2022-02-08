@@ -179,10 +179,10 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3
+  m_Speed: 0
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 130
+  m_AngularSpeed: 0
   m_StoppingDistance: 1.2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -260,6 +260,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   fieldOfView: 120
+  walkSpeed: 2
+  walkAngularSpeed: 110
+  runSpeed: 3
+  runAngularSpeed: 130
   maxHealth: 3
   stunDuration: 0.4
   waypoints:

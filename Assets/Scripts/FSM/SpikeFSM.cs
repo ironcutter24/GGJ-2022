@@ -25,6 +25,7 @@ namespace FSM
 
             public override void Enter()
             {
+                Actor.SetSpeedToRun();
                 Actor.SetDestination(Controller3D.Instance.Pos);
             }
 
@@ -54,6 +55,7 @@ namespace FSM
 
             public override void Enter()
             {
+                Actor.SetSpeedToRun();
                 Actor.SetDestination(Actor.GetNearestCoffin());
             }
 
@@ -81,6 +83,7 @@ namespace FSM
 
             public override void Enter()
             {
+                Actor.PauseMovement();
                 Actor.SetCollisionsAndGraphics(false);  // Enter lair
             }
 
@@ -93,6 +96,7 @@ namespace FSM
             public override void Exit()
             {
                 Actor.SetCollisionsAndGraphics(true);  // Exit lair
+                Actor.ResumeMovement();
             }
 
             public override void LateProcess() { }
