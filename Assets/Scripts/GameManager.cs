@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Utility.Patterns;
 
 public class GameManager : Singleton<GameManager>
@@ -10,15 +11,21 @@ public class GameManager : Singleton<GameManager>
         base.Awake();
         DontDestroyOnLoad(this.gameObject);
 
-#if !UNITY_EDITOR
         Cursor.visible = false;
-#endif
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
-            StartCoroutine(_ExitApplication());
+        {
+            //StartCoroutine(_ExitApplication());
+            Application.Quit();
+        }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            CanvasManager.ShowControlsPanel(!CanvasManager.IsShowingControls);
+        }
     }
 
     IEnumerator _ExitApplication()
@@ -34,5 +41,11 @@ public class GameManager : Singleton<GameManager>
             yield return new WaitForEndOfFrame();
         }
         Application.Quit();
+    }
+
+    public static void LoadScene(string sceneName)
+    {
+        CanvasManager.ShowControlsPanel(false);
+        SceneManager.LoadScene(sceneName);
     }
 }

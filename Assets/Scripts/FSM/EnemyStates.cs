@@ -4,42 +4,51 @@ using UnityEngine;
 
 namespace FSM
 {
-   /*
-	* METHODS EXAMPLE
-	* 
-	* 
-    
-	public class StateClassDocumentation : State
-	{
-	    public StateClassDocumentation(FSMController controller) : base(controller) { }
+    /*
+     * METHODS EXAMPLE
+     * 
+     * 
 
-	    public override void Enter() { }
+     public class StateClassDocumentation : State
+     {
+         public StateClassDocumentation(FSMController controller) : base(controller) { }
 
-	    public override void Process()
-        {
-            TargetUnit.TestMethod();
-            SetState(States.Chase);
-        }
+         public override void Enter()
+         {
+             Actor.PerformAction();
+         }
 
-	    public override void Exit() { }
-	}
+         public override void Process()
+         {
+             if(Actor.ActionIsDone())
+                SetState(States.NextState);
+         }
 
-	*/
+         public override void Exit() { }
+     }
+
+     */
+
     public class IdleState : State
     {
         public IdleState(FSMController controller) : base(controller) { }
 
+        public override void Enter()
+        {
+            Actor.SetSpeedToWalk();
+        }
+
         public override void Process()
         {
-            /*
-             * Use example:
-             * 
-             *  TargetUnit.TestMethod();
-             *  SetState(States.Chase);
-             * 
-             */
-
-            throw new System.NotImplementedException();
+            if (Actor.HasWaypoints)
+            {
+                SetState(States.Patrol);
+            }
+            else
+            {
+                if (Actor.CanSeePlayer())
+                    SetState(States.Chase);
+            }
         }
     }
 
@@ -47,29 +56,26 @@ namespace FSM
     {
         public PatrolState(FSMController controller) : base(controller) { }
 
-        public override void Process()
+        public override void Enter()
         {
-            throw new System.NotImplementedException();
+            Actor.SetSpeedToWalk();
+
+            if (Actor.HasWaypoints)
+                Actor.SetDestination(Actor.GetNearestWaypoint());
         }
-    }
-
-    public class ChaseState : State
-    {
-        public ChaseState(FSMController controller) : base(controller) { }
 
         public override void Process()
         {
-            throw new System.NotImplementedException();
-        }
-    }
+            if (Actor.HasWaypoints)
+            {
+                if (Actor.HasReachedDestination())
+                    Actor.SetDestination(Actor.GetNextWaypoint());
 
-    public class RunAwayState : State
-    {
-        public RunAwayState(FSMController controller) : base(controller) { }
-
-        public override void Process()
-        {
-            throw new System.NotImplementedException();
+                if (Actor.CanSeePlayer())
+                    SetState(States.Chase);
+            }
+            else
+                SetState(States.Idle);
         }
     }
 
@@ -77,10 +83,47 @@ namespace FSM
     {
         public AttackState(FSMController controller) : base(controller) { }
 
+        public override void Enter()
+        {
+            Actor.PauseMovement();
+            Actor.StartAttack();
+        }
+
         public override void Process()
         {
-            throw new System.NotImplementedException();
+            if (!Actor.IsAttacking)
+                SetState(States.Chase);
+        }
+
+        public override void LateProcess() { }
+
+        public override void Exit()
+        {
+            Actor.ResumeMovement();
         }
     }
 
+    public class StunnedState : State
+    {
+        public StunnedState(FSMController controller) : base(controller) { }
+
+        public override void Enter()
+        {
+            Actor.PauseMovement();
+            Actor.StartStunCountdown();
+        }
+
+        public override void Process()
+        {
+            if(!Actor.IsStunned)
+                SetState(States.Patrol);
+        }
+
+        public override void LateProcess() { }
+
+        public override void Exit()
+        {
+            Actor.ResumeMovement();
+        }
+    }
 }

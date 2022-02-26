@@ -4,69 +4,75 @@ using UnityEngine;
 
 namespace FSM
 {
-	public class FSMController : MonoBehaviour
+	public abstract class FSMController : MonoBehaviour
 	{
 		[SerializeField] public Enemy targetUnit;
 
-		State currentState;
-		State oldState = null;
-
-
-        #region States definition and initialization
-
-		public struct StateCollection
-        {
-			public State Idle;
-			public State Patrol;
-			public State Chase;
-			public State RunAway;
-			public State Attack;
-		}
-
-		StateCollection validStates;
-		public StateCollection States { get { return validStates; } }
+		State currentState = null;
+		State newState;
 
 		private void Awake()
 		{
-			validStates.Idle = new IdleState(this);
-			validStates.Patrol = new PatrolState(this);
-			validStates.Chase = new ChaseState(this);
-			validStates.RunAway = new RunAwayState(this);
-			validStates.Attack = new AttackState(this);
-
-			currentState = States.Patrol;
+			InitializeStates();
+			newState = States.Idle;
 		}
 
-		#endregion
+		protected StateCollection validStates;
+		public StateCollection States { get { return validStates; } }
 
+		protected abstract void InitializeStates();
 
 		private void Update()
 		{
 			if (StateHasChanged)
 			{
+				currentState = newState;
 				currentState.Enter();
-				oldState = currentState;
 			}
 
 			currentState.Process();
+			currentState.LateProcess();
 
 			if (StateHasChanged)
-				oldState.Exit();
+            {
+				currentState.Exit();
+			}
 		}
 
-		bool StateHasChanged { get { return currentState != oldState; } }
+		bool StateHasChanged { get { return newState != currentState; } }
 
 		public void SetState(State newState)
 		{
-			oldState = currentState;
-			currentState = newState;
+			this.newState = newState;
+		}
+
+		public class StateCollection
+		{
+			public State Idle;
+			public State Patrol;
+			public State Chase;
+			public State Attack;
+			public State Stunned;
+			public State RunAway;
+			public State SafeZone;
+
+			public StateCollection(State idle, State patrol, State chase, State attack, State stunned, State runAway, State safeZone)
+			{
+				this.Idle = idle;
+				this.Patrol = patrol;
+				this.Chase = chase;
+				this.Attack = attack;
+				this.Stunned = stunned;
+				this.RunAway = runAway;
+				this.SafeZone = safeZone;
+			}
 		}
 	}
 
 	public abstract class State
 	{
 		private FSMController controller;
-		protected Enemy TargetUnit { get { return controller.targetUnit; } }
+		protected Enemy Actor { get { return controller.targetUnit; } }
 		protected FSMController.StateCollection States { get { return controller.States; } }
 
 		protected State(FSMController controller)
@@ -82,6 +88,16 @@ namespace FSM
 		public virtual void Enter() { }
 
 		public abstract void Process();
+
+		public virtual void LateProcess()
+        {
+            if (Actor.IsStunned)
+            {
+				SetState(States.Stunned);
+            }
+			else if (PlayerState.IsHunter)
+				SetState(States.RunAway);
+        }
 
 		public virtual void Exit() { }
 	}

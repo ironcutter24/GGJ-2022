@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EncodableAsset" id="{964be33e-e450-403e-aaa7-6eb7f09dad09}">
+		<property name="assetPath">
+			<value>SOLI/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{3464172f-3413-4f6e-bfc4-1c3f6f56c7a9}</destination>
+		</relationship>
+	</object>
+</objects>

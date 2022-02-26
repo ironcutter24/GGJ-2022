@@ -6,6 +6,21 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: d1c3109bdb54ad54c8a2b2838528e640
+    path: Assets/Scenes/MainMenu/MainMenu.unity
+    guid: 98060eb572e42f947a01fc3843719c71
+  - enabled: 1
+    path: Assets/Scenes/FoolTarot.unity
+    guid: 0c238a06bb3c0b94abf78824c97d7231
+  - enabled: 1
+    path: Assets/Scenes/Simone_Scene/Level_01.unity
+    guid: b43e456ba2c09324496add76c53987e7
+  - enabled: 1
+    path: Assets/Scenes/Simone_Scene/Level_02.unity
+    guid: fcb14ec34c5a6fc4d964f585acca0a20
+  - enabled: 1
+    path: Assets/Scenes/Simone_Scene/Level_03.unity
+    guid: cca8e6a5fffbd734a94606ae9454ab9e
+  - enabled: 1
+    path: Assets/Scenes/Simone_Scene/Level_04.unity
+    guid: ba12dc7f6d9113c4bb22a98eccde4f74
   m_configObjects: {}
