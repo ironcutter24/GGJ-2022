@@ -353,9 +353,9 @@ public abstract class Enemy : MonoBehaviour, ITargetable
                 shortestSqrDistance = sqrDist;
             }
         }
-        var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        cube.transform.position = nearestCoffin;
-        cube.transform.localScale = new Vector3(.2f, 20f, .2f);
+        //var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        //cube.transform.position = nearestCoffin;
+        //cube.transform.localScale = new Vector3(.2f, 20f, .2f);
 
         return nearestCoffin;
     }

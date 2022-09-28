@@ -17,13 +17,15 @@ public class CameraTopDown : Singleton<CameraTopDown>
     [Header("Positioning")]
     [SerializeField] float heightPrey;
     [SerializeField] float heightHunter;
-    [SerializeField] float verticalOffset;
+    [SerializeField] float verticalOffsetPrey;
+    [SerializeField] float verticalOffsetHunter;
 
     private float HeightFromPlayer { get { return PlayerState.IsHunter ? heightHunter : heightPrey; } }
+    private float VerticalOffset { get { return PlayerState.IsHunter ? verticalOffsetHunter : verticalOffsetPrey; }}
 
     Controller3D player;
 
-    Vector3 TargetPosition { get { return player.Pos + GetOffsetVector() + Vector3.forward * verticalOffset; } }
+    Vector3 TargetPosition { get { return player.Pos + GetOffsetVector() + Vector3.forward * VerticalOffset; } }
 
     private void Start()
     {
@@ -35,7 +37,7 @@ public class CameraTopDown : Singleton<CameraTopDown>
         transform.position = KeepTransformY(player.Pos);
     }
 
-    void LateUpdate()
+    void FixedUpdate()
     {
         transform.position = Vector3.Lerp(transform.position, TargetPosition, lerpInterpolation);
     }

@@ -137,12 +137,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79ed9ed665d902e48aa93beb534f77e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lerpInterpolation: 0.008
+  lerpInterpolation: 0.06
   maxDistanceX: 1
-  maxDistanceZ: 0.6
+  maxDistanceZ: 0.8
   heightPrey: 7
   heightHunter: 10
-  verticalOffset: -4.5
+  verticalOffsetPrey: -4
+  verticalOffsetHunter: -5
 --- !u!114 &7964063386966872265
 MonoBehaviour:
   m_ObjectHideFlags: 0
