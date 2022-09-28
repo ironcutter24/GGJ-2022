@@ -210,7 +210,7 @@ MonoBehaviour:
   rb: {fileID: 7420500587072053021}
   anim: {fileID: 5866666021231624767}
   mainCollider: {fileID: 3783393683860126731}
-  preySpeed: 3.2
+  preySpeed: 3.4
   hunterSpeed: 3
   invisibilityDuration: 3
   dashNumber: 3
@@ -219,7 +219,6 @@ MonoBehaviour:
   blockDash:
     serializedVersion: 2
     m_Bits: 64
-  healthRegenAmount: 1
   maxHealth: 5
   dashTrail: {fileID: 5264168479862327809}
 --- !u!114 &4361322243882956617
