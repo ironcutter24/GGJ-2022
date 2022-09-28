@@ -84,21 +84,7 @@ public class FloatingSwords : Singleton<FloatingSwords>
 
         transform.LookAt(doesRotateX ? targetPosition : samePlaneTarget);
     }
-    /*
-    void ShootAt(Vector3 targetPosition)
-    {
-        currentOrigin++;
 
-        if (currentOrigin >= swordOrigins.Count)
-            currentOrigin -= swordOrigins.Count;
-
-        //currentOrigin = Random.Range(0, swordOrigins.Count);
-        swordOrigins[currentOrigin].ShootAt(targetPosition);
-        swordOrigins[currentOrigin].GenerateSwordAfter(recoilTime);
-
-        recoilTimer = recoilTime;
-    }
-    */
     void ShootAt(Vector3 targetPosition)
     {
         AudioManager.PlayerKnifeThrow();
@@ -110,8 +96,6 @@ public class FloatingSwords : Singleton<FloatingSwords>
         {
             currentOrigin = 0;
             reloadTimer.Set(reloadDuration);
-
-            //TryAction(OnReload, reloadDuration - recoilDuration);
             StartCoroutine(_ScheduleReload(reloadDuration - recoilDuration));
         }
         else

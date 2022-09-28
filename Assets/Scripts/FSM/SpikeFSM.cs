@@ -33,7 +33,10 @@ namespace FSM
             {
                 if (Actor.CanSeePlayer())
                 {
-                    Actor.SetDestination(Controller3D.Instance.Pos);
+                    if (PlayerState.IsPrey)
+                        Actor.SetDestination(Controller3D.Instance.Pos);
+                    else
+                        SetState(States.RunAway);
                 }
 
                 if (Actor.HasReachedDestination())

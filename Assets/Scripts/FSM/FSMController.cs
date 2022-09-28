@@ -95,8 +95,6 @@ namespace FSM
             {
 				SetState(States.Stunned);
             }
-			else if (PlayerState.IsHunter)
-				SetState(States.RunAway);
         }
 
 		public virtual void Exit() { }

@@ -264,14 +264,13 @@ MonoBehaviour:
   walkAngularSpeed: 110
   runSpeed: 3
   runAngularSpeed: 130
-  maxHealth: 3
+  maxHealth: 9
   stunDuration: 0.4
   waypoints:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  rb: {fileID: 3385342270942724744}
 --- !u!1 &7763464138302109423
 GameObject:
   m_ObjectHideFlags: 0

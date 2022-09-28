@@ -47,7 +47,12 @@ namespace FSM
             else
             {
                 if (Actor.CanSeePlayer())
-                    SetState(States.Chase);
+                {
+                    if (PlayerState.IsPrey)
+                        SetState(States.Chase);
+                    else
+                        SetState(States.RunAway);
+                }
             }
         }
     }
@@ -72,7 +77,12 @@ namespace FSM
                     Actor.SetDestination(Actor.GetNextWaypoint());
 
                 if (Actor.CanSeePlayer())
-                    SetState(States.Chase);
+                {
+                    if (PlayerState.IsPrey)
+                        SetState(States.Chase);
+                    else
+                        SetState(States.RunAway);
+                }
             }
             else
                 SetState(States.Idle);
@@ -115,8 +125,13 @@ namespace FSM
 
         public override void Process()
         {
-            if(!Actor.IsStunned)
-                SetState(States.Patrol);
+            if (!Actor.IsStunned)
+            {
+                if (PlayerState.IsPrey)
+                    SetState(States.Patrol);
+                else
+                    SetState(States.RunAway);
+            }
         }
 
         public override void LateProcess() { }

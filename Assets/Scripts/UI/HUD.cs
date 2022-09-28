@@ -17,11 +17,11 @@ public class HUD : Singleton<HUD>
     public bool isPrey
     {
         get { return isPrey_; }
-	    set 
-	    { 
-	    	isPrey_ = value;
-			SwitchSprite(value); 
-	    }
+        set
+        {
+            isPrey_ = value;
+            SwitchSprite(value);
+        }
     }
 
     [Header("Health Bar Values")]
@@ -29,8 +29,8 @@ public class HUD : Singleton<HUD>
 
     [Header("Resource Bar Values")]
     [SerializeField] int resourceMin;
-	[SerializeField] int resourceMax;
-	[SerializeField] int resourceCurrent;
+    [SerializeField] int resourceMax;
+    [SerializeField] int resourceCurrent;
     [SerializeField] bool clampHalfMax;
 
     [Header("Resource Bar Images")]
@@ -40,7 +40,7 @@ public class HUD : Singleton<HUD>
 
     void Update()
     {
-	    GetCurrentFill();
+        GetCurrentFill();
     }
 
     public void SwitchSprite(bool isActivePreySprite)
@@ -49,45 +49,52 @@ public class HUD : Singleton<HUD>
         {
             portraits[i].sprite = isActivePreySprite ? spritePrey : spriteHunter;
         }
-	    if (isActivePreySprite) {
-		    ResetResourceBar();
-	    }
+        if (isActivePreySprite)
+        {
+            ResetResourceBar();
+        }
     }
-    
-	private void ResetResourceBar()
-	{
-		resourceMax = 0;
-		resourceCurrent = 0;
-	}
+
+    private void ResetResourceBar()
+    {
+        resourceMax = 0;
+        resourceCurrent = 0;
+    }
 
     public void GetCurrentFill()
     {
         float currentOffset = resourceCurrent - resourceMin;
         float maximumOffset = resourceMax - resourceMin;
-	    float fillAmount = currentOffset / maximumOffset;
-	    if(resourceMax == 0 && resourceMin== 0 ){
-	    	fillAmount = 0;
-	    }
+        float fillAmount = currentOffset / maximumOffset;
+        if (resourceMax == 0 && resourceMin == 0)
+        {
+            fillAmount = 0;
+        }
         fill.fillAmount = clampHalfMax ? (float)(fillAmount * 0.5f) : fillAmount;
-	    fill.color = color;
+        fill.color = color;
     }
 
     public void SetHealthBar(float health)
     {
-	    healthBar.value = health;
+        healthBar.value = health;
     }
-    
-	public void setResourceCurrent(int resCurrent) {
-		resourceCurrent = resCurrent;
-	}
-	
-	public void setResourceMax(int resMax) {
-		resourceMax = resMax;
-		resourceCurrent = resMax;
-	}
+
+    public void setResourceCurrent(int resCurrent)
+    {
+        resourceCurrent = resCurrent;
+    }
+
+    public void setResourceMax(int resMax)
+    {
+        resourceMax = resMax;
+        resourceCurrent = resMax;
+    }
 
     public static void SetEnemiesLeft(int amount)
     {
-        _instance.enemiesLeft.text = amount.ToString();
+        if (amount > 0)
+            _instance.enemiesLeft.text = amount.ToString();
+        else
+            _instance.enemiesLeft.text = "go on";
     }
 }

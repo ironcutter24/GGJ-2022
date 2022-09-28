@@ -209,7 +209,6 @@ public abstract class Enemy : MonoBehaviour, ITargetable
     #endregion
 
 
-
     #region Patrol state
 
     public Vector3 GetNearestWaypoint()
@@ -275,8 +274,7 @@ public abstract class Enemy : MonoBehaviour, ITargetable
 
         PlayerState.RecordSuccessfulAttack(attack);
 
-        if (attack.source.GetComponent<DecoyTrap>() != null)
-            _isStunned = true;
+        _isStunned = true;
 
         if (_health <= 0f)
         {
