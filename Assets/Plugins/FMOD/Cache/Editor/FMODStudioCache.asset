@@ -244,7 +244,7 @@ MonoBehaviour:
   - {fileID: 2106948727201168312}
   StringsBanks:
   - {fileID: 9220748475384579895}
-  cacheTime: 637791109326878617
+  cacheTime: 637999782359761343
   cacheVersion: 10
 --- !u!114 &508734500026003411
 MonoBehaviour:
@@ -315,7 +315,7 @@ MonoBehaviour:
   Path: Assets/Audio/Neden Finito Veramente/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637791109326858598
+  lastModified: 637999782359751334
   FileSizes:
   - Name: Desktop
     Value: 7449888
@@ -485,7 +485,7 @@ MonoBehaviour:
   Path: Assets/Audio/Neden Finito Veramente/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637791109326878617
+  lastModified: 637999782359761343
   FileSizes:
   - Name: Desktop
     Value: 1474

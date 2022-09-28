@@ -270,9 +270,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SwitchSettingsMigration: 1
   HasSourceProject: 0
-  HasPlatforms: 1
+  HasPlatforms: 0
   sourceProjectPath: Assets/Audio/OST Red n Goats/OST Red n Goats2.fspro
-  sourceBankPath: Assets/Audio/Neden Finito Veramente/Build
+  sourceBankPath: Assets/Audio/Neden Finito Veramente/MultiplePlatformBuild/Desktop
   SourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
