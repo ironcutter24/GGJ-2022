@@ -5,7 +5,8 @@
 
 NedeN, our submission for the Global Game Jam 2022!
 
-Play jam version [here](https://globalgamejam.org/2022/games/neden-3)
+Available for Windows on [itch.io](https://ironcutter24.itch.io/neden)<br>
+Original submission [here](https://globalgamejam.org/2022/games/neden-3)
 
 ## A game by:
 - Alessandro Violante
